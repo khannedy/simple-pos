@@ -28,6 +28,4 @@ public interface Service<T extends AbstractEntity<?>, ID extends Serializable> {
     T find(ID id);
 
     List<T> findAll();
-
-    List<T> search(String query);
 }
