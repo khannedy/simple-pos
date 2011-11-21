@@ -19,13 +19,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class PenggunaValidator extends AbstractValidator<Pengguna> {
 
+    @Override
     public void doValidate(Pengguna data) throws ValidatorException {
         if (data == null) {
             throwValidatorException("Pengguna tidak boleh null");
         } else if (data.getId() == null) {
-            throwValidatorException("Id pengguna tidak boleh null");
+            throwValidatorException("Kode pengguna tidak boleh null");
         } else if (data.getId().trim().isEmpty()) {
-            throwValidatorException("Id pengguna tidak boleh kosong");
+            throwValidatorException("Kode pengguna tidak boleh kosong");
         } else if (data.getKataSandi() == null) {
             throwValidatorException("Kata sandi pengguna tidak boleh null");
         } else if (data.getKataSandi().trim().isEmpty()) {

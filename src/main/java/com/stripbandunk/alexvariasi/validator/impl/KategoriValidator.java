@@ -7,7 +7,7 @@
  */
 package com.stripbandunk.alexvariasi.validator.impl;
 
-import com.stripbandunk.alexvariasi.entity.user.Grup;
+import com.stripbandunk.alexvariasi.entity.master.Kategori;
 import com.stripbandunk.alexvariasi.validator.AbstractValidator;
 import com.stripbandunk.alexvariasi.validator.ValidatorException;
 import org.springframework.stereotype.Component;
@@ -17,22 +17,20 @@ import org.springframework.stereotype.Component;
  * @author Eko Kurniawan Khannedy
  */
 @Component
-public class GrupValidator extends AbstractValidator<Grup> {
+public class KategoriValidator extends AbstractValidator<Kategori> {
 
     @Override
-    public void doValidate(Grup data) throws ValidatorException {
+    public void doValidate(Kategori data) throws ValidatorException {
         if (data == null) {
-            throwValidatorException("Grup tidak boleh null");
+            throwValidatorException("Kategori tidak boleh null");
         } else if (data.getId() == null) {
-            throwValidatorException("Kode grup tidak boleh null");
+            throwValidatorException("Kode kategori tidak boleh null");
         } else if (data.getId().trim().isEmpty()) {
-            throwValidatorException("Kode grup tidak boleh kosong");
+            throwValidatorException("Kode kategori tidak boleh kosong");
         } else if (data.getNama() == null) {
-            throwValidatorException("Nama grup tidak boleh null");
+            throwValidatorException("Nama kategori tidak boleh null");
         } else if (data.getNama().trim().isEmpty()) {
-            throwValidatorException("Nama grup tidak boleh kosong");
-        } else if (data.getDaftarHakAkses().isEmpty()) {
-            throwValidatorException("Grup harus memiliki hak akses");
+            throwValidatorException("Nama kategori tidak boleh kosong");
         }
     }
 }
