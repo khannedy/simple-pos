@@ -7,8 +7,11 @@
  */
 package com.stripbandunk.alexvariasi.validator;
 
+import com.stripbandunk.alexvariasi.entity.AbstractEntity;
+
 /**
  *
+ * @param <T> data
  * @author Eko Kurniawan Khannedy
  */
 public abstract class AbstractValidator<T> implements Validator<T> {
@@ -16,4 +19,24 @@ public abstract class AbstractValidator<T> implements Validator<T> {
     public void throwValidatorException(String message) throws ValidatorException {
         throw new ValidatorException(message);
     }
+
+    public void validate(T data) throws ValidatorException {
+
+        doValidate(data);
+
+        if (data instanceof AbstractEntity<?>) {
+            AbstractEntity<?> entity = (AbstractEntity<?>) data;
+            validateEntity(entity);
+        }
+    }
+
+    public void validateEntity(AbstractEntity<?> entity) throws ValidatorException {
+        if (entity.getWaktuDibuat() == null) {
+            throwValidatorException("Waktu dirubah tidak boleh null");
+        } else if (entity.getTerakhirDirubah() == null) {
+            throwValidatorException("Terakhir dirubah tidak boleh null");
+        }
+    }
+
+    public abstract void doValidate(T data) throws ValidatorException;
 }
