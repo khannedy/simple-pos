@@ -30,7 +30,7 @@ public class Pelanggan extends AbstractEntity<String> {
     @Column(name = "nama", nullable = false, length = 100)
     private String nama;
 
-    @Column(name = "nama", length = 100)
+    @Column(name = "kota", length = 100)
     private String kota;
 
     @Column(name = "alamat", length = 500)

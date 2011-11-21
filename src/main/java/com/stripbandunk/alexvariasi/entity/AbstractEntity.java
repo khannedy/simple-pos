@@ -34,7 +34,7 @@ public abstract class AbstractEntity<T> implements Serializable {
     private Date terakhirDirubah;
 
     @Lob
-    @Column(name = "info", nullable = false)
+    @Column(name = "info")
     private String info;
 
     public abstract T getId();
