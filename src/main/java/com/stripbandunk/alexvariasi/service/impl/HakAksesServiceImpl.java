@@ -9,25 +9,17 @@ package com.stripbandunk.alexvariasi.service.impl;
 
 import com.stripbandunk.alexvariasi.entity.user.HakAkses;
 import com.stripbandunk.alexvariasi.service.AbstractService;
-import java.util.List;
-import org.hibernate.criterion.Restrictions;
+import com.stripbandunk.alexvariasi.service.HakAksesService;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Eko Kurniawan Khannedy
  */
 @Service
-public class HakAksesService extends AbstractService<HakAkses, String> {
+public class HakAksesServiceImpl extends AbstractService<HakAkses, String> implements HakAksesService{
 
-    public HakAksesService() {
+    public HakAksesServiceImpl() {
         super(HakAkses.class);
-    }
-
-    @Transactional(readOnly = true)
-    @SuppressWarnings("unchecked")
-    public List<HakAkses> search(String query) {
-        return currentSession().createCriteria(clazz).add(Restrictions.eq("name", query)).list();
     }
 }
