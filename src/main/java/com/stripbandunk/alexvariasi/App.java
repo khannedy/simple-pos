@@ -7,16 +7,45 @@
  */
 package com.stripbandunk.alexvariasi;
 
+import com.stripbandunk.alexvariasi.view.Form;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
+
 /**
  *
  * @author Eko Kurniawan Khannedy
  */
-public class App {
+public class App implements Runnable {
+
+    private Form form;
+
+    public App() {
+        form = new Form();
+    }
+
+    public void start() {
+        SwingUtilities.invokeLater(this);
+    }
+
+    public void run() {
+        form.setVisible(true);
+    }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        try {
+            UIManager.setLookAndFeel(new NimbusLookAndFeel());
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            App app = new App();
+            app.start();
+        }
     }
 }
