@@ -10,11 +10,13 @@ package com.stripbandunk.alexvariasi.validator.impl;
 import com.stripbandunk.alexvariasi.entity.user.Pengguna;
 import com.stripbandunk.alexvariasi.validator.AbstractValidator;
 import com.stripbandunk.alexvariasi.validator.ValidatorException;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Eko Kurniawan Khannedy
  */
+@Component
 public class PenggunaValidator extends AbstractValidator<Pengguna> {
 
     public void doValidate(Pengguna data) throws ValidatorException {
