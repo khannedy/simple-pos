@@ -8,6 +8,7 @@
 package com.stripbandunk.alexvariasi.entity.user;
 
 import com.stripbandunk.alexvariasi.entity.AbstractEntity;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import javax.persistence.Column;
@@ -41,7 +42,7 @@ public class Grup extends AbstractEntity<String> {
     @JoinTable(name = "tabel_join_grup_dan_hak_akses", joinColumns =
     @JoinColumn(name = "id_grup", nullable = false), inverseJoinColumns =
     @JoinColumn(name = "id_hak_akses", nullable = false))
-    private List<HakAkses> daftarHakAkses;
+    private List<HakAkses> daftarHakAkses = new ArrayList<HakAkses>(0);
 
     @OneToMany(mappedBy = "grup")
     private List<Pengguna> daftarPengguna;
