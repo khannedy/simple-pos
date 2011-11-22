@@ -7,6 +7,9 @@
  */
 package com.stripbandunk.alexvariasi.manager;
 
+import com.stripbandunk.alexvariasi.entity.user.Pengguna;
+import com.stripbandunk.alexvariasi.service.PenggunaService;
+
 /**
  *
  * @author Eko Kurniawan Khannedy
@@ -22,15 +25,30 @@ public class LoginManager {
         return LoginManager.INSTANCE;
     }
 
+    private String id;
+
     private LoginManager() {
         // singleton class
     }
 
     public boolean login(String username, String password) {
-        return false;
+        if (getPenggunaService().contains(username, password)) {
+            this.id = username;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void logout() {
-        
+        this.id = null;
+    }
+
+    public Pengguna getPengguna() {
+        return getPenggunaService().find(id);
+    }
+
+    private PenggunaService getPenggunaService() {
+        return SpringManager.getInstance().getBean(PenggunaService.class);
     }
 }
