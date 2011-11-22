@@ -69,5 +69,15 @@
             <artifactId>commons-dbcp</artifactId>
             <version>1.4</version>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>JGlassPane</artifactId>
+            <version>1.0-FINAL</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>JWidget</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 </project>

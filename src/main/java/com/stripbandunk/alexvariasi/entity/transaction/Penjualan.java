@@ -8,6 +8,8 @@
 package com.stripbandunk.alexvariasi.entity.transaction;
 
 import com.stripbandunk.alexvariasi.entity.AbstractTransactionEntity;
+import com.stripbandunk.alexvariasi.entity.master.Pelanggan;
+import com.stripbandunk.alexvariasi.entity.user.Pengguna;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -18,4 +20,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tabel_penjualan")
 public class Penjualan extends AbstractTransactionEntity {
+
+    private static final long serialVersionUID = 1L;
+
+    private Pengguna pengguna;
+
+    private Pelanggan pelanggan;
 }

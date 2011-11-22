@@ -8,6 +8,8 @@
 package com.stripbandunk.alexvariasi.entity.transaction;
 
 import com.stripbandunk.alexvariasi.entity.AbstractTransactionEntity;
+import com.stripbandunk.alexvariasi.entity.master.Pemasok;
+import com.stripbandunk.alexvariasi.entity.user.Pengguna;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -21,6 +23,8 @@ public class Pembelian extends AbstractTransactionEntity {
 
     private static final long serialVersionUID = 1L;
     
+    private Pengguna pengguna;
     
+    private Pemasok pemasok;
     
 }

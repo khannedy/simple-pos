@@ -7,6 +7,7 @@
  */
 package com.stripbandunk.alexvariasi;
 
+import com.stripbandunk.alexvariasi.manager.SpringManager;
 import com.stripbandunk.alexvariasi.view.FormApp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,6 +45,10 @@ public class App implements Runnable {
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
+            // ini spring
+            SpringManager.getInstance();
+
+            // run app
             App app = new App();
             app.start();
         }
