@@ -46,6 +46,10 @@
                 <value>com.stripbandunk.alexvariasi.entity.user.Grup</value>
                 <value>com.stripbandunk.alexvariasi.entity.user.HakAkses</value>
                 <value>com.stripbandunk.alexvariasi.entity.user.Pengguna</value>
+                <value>com.stripbandunk.alexvariasi.entity.transaction.Pembelian</value>
+                <value>com.stripbandunk.alexvariasi.entity.transaction.Penjualan</value>
+                <value>com.stripbandunk.alexvariasi.entity.transaction.DetailPembelian</value>
+                <value>com.stripbandunk.alexvariasi.entity.transaction.DetailPenjualan</value>
             </util:list>
         </property>
     </bean>
