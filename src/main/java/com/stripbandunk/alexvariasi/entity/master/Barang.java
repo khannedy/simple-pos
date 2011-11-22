@@ -48,7 +48,7 @@ public class Barang extends AbstractEntity<String> {
 
     @OneToMany(mappedBy = "barang", fetch = FetchType.EAGER,
     cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<DetailBarang> daftarDetailBarang = new ArrayList<DetailBarang>(1);
+    private List<DetailBarang> daftarDetailBarang = new ArrayList<>(1);
 
     public void tambahDetailBarang(DetailBarang detailBarang) {
         if (!daftarDetailBarang.contains(detailBarang)) {
