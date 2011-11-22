@@ -7,7 +7,7 @@
  */
 package com.stripbandunk.alexvariasi;
 
-import com.stripbandunk.alexvariasi.view.Form;
+import com.stripbandunk.alexvariasi.view.FormApp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
@@ -21,10 +21,10 @@ import javax.swing.plaf.nimbus.NimbusLookAndFeel;
  */
 public class App implements Runnable {
 
-    private Form form;
+    private FormApp form;
 
     public App() {
-        form = new Form();
+        form = new FormApp();
     }
 
     public void start() {
