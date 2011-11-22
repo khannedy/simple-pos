@@ -8,6 +8,7 @@
 package com.stripbandunk.alexvariasi.entity.master;
 
 import com.stripbandunk.alexvariasi.entity.AbstractEntity;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -47,7 +48,7 @@ public class Barang extends AbstractEntity<String> {
 
     @OneToMany(mappedBy = "barang", fetch = FetchType.EAGER,
     cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<DetailBarang> daftarDetailBarang;
+    private List<DetailBarang> daftarDetailBarang = new ArrayList<DetailBarang>(1);
 
     public void tambahDetailBarang(DetailBarang detailBarang) {
         if (!daftarDetailBarang.contains(detailBarang)) {
