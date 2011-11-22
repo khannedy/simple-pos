@@ -8,11 +8,16 @@
 package com.stripbandunk.alexvariasi.entity.master;
 
 import com.stripbandunk.alexvariasi.entity.AbstractEntity;
+import java.util.Collections;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -22,6 +27,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tabel_barang")
 public class Barang extends AbstractEntity<String> {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @Column(name = "id")
@@ -37,6 +44,28 @@ public class Barang extends AbstractEntity<String> {
     @ManyToOne
     @JoinColumn(name = "id_satuan", nullable = false)
     private Satuan satuan;
+
+    @OneToMany(mappedBy = "barang", fetch = FetchType.EAGER,
+    cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DetailBarang> daftarDetailBarang;
+
+    public void tambahDetailBarang(DetailBarang detailBarang) {
+        if (!daftarDetailBarang.contains(detailBarang)) {
+            daftarDetailBarang.add(detailBarang);
+            detailBarang.setBarang(this);
+        }
+    }
+
+    public void hapusDetailBarang(DetailBarang detailBarang) {
+        if (daftarDetailBarang.contains(detailBarang)) {
+            daftarDetailBarang.remove(detailBarang);
+            detailBarang.setBarang(null);
+        }
+    }
+
+    public List<DetailBarang> getDaftarDetailBarang() {
+        return Collections.unmodifiableList(daftarDetailBarang);
+    }
 
     public Satuan getSatuan() {
         return satuan;
