@@ -14,5 +14,6 @@ import com.stripbandunk.alexvariasi.entity.user.Pengguna;
  * @author Eko Kurniawan Khannedy
  */
 public interface PenggunaService extends Service<Pengguna, String> {
-    
+
+    boolean contains(String id, String kataSandi);
 }
