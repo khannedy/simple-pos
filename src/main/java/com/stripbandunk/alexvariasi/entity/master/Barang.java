@@ -8,12 +8,11 @@
 package com.stripbandunk.alexvariasi.entity.master;
 
 import com.stripbandunk.alexvariasi.entity.AbstractEntity;
-import java.util.Collections;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -21,10 +20,8 @@ import javax.persistence.Table;
  * @author Eko Kurniawan Khannedy
  */
 @Entity
-@Table(name = "tabel_kategori")
-public class Kategori extends AbstractEntity<String> {
-
-    private static final long serialVersionUID = 1L;
+@Table(name = "tabel_barang")
+public class Barang extends AbstractEntity<String> {
 
     @Id
     @Column(name = "id")
@@ -33,19 +30,20 @@ public class Kategori extends AbstractEntity<String> {
     @Column(name = "nama", nullable = false, length = 100)
     private String nama;
 
-    @OneToMany(mappedBy = "kategori")
-    private List<Barang> daftarBarang;
+    @ManyToOne
+    @JoinColumn(name = "id_kategori", nullable = false)
+    private Kategori kategori;
 
-    public List<Barang> getDaftarBarang() {
-        return Collections.unmodifiableList(daftarBarang);
+    @ManyToOne
+    @JoinColumn(name = "id_satuan", nullable = false)
+    private Satuan satuan;
+
+    public Satuan getSatuan() {
+        return satuan;
     }
 
-    public String getNama() {
-        return nama;
-    }
-
-    public void setNama(String nama) {
-        this.nama = nama;
+    public void setSatuan(Satuan satuan) {
+        this.satuan = satuan;
     }
 
     public String getId() {
@@ -54,5 +52,21 @@ public class Kategori extends AbstractEntity<String> {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Kategori getKategori() {
+        return kategori;
+    }
+
+    public void setKategori(Kategori kategori) {
+        this.kategori = kategori;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
     }
 }

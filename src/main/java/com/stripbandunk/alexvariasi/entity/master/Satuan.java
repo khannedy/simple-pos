@@ -21,8 +21,8 @@ import javax.persistence.Table;
  * @author Eko Kurniawan Khannedy
  */
 @Entity
-@Table(name = "tabel_kategori")
-public class Kategori extends AbstractEntity<String> {
+@Table(name = "tabel_satuan")
+public class Satuan extends AbstractEntity<String> {
 
     private static final long serialVersionUID = 1L;
 
@@ -33,19 +33,11 @@ public class Kategori extends AbstractEntity<String> {
     @Column(name = "nama", nullable = false, length = 100)
     private String nama;
 
-    @OneToMany(mappedBy = "kategori")
+    @OneToMany(mappedBy = "satuan")
     private List<Barang> daftarBarang;
 
     public List<Barang> getDaftarBarang() {
         return Collections.unmodifiableList(daftarBarang);
-    }
-
-    public String getNama() {
-        return nama;
-    }
-
-    public void setNama(String nama) {
-        this.nama = nama;
     }
 
     public String getId() {
@@ -54,5 +46,13 @@ public class Kategori extends AbstractEntity<String> {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
     }
 }
