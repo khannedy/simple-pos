@@ -9,6 +9,9 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenuAplikasi">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/com/stripbandunk/alexvariasi/image/aplikasi.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Aplikasi"/>
             <Property name="name" type="java.lang.String" value="jMenuAplikasi" noResource="true"/>
           </Properties>
@@ -18,7 +21,10 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+W"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Keluar Aplikasi"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/stripbandunk/alexvariasi/image/keluar.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Keluar Pengguna"/>
                 <Property name="name" type="java.lang.String" value="jMenuItemKeluarAplikasi" noResource="true"/>
               </Properties>
             </MenuItem>
@@ -26,6 +32,9 @@
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Alt+F4"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/stripbandunk/alexvariasi/image/tutup.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Tutup Aplikasi"/>
                 <Property name="name" type="java.lang.String" value="jMenuItemTutupAplikasi" noResource="true"/>
@@ -35,6 +44,9 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenuDataMaster">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/com/stripbandunk/alexvariasi/image/master-data.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Data Master"/>
             <Property name="name" type="java.lang.String" value="jMenuDataMaster" noResource="true"/>
           </Properties>
@@ -43,6 +55,9 @@
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+K"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/stripbandunk/alexvariasi/image/kategori.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Kategori"/>
                 <Property name="name" type="java.lang.String" value="jMenuItemKategori" noResource="true"/>
@@ -56,6 +71,9 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+S"/>
                 </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/stripbandunk/alexvariasi/image/satuan.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Satuan"/>
                 <Property name="name" type="java.lang.String" value="jMenuItemSatuan" noResource="true"/>
               </Properties>
@@ -65,14 +83,25 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+B"/>
                 </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/stripbandunk/alexvariasi/image/barang.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Barang"/>
                 <Property name="name" type="java.lang.String" value="jMenuItemBarang" noResource="true"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="jSeparator1" noResource="true"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemPemasok">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+P"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/stripbandunk/alexvariasi/image/pemasok.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Pemasok"/>
                 <Property name="name" type="java.lang.String" value="jMenuItemPemasok" noResource="true"/>
@@ -83,6 +112,9 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+N"/>
                 </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/stripbandunk/alexvariasi/image/pelanggan.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Pelanggan"/>
                 <Property name="name" type="java.lang.String" value="jMenuItemPelanggan" noResource="true"/>
               </Properties>
@@ -92,8 +124,151 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+L"/>
                 </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/stripbandunk/alexvariasi/image/penjual.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Penjual"/>
                 <Property name="name" type="java.lang.String" value="jMenuItemPenjual" noResource="true"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator2">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="jSeparator2" noResource="true"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+J"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/stripbandunk/alexvariasi/image/jabatan.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Jabatan"/>
+                <Property name="name" type="java.lang.String" value="jMenuItem1" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+Y"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/stripbandunk/alexvariasi/image/karyawan.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Karyawan"/>
+                <Property name="name" type="java.lang.String" value="jMenuItem2" noResource="true"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenuTransaksi">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/com/stripbandunk/alexvariasi/image/transaksi.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Transaksi"/>
+            <Property name="name" type="java.lang.String" value="jMenuTransaksi" noResource="true"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemPenjualan">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Shift+Alt+P"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/stripbandunk/alexvariasi/image/penjualan.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Penjualan"/>
+                <Property name="name" type="java.lang.String" value="jMenuItemPenjualan" noResource="true"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemPembelian">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Shift+Alt+E"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/stripbandunk/alexvariasi/image/pembelian.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Pembelian"/>
+                <Property name="name" type="java.lang.String" value="jMenuItemPembelian" noResource="true"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenuHakAkses">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/com/stripbandunk/alexvariasi/image/hak-akses.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Hak Akses"/>
+            <Property name="name" type="java.lang.String" value="jMenuHakAkses" noResource="true"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemGrup">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Shift+Ctrl+G"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/stripbandunk/alexvariasi/image/grup.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Grup"/>
+                <Property name="name" type="java.lang.String" value="jMenuItemGrup" noResource="true"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemPengguna">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Shift+Ctrl+P"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/stripbandunk/alexvariasi/image/pengguna.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Pengguna"/>
+                <Property name="name" type="java.lang.String" value="jMenuItemPengguna" noResource="true"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenuLaporan">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/com/stripbandunk/alexvariasi/image/laporan.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Laporan"/>
+            <Property name="name" type="java.lang.String" value="jMenuLaporan" noResource="true"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemPemasukan">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+Alt+P"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Pemasukan"/>
+                <Property name="name" type="java.lang.String" value="jMenuItemPemasukan" noResource="true"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemPengeluaran">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+Alt+E"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Pengeluaran"/>
+                <Property name="name" type="java.lang.String" value="jMenuItemPengeluaran" noResource="true"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemKeuntungan">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+Alt+U"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Keuntungan"/>
+                <Property name="name" type="java.lang.String" value="jMenuItemKeuntungan" noResource="true"/>
               </Properties>
             </MenuItem>
           </SubComponents>
