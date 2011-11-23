@@ -20,6 +20,7 @@ import com.stripbandunk.alexvariasi.view.impl.DaftarKaryawanView;
 import com.stripbandunk.alexvariasi.view.impl.DaftarKategoriView;
 import com.stripbandunk.alexvariasi.view.impl.DaftarPelangganView;
 import com.stripbandunk.alexvariasi.view.impl.DaftarPemasokView;
+import com.stripbandunk.alexvariasi.view.impl.DaftarPenggunaView;
 import com.stripbandunk.alexvariasi.view.impl.DaftarPenjualView;
 import com.stripbandunk.alexvariasi.view.impl.DaftarSatuanView;
 import com.stripbandunk.jglasspane.JGlassPane;
@@ -346,6 +347,7 @@ public class FormApp extends javax.swing.JFrame {
         } else if (source == jMenuItemPembelian) {
         } else if (source == jMenuItemPengeluaran) {
         } else if (source == jMenuItemPengguna) {
+            showView("daftar-pengguna");
         } else if (source == jMenuItemPenjual) {
             showView("daftar-penjual");
         } else if (source == jMenuItemPenjualan) {
@@ -435,6 +437,9 @@ public class FormApp extends javax.swing.JFrame {
 
         // grup
         registerView("daftar-grup", new DaftarGrupView());
+
+        // pengguna
+        registerView("daftar-pengguna", new DaftarPenggunaView());
     }
 
     public void showView(String viewId) {

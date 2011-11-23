@@ -9,6 +9,9 @@ package com.stripbandunk.alexvariasi.entity.user;
 
 import com.stripbandunk.alexvariasi.entity.AbstractEntity;
 import com.stripbandunk.alexvariasi.entity.master.Karyawan;
+import com.stripbandunk.alexvariasi.view.render.NamaGrupTableCellRenderer;
+import com.stripbandunk.alexvariasi.view.render.NamaKaryawanTableCellRenderer;
+import com.stripbandunk.jwidget.annotation.TableColumn;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -30,6 +33,7 @@ public class Pengguna extends AbstractEntity<String> {
 
     @Id
     @Column(name = "id")
+    @TableColumn(number = 1, name = "Kode Karyawan")
     private String id;
 
     @Column(name = "kata_sandi")
@@ -37,10 +41,12 @@ public class Pengguna extends AbstractEntity<String> {
 
     @OneToOne
     @PrimaryKeyJoinColumn(name = "id", referencedColumnName = "id")
+    @TableColumn(number = 2, name = "Nama Karyawan", size = 20, renderer = NamaKaryawanTableCellRenderer.class)
     private Karyawan karyawan;
 
     @ManyToOne
     @JoinColumn(name = "id_grup", nullable = false)
+    @TableColumn(number = 3, name = "Grup", renderer = NamaGrupTableCellRenderer.class)
     private Grup grup;
 
     public Grup getGrup() {
