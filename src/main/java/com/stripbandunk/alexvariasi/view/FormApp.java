@@ -15,6 +15,7 @@ package com.stripbandunk.alexvariasi.view;
 
 import com.stripbandunk.alexvariasi.view.impl.BerandaView;
 import com.stripbandunk.alexvariasi.view.impl.DaftarJabatanView;
+import com.stripbandunk.alexvariasi.view.impl.DaftarKaryawanView;
 import com.stripbandunk.alexvariasi.view.impl.DaftarKategoriView;
 import com.stripbandunk.alexvariasi.view.impl.DaftarPelangganView;
 import com.stripbandunk.alexvariasi.view.impl.DaftarPemasokView;
@@ -30,7 +31,6 @@ import java.awt.CardLayout;
 import java.awt.Point;
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.JComponent;
 
 /**
  *
@@ -331,6 +331,7 @@ public class FormApp extends javax.swing.JFrame {
         } else if (source == jMenuItemJabatan) {
             showView("daftar-jabatan");
         } else if (source == jMenuItemKaryawan) {
+            showView("daftar-karyawan");
         } else if (source == jMenuItemKategori) {
             showView("daftar-kategori");
         } else if (source == jMenuItemKeluarAplikasi) {
@@ -426,6 +427,9 @@ public class FormApp extends javax.swing.JFrame {
 
         // penjual
         registerView("daftar-penjual", new DaftarPenjualView());
+
+        // karyawan
+        registerView("daftar-karyawan", new DaftarKaryawanView());
     }
 
     public void showView(String viewId) {
