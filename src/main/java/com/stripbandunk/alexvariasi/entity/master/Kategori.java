@@ -29,11 +29,11 @@ public class Kategori extends AbstractEntity<String> {
 
     @Id
     @Column(name = "id")
-    @TableColumn(number = 1, name = "Kode", size = 10)
+    @TableColumn(number = 1, name = "Kode")
     private String id;
 
     @Column(name = "nama", nullable = false, length = 100)
-    @TableColumn(number = 2, name = "Nama", size = 25)
+    @TableColumn(number = 2, name = "Nama", size = 20)
     private String nama;
 
     @OneToMany(mappedBy = "kategori")

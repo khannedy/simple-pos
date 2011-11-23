@@ -8,6 +8,7 @@
 package com.stripbandunk.alexvariasi.entity.master;
 
 import com.stripbandunk.alexvariasi.entity.AbstractEntity;
+import com.stripbandunk.jwidget.annotation.TableColumn;
 import java.util.Collections;
 import java.util.List;
 import javax.persistence.Column;
@@ -28,9 +29,11 @@ public class Satuan extends AbstractEntity<String> {
 
     @Id
     @Column(name = "id")
+    @TableColumn(number = 1, name = "Kode")
     private String id;
 
     @Column(name = "nama", nullable = false, length = 100)
+    @TableColumn(number = 2, name = "Nama", size = 20)
     private String nama;
 
     @OneToMany(mappedBy = "satuan")

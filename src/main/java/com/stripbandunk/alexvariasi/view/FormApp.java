@@ -16,6 +16,7 @@ package com.stripbandunk.alexvariasi.view;
 import com.stripbandunk.alexvariasi.view.impl.BerandaView;
 import com.stripbandunk.alexvariasi.view.impl.DaftarJabatanView;
 import com.stripbandunk.alexvariasi.view.impl.DaftarKategoriView;
+import com.stripbandunk.alexvariasi.view.impl.DaftarSatuanView;
 import com.stripbandunk.jglasspane.JGlassPane;
 import com.stripbandunk.jglasspane.component.ImageTransitionComponent;
 import com.stripbandunk.jglasspane.component.MessageComponent;
@@ -66,6 +67,7 @@ public class FormApp extends javax.swing.JFrame {
 
         jMenuBarApp = new javax.swing.JMenuBar();
         jMenuAplikasi = new javax.swing.JMenu();
+        jMenuItemBeranda = new javax.swing.JMenuItem();
         jMenuItemKeluarAplikasi = new javax.swing.JMenuItem();
         jMenuItemTutupAplikasi = new javax.swing.JMenuItem();
         jMenuDataMaster = new javax.swing.JMenu();
@@ -77,8 +79,8 @@ public class FormApp extends javax.swing.JFrame {
         jMenuItemPelanggan = new javax.swing.JMenuItem();
         jMenuItemPenjual = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItemJabatan = new javax.swing.JMenuItem();
+        jMenuItemKaryawan = new javax.swing.JMenuItem();
         jMenuTransaksi = new javax.swing.JMenu();
         jMenuItemPenjualan = new javax.swing.JMenuItem();
         jMenuItemPembelian = new javax.swing.JMenuItem();
@@ -100,16 +102,37 @@ public class FormApp extends javax.swing.JFrame {
         jMenuAplikasi.setText("Aplikasi");
         jMenuAplikasi.setName("jMenuAplikasi"); // NOI18N
 
+        jMenuItemBeranda.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemBeranda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/stripbandunk/alexvariasi/image/beranda.png"))); // NOI18N
+        jMenuItemBeranda.setText("Beranda");
+        jMenuItemBeranda.setName("jMenuItemBeranda"); // NOI18N
+        jMenuItemBeranda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actionMenuItem(evt);
+            }
+        });
+        jMenuAplikasi.add(jMenuItemBeranda);
+
         jMenuItemKeluarAplikasi.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItemKeluarAplikasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/stripbandunk/alexvariasi/image/keluar.png"))); // NOI18N
         jMenuItemKeluarAplikasi.setText("Keluar Pengguna");
         jMenuItemKeluarAplikasi.setName("jMenuItemKeluarAplikasi"); // NOI18N
+        jMenuItemKeluarAplikasi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actionMenuItem(evt);
+            }
+        });
         jMenuAplikasi.add(jMenuItemKeluarAplikasi);
 
         jMenuItemTutupAplikasi.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
         jMenuItemTutupAplikasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/stripbandunk/alexvariasi/image/tutup.png"))); // NOI18N
         jMenuItemTutupAplikasi.setText("Tutup Aplikasi");
         jMenuItemTutupAplikasi.setName("jMenuItemTutupAplikasi"); // NOI18N
+        jMenuItemTutupAplikasi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actionMenuItem(evt);
+            }
+        });
         jMenuAplikasi.add(jMenuItemTutupAplikasi);
 
         jMenuBarApp.add(jMenuAplikasi);
@@ -124,7 +147,7 @@ public class FormApp extends javax.swing.JFrame {
         jMenuItemKategori.setName("jMenuItemKategori"); // NOI18N
         jMenuItemKategori.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemKategoriActionPerformed(evt);
+                actionMenuItem(evt);
             }
         });
         jMenuDataMaster.add(jMenuItemKategori);
@@ -133,12 +156,22 @@ public class FormApp extends javax.swing.JFrame {
         jMenuItemSatuan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/stripbandunk/alexvariasi/image/satuan.png"))); // NOI18N
         jMenuItemSatuan.setText("Satuan");
         jMenuItemSatuan.setName("jMenuItemSatuan"); // NOI18N
+        jMenuItemSatuan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actionMenuItem(evt);
+            }
+        });
         jMenuDataMaster.add(jMenuItemSatuan);
 
         jMenuItemBarang.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItemBarang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/stripbandunk/alexvariasi/image/barang.png"))); // NOI18N
         jMenuItemBarang.setText("Barang");
         jMenuItemBarang.setName("jMenuItemBarang"); // NOI18N
+        jMenuItemBarang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actionMenuItem(evt);
+            }
+        });
         jMenuDataMaster.add(jMenuItemBarang);
 
         jSeparator1.setName("jSeparator1"); // NOI18N
@@ -148,39 +181,59 @@ public class FormApp extends javax.swing.JFrame {
         jMenuItemPemasok.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/stripbandunk/alexvariasi/image/pemasok.png"))); // NOI18N
         jMenuItemPemasok.setText("Pemasok");
         jMenuItemPemasok.setName("jMenuItemPemasok"); // NOI18N
+        jMenuItemPemasok.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actionMenuItem(evt);
+            }
+        });
         jMenuDataMaster.add(jMenuItemPemasok);
 
         jMenuItemPelanggan.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItemPelanggan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/stripbandunk/alexvariasi/image/pelanggan.png"))); // NOI18N
         jMenuItemPelanggan.setText("Pelanggan");
         jMenuItemPelanggan.setName("jMenuItemPelanggan"); // NOI18N
+        jMenuItemPelanggan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actionMenuItem(evt);
+            }
+        });
         jMenuDataMaster.add(jMenuItemPelanggan);
 
         jMenuItemPenjual.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItemPenjual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/stripbandunk/alexvariasi/image/penjual.png"))); // NOI18N
         jMenuItemPenjual.setText("Penjual");
         jMenuItemPenjual.setName("jMenuItemPenjual"); // NOI18N
+        jMenuItemPenjual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actionMenuItem(evt);
+            }
+        });
         jMenuDataMaster.add(jMenuItemPenjual);
 
         jSeparator2.setName("jSeparator2"); // NOI18N
         jMenuDataMaster.add(jSeparator2);
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_J, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/stripbandunk/alexvariasi/image/jabatan.png"))); // NOI18N
-        jMenuItem1.setText("Jabatan");
-        jMenuItem1.setName("jMenuItem1"); // NOI18N
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemJabatan.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_J, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemJabatan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/stripbandunk/alexvariasi/image/jabatan.png"))); // NOI18N
+        jMenuItemJabatan.setText("Jabatan");
+        jMenuItemJabatan.setName("jMenuItemJabatan"); // NOI18N
+        jMenuItemJabatan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                actionMenuItem(evt);
             }
         });
-        jMenuDataMaster.add(jMenuItem1);
+        jMenuDataMaster.add(jMenuItemJabatan);
 
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/stripbandunk/alexvariasi/image/karyawan.png"))); // NOI18N
-        jMenuItem2.setText("Karyawan");
-        jMenuItem2.setName("jMenuItem2"); // NOI18N
-        jMenuDataMaster.add(jMenuItem2);
+        jMenuItemKaryawan.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemKaryawan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/stripbandunk/alexvariasi/image/karyawan.png"))); // NOI18N
+        jMenuItemKaryawan.setText("Karyawan");
+        jMenuItemKaryawan.setName("jMenuItemKaryawan"); // NOI18N
+        jMenuItemKaryawan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actionMenuItem(evt);
+            }
+        });
+        jMenuDataMaster.add(jMenuItemKaryawan);
 
         jMenuBarApp.add(jMenuDataMaster);
 
@@ -192,12 +245,22 @@ public class FormApp extends javax.swing.JFrame {
         jMenuItemPenjualan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/stripbandunk/alexvariasi/image/penjualan.png"))); // NOI18N
         jMenuItemPenjualan.setText("Penjualan");
         jMenuItemPenjualan.setName("jMenuItemPenjualan"); // NOI18N
+        jMenuItemPenjualan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actionMenuItem(evt);
+            }
+        });
         jMenuTransaksi.add(jMenuItemPenjualan);
 
         jMenuItemPembelian.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.SHIFT_MASK));
         jMenuItemPembelian.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/stripbandunk/alexvariasi/image/pembelian.png"))); // NOI18N
         jMenuItemPembelian.setText("Pembelian");
         jMenuItemPembelian.setName("jMenuItemPembelian"); // NOI18N
+        jMenuItemPembelian.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actionMenuItem(evt);
+            }
+        });
         jMenuTransaksi.add(jMenuItemPembelian);
 
         jMenuBarApp.add(jMenuTransaksi);
@@ -210,12 +273,22 @@ public class FormApp extends javax.swing.JFrame {
         jMenuItemGrup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/stripbandunk/alexvariasi/image/grup.png"))); // NOI18N
         jMenuItemGrup.setText("Grup");
         jMenuItemGrup.setName("jMenuItemGrup"); // NOI18N
+        jMenuItemGrup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actionMenuItem(evt);
+            }
+        });
         jMenuHakAkses.add(jMenuItemGrup);
 
         jMenuItemPengguna.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItemPengguna.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/stripbandunk/alexvariasi/image/pengguna.png"))); // NOI18N
         jMenuItemPengguna.setText("Pengguna");
         jMenuItemPengguna.setName("jMenuItemPengguna"); // NOI18N
+        jMenuItemPengguna.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actionMenuItem(evt);
+            }
+        });
         jMenuHakAkses.add(jMenuItemPengguna);
 
         jMenuBarApp.add(jMenuHakAkses);
@@ -247,25 +320,45 @@ public class FormApp extends javax.swing.JFrame {
         setBounds((screenSize.width-810)/2, (screenSize.height-630)/2, 810, 630);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItemKategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemKategoriActionPerformed
+    private void actionMenuItem(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actionMenuItem
         // TODO add your handling code here:
-        showComponent("daftar-kategori");
-    }//GEN-LAST:event_jMenuItemKategoriActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-        showComponent("daftar-jabatan");
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+        Object source = evt.getSource();
+        if (source == jMenuItemBarang) {
+        } else if (source == jMenuItemGrup) {
+        } else if (source == jMenuItemJabatan) {
+            showComponent("daftar-jabatan");
+        } else if (source == jMenuItemKaryawan) {
+        } else if (source == jMenuItemKategori) {
+            showComponent("daftar-kategori");
+        } else if (source == jMenuItemKeluarAplikasi) {
+        } else if (source == jMenuItemKeuntungan) {
+        } else if (source == jMenuItemPelanggan) {
+        } else if (source == jMenuItemPemasok) {
+        } else if (source == jMenuItemPemasukan) {
+        } else if (source == jMenuItemPembelian) {
+        } else if (source == jMenuItemPengeluaran) {
+        } else if (source == jMenuItemPengguna) {
+        } else if (source == jMenuItemPenjual) {
+        } else if (source == jMenuItemPenjualan) {
+        } else if (source == jMenuItemSatuan) {
+            showComponent("daftar-satuan");
+        } else if (source == jMenuItemTutupAplikasi) {
+            System.exit(0);
+        } else if (source == jMenuItemBeranda) {
+            showComponent("beranda");
+        }
+    }//GEN-LAST:event_actionMenuItem
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenuAplikasi;
     private javax.swing.JMenuBar jMenuBarApp;
     private javax.swing.JMenu jMenuDataMaster;
     private javax.swing.JMenu jMenuHakAkses;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItemBarang;
+    private javax.swing.JMenuItem jMenuItemBeranda;
     private javax.swing.JMenuItem jMenuItemGrup;
+    private javax.swing.JMenuItem jMenuItemJabatan;
+    private javax.swing.JMenuItem jMenuItemKaryawan;
     private javax.swing.JMenuItem jMenuItemKategori;
     private javax.swing.JMenuItem jMenuItemKeluarAplikasi;
     private javax.swing.JMenuItem jMenuItemKeuntungan;
@@ -329,6 +422,9 @@ public class FormApp extends javax.swing.JFrame {
 
         // jabatan
         addView("daftar-jabatan", new DaftarJabatanView());
+
+        // satuan
+        addView("daftar-satuan", new DaftarSatuanView());
     }
 
     private void addView(String componentId, JComponent component) {

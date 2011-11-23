@@ -16,6 +16,21 @@
             <Property name="name" type="java.lang.String" value="jMenuAplikasi" noResource="true"/>
           </Properties>
           <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemBeranda">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+D"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/stripbandunk/alexvariasi/image/beranda.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Beranda"/>
+                <Property name="name" type="java.lang.String" value="jMenuItemBeranda" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="actionMenuItem"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemKeluarAplikasi">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
@@ -27,6 +42,9 @@
                 <Property name="text" type="java.lang.String" value="Keluar Pengguna"/>
                 <Property name="name" type="java.lang.String" value="jMenuItemKeluarAplikasi" noResource="true"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="actionMenuItem"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemTutupAplikasi">
               <Properties>
@@ -39,6 +57,9 @@
                 <Property name="text" type="java.lang.String" value="Tutup Aplikasi"/>
                 <Property name="name" type="java.lang.String" value="jMenuItemTutupAplikasi" noResource="true"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="actionMenuItem"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -63,7 +84,7 @@
                 <Property name="name" type="java.lang.String" value="jMenuItemKategori" noResource="true"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemKategoriActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="actionMenuItem"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemSatuan">
@@ -77,6 +98,9 @@
                 <Property name="text" type="java.lang.String" value="Satuan"/>
                 <Property name="name" type="java.lang.String" value="jMenuItemSatuan" noResource="true"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="actionMenuItem"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemBarang">
               <Properties>
@@ -89,6 +113,9 @@
                 <Property name="text" type="java.lang.String" value="Barang"/>
                 <Property name="name" type="java.lang.String" value="jMenuItemBarang" noResource="true"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="actionMenuItem"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
               <Properties>
@@ -106,6 +133,9 @@
                 <Property name="text" type="java.lang.String" value="Pemasok"/>
                 <Property name="name" type="java.lang.String" value="jMenuItemPemasok" noResource="true"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="actionMenuItem"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemPelanggan">
               <Properties>
@@ -118,6 +148,9 @@
                 <Property name="text" type="java.lang.String" value="Pelanggan"/>
                 <Property name="name" type="java.lang.String" value="jMenuItemPelanggan" noResource="true"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="actionMenuItem"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemPenjual">
               <Properties>
@@ -130,13 +163,16 @@
                 <Property name="text" type="java.lang.String" value="Penjual"/>
                 <Property name="name" type="java.lang.String" value="jMenuItemPenjual" noResource="true"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="actionMenuItem"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator2">
               <Properties>
                 <Property name="name" type="java.lang.String" value="jSeparator2" noResource="true"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemJabatan">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+J"/>
@@ -145,13 +181,13 @@
                   <Image iconType="3" name="/com/stripbandunk/alexvariasi/image/jabatan.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Jabatan"/>
-                <Property name="name" type="java.lang.String" value="jMenuItem1" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="jMenuItemJabatan" noResource="true"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="actionMenuItem"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemKaryawan">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+Y"/>
@@ -160,8 +196,11 @@
                   <Image iconType="3" name="/com/stripbandunk/alexvariasi/image/karyawan.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Karyawan"/>
-                <Property name="name" type="java.lang.String" value="jMenuItem2" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="jMenuItemKaryawan" noResource="true"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="actionMenuItem"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -185,6 +224,9 @@
                 <Property name="text" type="java.lang.String" value="Penjualan"/>
                 <Property name="name" type="java.lang.String" value="jMenuItemPenjualan" noResource="true"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="actionMenuItem"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemPembelian">
               <Properties>
@@ -197,6 +239,9 @@
                 <Property name="text" type="java.lang.String" value="Pembelian"/>
                 <Property name="name" type="java.lang.String" value="jMenuItemPembelian" noResource="true"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="actionMenuItem"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -220,6 +265,9 @@
                 <Property name="text" type="java.lang.String" value="Grup"/>
                 <Property name="name" type="java.lang.String" value="jMenuItemGrup" noResource="true"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="actionMenuItem"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemPengguna">
               <Properties>
@@ -232,6 +280,9 @@
                 <Property name="text" type="java.lang.String" value="Pengguna"/>
                 <Property name="name" type="java.lang.String" value="jMenuItemPengguna" noResource="true"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="actionMenuItem"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
