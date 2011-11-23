@@ -21,6 +21,7 @@ import com.stripbandunk.alexvariasi.view.View;
 import com.stripbandunk.jwidget.JDynamicTable;
 import com.stripbandunk.jwidget.model.DynamicTableModel;
 import java.util.List;
+import javax.swing.JComponent;
 
 /**
  *
@@ -82,7 +83,7 @@ public class DaftarKategoriView extends javax.swing.JPanel implements View {
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void view(FormApp formApp) {
+    public void display(FormApp formApp) {
         this.formApp = formApp;
 
         KategoriService kategoriService = SpringManager.getInstance().getBean(KategoriService.class);
@@ -92,5 +93,10 @@ public class DaftarKategoriView extends javax.swing.JPanel implements View {
         for (Kategori kategori : list) {
             dynamicTableModel.add(kategori);
         }
+    }
+
+    @Override
+    public JComponent getComponent() {
+        return this;
     }
 }

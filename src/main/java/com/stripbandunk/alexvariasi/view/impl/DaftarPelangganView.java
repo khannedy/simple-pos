@@ -7,15 +7,15 @@
  */
 
 /*
- * DaftarSatuanView.java
+ * Pelanggan.java
  *
- * Created on Nov 23, 2011, 3:51:20 PM
+ * Created on Nov 23, 2011, 4:35:53 PM
  */
 package com.stripbandunk.alexvariasi.view.impl;
 
-import com.stripbandunk.alexvariasi.entity.master.Satuan;
+import com.stripbandunk.alexvariasi.entity.master.Pelanggan;
 import com.stripbandunk.alexvariasi.manager.SpringManager;
-import com.stripbandunk.alexvariasi.service.SatuanService;
+import com.stripbandunk.alexvariasi.service.PelangganService;
 import com.stripbandunk.alexvariasi.view.FormApp;
 import com.stripbandunk.alexvariasi.view.View;
 import com.stripbandunk.jwidget.JDynamicTable;
@@ -27,19 +27,19 @@ import javax.swing.JComponent;
  *
  * @author Eko Kurniawan Khannedy
  */
-public class DaftarSatuanView extends javax.swing.JPanel implements View {
+public class DaftarPelangganView extends javax.swing.JPanel implements View {
 
     private static final long serialVersionUID = 1L;
 
-    private DynamicTableModel<Satuan> dynamicTableModel;
-
     private JDynamicTable jDynamicTable;
 
-    /** Creates new form DaftarSatuanView */
-    public DaftarSatuanView() {
+    private DynamicTableModel<Pelanggan> dynamicTableModel;
+
+    /** Creates new form Pelanggan */
+    public DaftarPelangganView() {
         initComponents();
 
-        dynamicTableModel = new DynamicTableModel<>(Satuan.class);
+        dynamicTableModel = new DynamicTableModel<>(Pelanggan.class);
         jDynamicTable = new JDynamicTable(dynamicTableModel);
         jScrollPane.setViewportView(jDynamicTable);
     }
@@ -62,7 +62,7 @@ public class DaftarSatuanView extends javax.swing.JPanel implements View {
         jToolBar.setRollover(true);
         jToolBar.setName("jToolBar"); // NOI18N
 
-        jButton1.setText("Tambah Satuan Baru");
+        jButton1.setText("Tambah Pelanggan Baru");
         jButton1.setFocusable(false);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.setName("jButton1"); // NOI18N
@@ -82,15 +82,15 @@ public class DaftarSatuanView extends javax.swing.JPanel implements View {
 
     @Override
     public void display(FormApp formApp) {
-        SatuanService satuanService = SpringManager.getInstance().getBean(SatuanService.class);
-        List<Satuan> list = satuanService.findAll();
+        PelangganService pelangganService = SpringManager.getInstance().getBean(PelangganService.class);
+        List<Pelanggan> list = pelangganService.findAll();
 
         dynamicTableModel.clear();
-        for (Satuan satuan : list) {
-            dynamicTableModel.add(satuan);
+        for (Pelanggan pelanggan : list) {
+            dynamicTableModel.add(pelanggan);
         }
     }
-
+    
     @Override
     public JComponent getComponent() {
         return this;

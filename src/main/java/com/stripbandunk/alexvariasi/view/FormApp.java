@@ -16,6 +16,9 @@ package com.stripbandunk.alexvariasi.view;
 import com.stripbandunk.alexvariasi.view.impl.BerandaView;
 import com.stripbandunk.alexvariasi.view.impl.DaftarJabatanView;
 import com.stripbandunk.alexvariasi.view.impl.DaftarKategoriView;
+import com.stripbandunk.alexvariasi.view.impl.DaftarPelangganView;
+import com.stripbandunk.alexvariasi.view.impl.DaftarPemasokView;
+import com.stripbandunk.alexvariasi.view.impl.DaftarPenjualView;
 import com.stripbandunk.alexvariasi.view.impl.DaftarSatuanView;
 import com.stripbandunk.jglasspane.JGlassPane;
 import com.stripbandunk.jglasspane.component.ImageTransitionComponent;
@@ -326,26 +329,29 @@ public class FormApp extends javax.swing.JFrame {
         if (source == jMenuItemBarang) {
         } else if (source == jMenuItemGrup) {
         } else if (source == jMenuItemJabatan) {
-            showComponent("daftar-jabatan");
+            showView("daftar-jabatan");
         } else if (source == jMenuItemKaryawan) {
         } else if (source == jMenuItemKategori) {
-            showComponent("daftar-kategori");
+            showView("daftar-kategori");
         } else if (source == jMenuItemKeluarAplikasi) {
         } else if (source == jMenuItemKeuntungan) {
         } else if (source == jMenuItemPelanggan) {
+            showView("daftar-pelanggan");
         } else if (source == jMenuItemPemasok) {
+            showView("daftar-pemasok");
         } else if (source == jMenuItemPemasukan) {
         } else if (source == jMenuItemPembelian) {
         } else if (source == jMenuItemPengeluaran) {
         } else if (source == jMenuItemPengguna) {
         } else if (source == jMenuItemPenjual) {
+            showView("daftar-penjual");
         } else if (source == jMenuItemPenjualan) {
         } else if (source == jMenuItemSatuan) {
-            showComponent("daftar-satuan");
+            showView("daftar-satuan");
         } else if (source == jMenuItemTutupAplikasi) {
             System.exit(0);
         } else if (source == jMenuItemBeranda) {
-            showComponent("beranda");
+            showView("beranda");
         }
     }//GEN-LAST:event_actionMenuItem
 
@@ -397,41 +403,46 @@ public class FormApp extends javax.swing.JFrame {
         getGlassPane().setVisible(true);
     }
 
-    public void showComponent(String componentId) {
-        Point point = GraphicHelper.getLocation(getContentPane(), imageTransitionComponent);
-        fadeImageTransition.setCoordinate(point);
-        imageTransitionComponent.start();
-
-        CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
-        cardLayout.show(getContentPane(), componentId);
-
-        View view = map.get(componentId);
-        if (view != null) {
-            view.view(this);
-        }
-    }
-
     private void initViews() {
         map = new HashMap<>(10);
 
         // beranda
-        addView("beranda", new BerandaView());
+        registerView("beranda", new BerandaView());
 
         // kategori
-        addView("daftar-kategori", new DaftarKategoriView());
+        registerView("daftar-kategori", new DaftarKategoriView());
 
         // jabatan
-        addView("daftar-jabatan", new DaftarJabatanView());
+        registerView("daftar-jabatan", new DaftarJabatanView());
 
         // satuan
-        addView("daftar-satuan", new DaftarSatuanView());
+        registerView("daftar-satuan", new DaftarSatuanView());
+
+        // pemasok
+        registerView("daftar-pemasok", new DaftarPemasokView());
+
+        // pelanggan
+        registerView("daftar-pelanggan", new DaftarPelangganView());
+
+        // penjual
+        registerView("daftar-penjual", new DaftarPenjualView());
     }
 
-    private void addView(String componentId, JComponent component) {
-        if (component instanceof View) {
-            View view = (View) component;
-            map.put(componentId, view);
-            getContentPane().add(componentId, component);
+    public void showView(String viewId) {
+        View view = map.get(viewId);
+        if (view != null) {
+            Point point = GraphicHelper.getLocation(getContentPane(), imageTransitionComponent);
+            fadeImageTransition.setCoordinate(point);
+            imageTransitionComponent.start();
+
+            CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
+            cardLayout.show(getContentPane(), viewId);
+            view.display(this);
         }
+    }
+
+    public void registerView(String viewId, View view) {
+        map.put(viewId, view);
+        getContentPane().add(viewId, view.getComponent());
     }
 }

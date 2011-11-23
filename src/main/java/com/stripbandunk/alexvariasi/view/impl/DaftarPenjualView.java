@@ -7,15 +7,15 @@
  */
 
 /*
- * DaftarSatuanView.java
+ * DaftarPenjualView.java
  *
- * Created on Nov 23, 2011, 3:51:20 PM
+ * Created on Nov 23, 2011, 4:42:03 PM
  */
 package com.stripbandunk.alexvariasi.view.impl;
 
-import com.stripbandunk.alexvariasi.entity.master.Satuan;
+import com.stripbandunk.alexvariasi.entity.master.Penjual;
 import com.stripbandunk.alexvariasi.manager.SpringManager;
-import com.stripbandunk.alexvariasi.service.SatuanService;
+import com.stripbandunk.alexvariasi.service.PenjualService;
 import com.stripbandunk.alexvariasi.view.FormApp;
 import com.stripbandunk.alexvariasi.view.View;
 import com.stripbandunk.jwidget.JDynamicTable;
@@ -25,23 +25,23 @@ import javax.swing.JComponent;
 
 /**
  *
- * @author Eko Kurniawan Khannedy
+ * @author Eko 
  */
-public class DaftarSatuanView extends javax.swing.JPanel implements View {
+public class DaftarPenjualView extends javax.swing.JPanel implements View {
 
     private static final long serialVersionUID = 1L;
 
-    private DynamicTableModel<Satuan> dynamicTableModel;
-
     private JDynamicTable jDynamicTable;
 
-    /** Creates new form DaftarSatuanView */
-    public DaftarSatuanView() {
+    private DynamicTableModel<Penjual> dynamicTableModel;
+
+    /** Creates new form DaftarPenjualView */
+    public DaftarPenjualView() {
         initComponents();
 
-        dynamicTableModel = new DynamicTableModel<>(Satuan.class);
+        dynamicTableModel = new DynamicTableModel<>(Penjual.class);
         jDynamicTable = new JDynamicTable(dynamicTableModel);
-        jScrollPane.setViewportView(jDynamicTable);
+        jScrollPane1.setViewportView(jDynamicTable);
     }
 
     /** This method is called from within the constructor to
@@ -55,14 +55,14 @@ public class DaftarSatuanView extends javax.swing.JPanel implements View {
 
         jToolBar = new javax.swing.JToolBar();
         jButton1 = new javax.swing.JButton();
-        jScrollPane = new javax.swing.JScrollPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
 
         setLayout(new java.awt.BorderLayout());
 
         jToolBar.setRollover(true);
         jToolBar.setName("jToolBar"); // NOI18N
 
-        jButton1.setText("Tambah Satuan Baru");
+        jButton1.setText("Tambah Penjual Baru");
         jButton1.setFocusable(false);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.setName("jButton1"); // NOI18N
@@ -71,23 +71,23 @@ public class DaftarSatuanView extends javax.swing.JPanel implements View {
 
         add(jToolBar, java.awt.BorderLayout.PAGE_START);
 
-        jScrollPane.setName("jScrollPane"); // NOI18N
-        add(jScrollPane, java.awt.BorderLayout.CENTER);
+        jScrollPane1.setName("jScrollPane1"); // NOI18N
+        add(jScrollPane1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JScrollPane jScrollPane;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar jToolBar;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void display(FormApp formApp) {
-        SatuanService satuanService = SpringManager.getInstance().getBean(SatuanService.class);
-        List<Satuan> list = satuanService.findAll();
+        PenjualService penjualService = SpringManager.getInstance().getBean(PenjualService.class);
+        List<Penjual> list = penjualService.findAll();
 
         dynamicTableModel.clear();
-        for (Satuan satuan : list) {
-            dynamicTableModel.add(satuan);
+        for (Penjual penjual : list) {
+            dynamicTableModel.add(penjual);
         }
     }
 

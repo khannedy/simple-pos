@@ -21,6 +21,7 @@ import com.stripbandunk.alexvariasi.view.View;
 import com.stripbandunk.jwidget.JDynamicTable;
 import com.stripbandunk.jwidget.model.DynamicTableModel;
 import java.util.List;
+import javax.swing.JComponent;
 
 /**
  *
@@ -81,7 +82,7 @@ public class DaftarJabatanView extends javax.swing.JPanel implements View {
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void view(FormApp formApp) {
+    public void display(FormApp formApp) {
         JabatanService jabatanService = SpringManager.getInstance().getBean(JabatanService.class);
         dynamicTableModel.clear();
 
@@ -89,5 +90,10 @@ public class DaftarJabatanView extends javax.swing.JPanel implements View {
         for (Jabatan jabatan : list) {
             dynamicTableModel.add(jabatan);
         }
+    }
+
+    @Override
+    public JComponent getComponent() {
+        return this;
     }
 }

@@ -7,11 +7,23 @@
  */
 package com.stripbandunk.alexvariasi.view;
 
+import javax.swing.JComponent;
+
 /**
  *
  * @author Eko Kurniawan Khannedy
  */
 public interface View {
 
-    void view(FormApp formApp);
+    /**
+     * fire on view is displaying
+     * @param formApp
+     */
+    void display(FormApp formApp);
+
+    /**
+     * JComponent of this View
+     * @return JComponent
+     */
+    JComponent getComponent();
 }

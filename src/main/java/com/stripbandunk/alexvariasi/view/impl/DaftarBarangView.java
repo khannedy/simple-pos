@@ -7,26 +7,22 @@
  */
 
 /*
- * BerandaView.java
+ * Barang.java
  *
- * Created on Nov 22, 2011, 10:34:01 PM
+ * Created on Nov 23, 2011, 4:13:11 PM
  */
 package com.stripbandunk.alexvariasi.view.impl;
 
-import com.stripbandunk.alexvariasi.view.FormApp;
-import com.stripbandunk.alexvariasi.view.View;
-import javax.swing.JComponent;
-
 /**
  *
- * @author echo
+ * @author Eko Kurniawan Khannedy
  */
-public class BerandaView extends javax.swing.JPanel implements View {
+public class DaftarBarangView extends javax.swing.JPanel {
 
     private static final long serialVersionUID = 1L;
 
-    /** Creates new form BerandaView */
-    public BerandaView() {
+    /** Creates new form Barang */
+    public DaftarBarangView() {
         initComponents();
     }
 
@@ -43,23 +39,13 @@ public class BerandaView extends javax.swing.JPanel implements View {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 581, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 383, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public void display(FormApp formApp) {
-        // do nothing
-    }
-
-    @Override
-    public JComponent getComponent() {
-        return this;
-    }
 }
