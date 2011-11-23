@@ -14,6 +14,7 @@
 package com.stripbandunk.alexvariasi.view;
 
 import com.stripbandunk.alexvariasi.view.impl.BerandaView;
+import com.stripbandunk.alexvariasi.view.impl.DaftarGrupView;
 import com.stripbandunk.alexvariasi.view.impl.DaftarJabatanView;
 import com.stripbandunk.alexvariasi.view.impl.DaftarKaryawanView;
 import com.stripbandunk.alexvariasi.view.impl.DaftarKategoriView;
@@ -328,6 +329,7 @@ public class FormApp extends javax.swing.JFrame {
         Object source = evt.getSource();
         if (source == jMenuItemBarang) {
         } else if (source == jMenuItemGrup) {
+            showView("daftar-grup");
         } else if (source == jMenuItemJabatan) {
             showView("daftar-jabatan");
         } else if (source == jMenuItemKaryawan) {
@@ -430,6 +432,9 @@ public class FormApp extends javax.swing.JFrame {
 
         // karyawan
         registerView("daftar-karyawan", new DaftarKaryawanView());
+
+        // grup
+        registerView("daftar-grup", new DaftarGrupView());
     }
 
     public void showView(String viewId) {

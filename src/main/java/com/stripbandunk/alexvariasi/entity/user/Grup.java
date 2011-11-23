@@ -8,6 +8,7 @@
 package com.stripbandunk.alexvariasi.entity.user;
 
 import com.stripbandunk.alexvariasi.entity.AbstractEntity;
+import com.stripbandunk.jwidget.annotation.TableColumn;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -33,9 +34,11 @@ public class Grup extends AbstractEntity<String> {
 
     @Id
     @Column(name = "id")
+    @TableColumn(number = 1, name = "Kode")
     private String id;
 
     @Column(name = "nama", nullable = false, length = 100)
+    @TableColumn(number = 20, name = "Nama")
     private String nama;
 
     @ManyToMany(fetch = FetchType.EAGER)
