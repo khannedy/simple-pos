@@ -213,7 +213,7 @@ public class TambahKategoriView extends javax.swing.JPanel implements View {
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void display(FormApp formApp) {
+    public void display(FormApp formApp, Object parameter) {
         this.formApp = formApp;
         this.kategori = new Kategori();
 

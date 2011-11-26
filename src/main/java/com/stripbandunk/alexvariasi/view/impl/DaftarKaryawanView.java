@@ -81,7 +81,7 @@ public class DaftarKaryawanView extends javax.swing.JPanel implements View {
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void display(FormApp formApp) {
+    public void display(FormApp formApp, Object parameter) {
         KaryawanService karyawanService = SpringManager.getInstance().getBean(KaryawanService.class);
         List<Karyawan> list = karyawanService.findAll();
 

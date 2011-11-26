@@ -82,7 +82,7 @@ public class DaftarJabatanView extends javax.swing.JPanel implements View {
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void display(FormApp formApp) {
+    public void display(FormApp formApp, Object parameter) {
         JabatanService jabatanService = SpringManager.getInstance().getBean(JabatanService.class);
         dynamicTableModel.clear();
 

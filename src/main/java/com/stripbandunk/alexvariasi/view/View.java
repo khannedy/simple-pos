@@ -18,8 +18,9 @@ public interface View {
     /**
      * fire on view is displaying
      * @param formApp
+     * @param parameter  
      */
-    void display(FormApp formApp);
+    void display(FormApp formApp, Object parameter);
 
     /**
      * JComponent of this View

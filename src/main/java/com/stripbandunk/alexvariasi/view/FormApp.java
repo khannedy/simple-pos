@@ -28,7 +28,6 @@ import com.stripbandunk.jglasspane.JGlassPane;
 import com.stripbandunk.jglasspane.component.ImageTransitionComponent;
 import com.stripbandunk.jglasspane.component.MessageComponent;
 import com.stripbandunk.jglasspane.helper.GraphicHelper;
-import com.stripbandunk.jglasspane.transition.image.FadeImageTransition;
 import com.stripbandunk.jglasspane.transition.image.FadeRotateImageTransition;
 import com.stripbandunk.jglasspane.transition.image.creator.ComponentImageCreator;
 import java.awt.CardLayout;
@@ -447,6 +446,11 @@ public class FormApp extends javax.swing.JFrame {
     }
 
     public void showView(String viewId) {
+        showView(viewId, null);
+    }
+
+    @SuppressWarnings("unchecked")
+    public void showView(String viewId, Object parameter) {
         View view = map.get(viewId);
         if (view != null) {
             Point point = GraphicHelper.getLocation(getContentPane(), imageTransitionComponent);
@@ -455,7 +459,7 @@ public class FormApp extends javax.swing.JFrame {
 
             CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
             cardLayout.show(getContentPane(), viewId);
-            view.display(this);
+            view.display(this, parameter);
         }
     }
 

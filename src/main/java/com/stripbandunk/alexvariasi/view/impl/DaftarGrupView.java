@@ -81,7 +81,7 @@ public class DaftarGrupView extends javax.swing.JPanel implements View {
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void display(FormApp formApp) {
+    public void display(FormApp formApp, Object parameter) {
         GrupService grupService = SpringManager.getInstance().getBean(GrupService.class);
         List<Grup> list = grupService.findAll();
 

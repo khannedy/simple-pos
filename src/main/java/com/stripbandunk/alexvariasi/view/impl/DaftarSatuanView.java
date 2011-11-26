@@ -81,7 +81,7 @@ public class DaftarSatuanView extends javax.swing.JPanel implements View {
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void display(FormApp formApp) {
+    public void display(FormApp formApp, Object parameter) {
         SatuanService satuanService = SpringManager.getInstance().getBean(SatuanService.class);
         List<Satuan> list = satuanService.findAll();
 

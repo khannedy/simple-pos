@@ -94,7 +94,7 @@ public class DaftarKategoriView extends javax.swing.JPanel implements View {
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void display(FormApp formApp) {
+    public void display(FormApp formApp, Object parameter) {
         this.formApp = formApp;
 
         KategoriService kategoriService = SpringManager.getInstance().getBean(KategoriService.class);

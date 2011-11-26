@@ -81,7 +81,7 @@ public class DaftarPemasokView extends javax.swing.JPanel implements View {
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void display(FormApp formApp) {
+    public void display(FormApp formApp, Object parameter) {
         PemasokService pemasokService = SpringManager.getInstance().getBean(PemasokService.class);
         List<Pemasok> list = pemasokService.findAll();
 

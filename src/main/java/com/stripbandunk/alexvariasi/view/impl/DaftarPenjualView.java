@@ -81,7 +81,7 @@ public class DaftarPenjualView extends javax.swing.JPanel implements View {
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void display(FormApp formApp) {
+    public void display(FormApp formApp, Object parameter) {
         PenjualService penjualService = SpringManager.getInstance().getBean(PenjualService.class);
         List<Penjual> list = penjualService.findAll();
 
