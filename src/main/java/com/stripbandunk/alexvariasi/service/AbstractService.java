@@ -9,6 +9,7 @@ package com.stripbandunk.alexvariasi.service;
 
 import com.stripbandunk.alexvariasi.entity.AbstractEntity;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -44,11 +45,16 @@ public abstract class AbstractService<T extends AbstractEntity<?>, ID extends Se
 
     @Transactional
     public void save(T entity) {
+        entity.setWaktuDibuat(new Date());
+        entity.setTerakhirDirubah(new Date());
+
         currentSession().save(entity);
     }
 
     @Transactional
     public void update(T entity) {
+        entity.setTerakhirDirubah(new Date());
+
         currentSession().update(entity);
     }
 
