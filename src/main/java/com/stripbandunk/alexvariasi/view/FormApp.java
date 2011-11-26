@@ -23,13 +23,16 @@ import com.stripbandunk.alexvariasi.view.impl.DaftarPemasokView;
 import com.stripbandunk.alexvariasi.view.impl.DaftarPenggunaView;
 import com.stripbandunk.alexvariasi.view.impl.DaftarPenjualView;
 import com.stripbandunk.alexvariasi.view.impl.DaftarSatuanView;
+import com.stripbandunk.alexvariasi.view.impl.TambahKategoriView;
 import com.stripbandunk.jglasspane.JGlassPane;
 import com.stripbandunk.jglasspane.component.ImageTransitionComponent;
 import com.stripbandunk.jglasspane.component.MessageComponent;
 import com.stripbandunk.jglasspane.helper.GraphicHelper;
 import com.stripbandunk.jglasspane.transition.image.FadeImageTransition;
+import com.stripbandunk.jglasspane.transition.image.FadeRotateImageTransition;
 import com.stripbandunk.jglasspane.transition.image.creator.ComponentImageCreator;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Point;
 import java.util.HashMap;
 import java.util.Map;
@@ -48,7 +51,7 @@ public class FormApp extends javax.swing.JFrame {
 
     private MessageComponent messageComponent;
 
-    private FadeImageTransition fadeImageTransition;
+    private FadeRotateImageTransition fadeRotateImageTransition;
 
     private ComponentImageCreator componentImageCreator;
 
@@ -395,8 +398,8 @@ public class FormApp extends javax.swing.JFrame {
         imageTransitionComponent = new ImageTransitionComponent();
         messageComponent = new MessageComponent();
 
-        fadeImageTransition = new FadeImageTransition();
-        imageTransitionComponent.setTransition(fadeImageTransition);
+        fadeRotateImageTransition = new FadeRotateImageTransition();
+        imageTransitionComponent.setTransition(fadeRotateImageTransition);
 
         componentImageCreator = new ComponentImageCreator(getContentPane());
         imageTransitionComponent.setImageCreator(componentImageCreator);
@@ -416,6 +419,7 @@ public class FormApp extends javax.swing.JFrame {
 
         // kategori
         registerView("daftar-kategori", new DaftarKategoriView());
+        registerView("tambah-kategori", new TambahKategoriView());
 
         // jabatan
         registerView("daftar-jabatan", new DaftarJabatanView());
@@ -446,8 +450,8 @@ public class FormApp extends javax.swing.JFrame {
         View view = map.get(viewId);
         if (view != null) {
             Point point = GraphicHelper.getLocation(getContentPane(), imageTransitionComponent);
-            fadeImageTransition.setCoordinate(point);
-            imageTransitionComponent.start();
+            fadeRotateImageTransition.setCoordinate(point);
+            imageTransitionComponent.start(1000);
 
             CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
             cardLayout.show(getContentPane(), viewId);
@@ -458,5 +462,17 @@ public class FormApp extends javax.swing.JFrame {
     public void registerView(String viewId, View view) {
         map.put(viewId, view);
         getContentPane().add(viewId, view.getComponent());
+    }
+
+    public void showErrorMessage(String message) {
+        messageComponent.showError(message);
+    }
+
+    public void showWarningMessage(String message) {
+        messageComponent.showWarning(message);
+    }
+
+    public void showInfoMessage(String message) {
+        messageComponent.show(message, Color.GREEN, Color.WHITE);
     }
 }

@@ -56,7 +56,7 @@ public class DaftarKategoriView extends javax.swing.JPanel implements View {
     private void initComponents() {
 
         jToolBar = new javax.swing.JToolBar();
-        jButton1 = new javax.swing.JButton();
+        jButtonTambahKategori = new javax.swing.JButton();
         jScrollPaneTable = new javax.swing.JScrollPane();
 
         setLayout(new java.awt.BorderLayout());
@@ -64,20 +64,31 @@ public class DaftarKategoriView extends javax.swing.JPanel implements View {
         jToolBar.setRollover(true);
         jToolBar.setName("jToolBar"); // NOI18N
 
-        jButton1.setText("Buat Kategori Baru");
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setName("jButton1"); // NOI18N
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar.add(jButton1);
+        jButtonTambahKategori.setText("Buat Kategori Baru");
+        jButtonTambahKategori.setFocusable(false);
+        jButtonTambahKategori.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonTambahKategori.setName("jButtonTambahKategori"); // NOI18N
+        jButtonTambahKategori.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonTambahKategori.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTambahKategoriActionPerformed(evt);
+            }
+        });
+        jToolBar.add(jButtonTambahKategori);
 
         add(jToolBar, java.awt.BorderLayout.PAGE_START);
 
         jScrollPaneTable.setName("jScrollPaneTable"); // NOI18N
         add(jScrollPaneTable, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonTambahKategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTambahKategoriActionPerformed
+        // TODO add your handling code here:
+        formApp.showView("tambah-kategori");
+    }//GEN-LAST:event_jButtonTambahKategoriActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonTambahKategori;
     private javax.swing.JScrollPane jScrollPaneTable;
     private javax.swing.JToolBar jToolBar;
     // End of variables declaration//GEN-END:variables
