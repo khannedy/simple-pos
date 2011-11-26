@@ -24,6 +24,7 @@ import com.stripbandunk.alexvariasi.view.impl.DaftarPenggunaView;
 import com.stripbandunk.alexvariasi.view.impl.DaftarPenjualView;
 import com.stripbandunk.alexvariasi.view.impl.DaftarSatuanView;
 import com.stripbandunk.alexvariasi.view.impl.TambahKategoriView;
+import com.stripbandunk.alexvariasi.view.impl.UbahKategoriView;
 import com.stripbandunk.jglasspane.JGlassPane;
 import com.stripbandunk.jglasspane.component.ImageTransitionComponent;
 import com.stripbandunk.jglasspane.component.MessageComponent;
@@ -419,6 +420,7 @@ public class FormApp extends javax.swing.JFrame {
         // kategori
         registerView("daftar-kategori", new DaftarKategoriView());
         registerView("tambah-kategori", new TambahKategoriView());
+        registerView("ubah-kategori", new UbahKategoriView());
 
         // jabatan
         registerView("daftar-jabatan", new DaftarJabatanView());

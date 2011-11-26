@@ -57,6 +57,8 @@ public class DaftarKategoriView extends javax.swing.JPanel implements View {
 
         jToolBar = new javax.swing.JToolBar();
         jButtonTambahKategori = new javax.swing.JButton();
+        jButtonUbahKategori = new javax.swing.JButton();
+        jButtonHapusKategori = new javax.swing.JButton();
         jScrollPaneTable = new javax.swing.JScrollPane();
 
         setLayout(new java.awt.BorderLayout());
@@ -76,6 +78,30 @@ public class DaftarKategoriView extends javax.swing.JPanel implements View {
         });
         jToolBar.add(jButtonTambahKategori);
 
+        jButtonUbahKategori.setText("Ubah Kategori Terseleksi");
+        jButtonUbahKategori.setFocusable(false);
+        jButtonUbahKategori.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonUbahKategori.setName("jButtonUbahKategori"); // NOI18N
+        jButtonUbahKategori.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonUbahKategori.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUbahKategoriActionPerformed(evt);
+            }
+        });
+        jToolBar.add(jButtonUbahKategori);
+
+        jButtonHapusKategori.setText("Hapus Kategori Terseleksi");
+        jButtonHapusKategori.setFocusable(false);
+        jButtonHapusKategori.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonHapusKategori.setName("jButtonHapusKategori"); // NOI18N
+        jButtonHapusKategori.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonHapusKategori.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonHapusKategoriActionPerformed(evt);
+            }
+        });
+        jToolBar.add(jButtonHapusKategori);
+
         add(jToolBar, java.awt.BorderLayout.PAGE_START);
 
         jScrollPaneTable.setName("jScrollPaneTable"); // NOI18N
@@ -87,8 +113,37 @@ public class DaftarKategoriView extends javax.swing.JPanel implements View {
         formApp.showView("tambah-kategori");
     }//GEN-LAST:event_jButtonTambahKategoriActionPerformed
 
+    private void jButtonUbahKategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUbahKategoriActionPerformed
+        // TODO add your handling code here:
+        if (jDynamicTable.getSelectedRow() == -1) {
+            formApp.showWarningMessage("Silahkan pilih satu kategori");
+        } else {
+            int index = jDynamicTable.convertRowIndexToModel(jDynamicTable.getSelectedRow());
+            Kategori kategori = dynamicTableModel.get(index);
+            formApp.showView("ubah-kategori", kategori);
+        }
+    }//GEN-LAST:event_jButtonUbahKategoriActionPerformed
+
+    private void jButtonHapusKategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHapusKategoriActionPerformed
+        // TODO add your handling code here:
+        if (jDynamicTable.getSelectedRow() == -1) {
+            formApp.showWarningMessage("Silahkan pilih satu kategori");
+        } else {
+            int index = jDynamicTable.convertRowIndexToModel(jDynamicTable.getSelectedRow());
+            Kategori kategori = dynamicTableModel.get(index);
+
+            KategoriService service = SpringManager.getInstance().getBean(KategoriService.class);
+            service.remove(kategori);
+
+            formApp.showInfoMessage("Berhasil menghapus kategori terseleksi");
+            display(formApp, null);
+        }
+    }//GEN-LAST:event_jButtonHapusKategoriActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonHapusKategori;
     private javax.swing.JButton jButtonTambahKategori;
+    private javax.swing.JButton jButtonUbahKategori;
     private javax.swing.JScrollPane jScrollPaneTable;
     private javax.swing.JToolBar jToolBar;
     // End of variables declaration//GEN-END:variables
