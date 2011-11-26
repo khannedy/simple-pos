@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 public class DetailBarangValidator extends AbstractValidator<DetailBarang> {
 
     @Override
-    public void doValidate(DetailBarang data) throws ValidatorException {
+    protected void doValidate(DetailBarang data) throws ValidatorException {
         if (data == null) {
             throwValidatorException("Detail barang tidak boleh null");
         } else if (data.getId() == null) {

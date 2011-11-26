@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 public class PemasokValidator extends AbstractValidator<Pemasok> {
 
     @Override
-    public void doValidate(Pemasok data) throws ValidatorException {
+    protected void doValidate(Pemasok data) throws ValidatorException {
         if (data == null) {
             throwValidatorException("Pemasok tidak boleh null");
         } else if (data.getId() == null) {

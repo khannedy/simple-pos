@@ -16,7 +16,7 @@ import com.stripbandunk.alexvariasi.entity.AbstractEntity;
  */
 public abstract class AbstractValidator<T> implements Validator<T> {
 
-    public void throwValidatorException(String message) throws ValidatorException {
+    protected void throwValidatorException(String message) throws ValidatorException {
         throw new ValidatorException(message);
     }
 
@@ -30,7 +30,7 @@ public abstract class AbstractValidator<T> implements Validator<T> {
         }
     }
 
-    public void validateEntity(AbstractEntity<?> entity) throws ValidatorException {
+    protected void validateEntity(AbstractEntity<?> entity) throws ValidatorException {
         if (entity.getWaktuDibuat() == null) {
             throwValidatorException("Waktu dirubah tidak boleh null");
         } else if (entity.getTerakhirDirubah() == null) {
@@ -38,5 +38,5 @@ public abstract class AbstractValidator<T> implements Validator<T> {
         }
     }
 
-    public abstract void doValidate(T data) throws ValidatorException;
+    protected abstract void doValidate(T data) throws ValidatorException;
 }

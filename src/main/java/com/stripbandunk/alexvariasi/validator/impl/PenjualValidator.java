@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 public class PenjualValidator extends AbstractValidator<Penjual> {
 
     @Override
-    public void doValidate(Penjual data) throws ValidatorException {
+    protected void doValidate(Penjual data) throws ValidatorException {
         if (data == null) {
             throwValidatorException("Penjual tidak boleh null");
         } else if (data.getId() == null) {

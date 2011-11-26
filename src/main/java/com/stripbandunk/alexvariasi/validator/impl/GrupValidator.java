@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 public class GrupValidator extends AbstractValidator<Grup> {
 
     @Override
-    public void doValidate(Grup data) throws ValidatorException {
+    protected void doValidate(Grup data) throws ValidatorException {
         if (data == null) {
             throwValidatorException("Grup tidak boleh null");
         } else if (data.getId() == null) {

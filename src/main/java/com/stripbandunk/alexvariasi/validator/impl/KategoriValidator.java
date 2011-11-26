@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 public class KategoriValidator extends AbstractValidator<Kategori> {
 
     @Override
-    public void doValidate(Kategori data) throws ValidatorException {
+    protected void doValidate(Kategori data) throws ValidatorException {
         if (data == null) {
             throwValidatorException("Kategori tidak boleh null");
         } else if (data.getId() == null) {
