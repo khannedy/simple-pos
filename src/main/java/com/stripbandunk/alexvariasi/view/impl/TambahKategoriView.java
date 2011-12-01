@@ -170,12 +170,10 @@ public class TambahKategoriView extends javax.swing.JPanel implements View {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBatalActionPerformed
-        // TODO add your handling code here:
         formApp.showView("daftar-kategori");
     }//GEN-LAST:event_buttonBatalActionPerformed
 
     private void buttonSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSimpanActionPerformed
-        // TODO add your handling code here:
         kategori.setId(jTextFieldKode.getText());
         kategori.setNama(jTextFieldNama.getText());
         kategori.setInfo(jTextAreaInfo.getText());

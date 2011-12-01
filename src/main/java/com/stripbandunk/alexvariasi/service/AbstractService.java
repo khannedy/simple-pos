@@ -9,7 +9,6 @@ package com.stripbandunk.alexvariasi.service;
 
 import com.stripbandunk.alexvariasi.entity.AbstractEntity;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

@@ -7,6 +7,7 @@
  */
 package com.stripbandunk.alexvariasi.entity;
 
+import com.stripbandunk.jwidget.annotation.TableColumn;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
@@ -35,6 +36,7 @@ public abstract class AbstractEntity<T> implements Serializable {
 
     @Lob
     @Column(name = "info")
+    @TableColumn(number = 100, name = "Keterangan", size = 30)
     private String info;
 
     public abstract T getId();

@@ -35,6 +35,8 @@ public class DaftarSatuanView extends javax.swing.JPanel implements View {
 
     private JDynamicTable jDynamicTable;
 
+    private FormApp formApp;
+
     /** Creates new form DaftarSatuanView */
     public DaftarSatuanView() {
         initComponents();
@@ -54,6 +56,7 @@ public class DaftarSatuanView extends javax.swing.JPanel implements View {
     private void initComponents() {
 
         jToolBar = new javax.swing.JToolBar();
+        jButtonTambah = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jScrollPane = new javax.swing.JScrollPane();
 
@@ -62,10 +65,22 @@ public class DaftarSatuanView extends javax.swing.JPanel implements View {
         jToolBar.setRollover(true);
         jToolBar.setName("jToolBar"); // NOI18N
 
-        jButton1.setText("Tambah Satuan Baru");
+        jButtonTambah.setText("Tambah Satuan Baru");
+        jButtonTambah.setFocusable(false);
+        jButtonTambah.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonTambah.setName("jButtonTambah"); // NOI18N
+        jButtonTambah.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonTambah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTambahActionPerformed(evt);
+            }
+        });
+        jToolBar.add(jButtonTambah);
+
+        jButton1.setText("Ubah Satuan TerSeleksi");
         jButton1.setFocusable(false);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setName("jButton1"); // NOI18N
+        jButton1.setName("jButton1");
         jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar.add(jButton1);
 
@@ -74,14 +89,23 @@ public class DaftarSatuanView extends javax.swing.JPanel implements View {
         jScrollPane.setName("jScrollPane"); // NOI18N
         add(jScrollPane, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTambahActionPerformed
+        formApp.showView("tambah-satuan");
+    }//GEN-LAST:event_jButtonTambahActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonTambah;
     private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JToolBar jToolBar;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void display(FormApp formApp, Object parameter) {
+        
+        this.formApp = formApp;
+        
         SatuanService satuanService = SpringManager.getInstance().getBean(SatuanService.class);
         List<Satuan> list = satuanService.findAll();
 

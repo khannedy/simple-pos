@@ -109,12 +109,10 @@ public class DaftarKategoriView extends javax.swing.JPanel implements View {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonTambahKategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTambahKategoriActionPerformed
-        // TODO add your handling code here:
         formApp.showView("tambah-kategori");
     }//GEN-LAST:event_jButtonTambahKategoriActionPerformed
 
     private void jButtonUbahKategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUbahKategoriActionPerformed
-        // TODO add your handling code here:
         if (jDynamicTable.getSelectedRow() == -1) {
             formApp.showWarningMessage("Silahkan pilih satu kategori");
         } else {
@@ -125,7 +123,6 @@ public class DaftarKategoriView extends javax.swing.JPanel implements View {
     }//GEN-LAST:event_jButtonUbahKategoriActionPerformed
 
     private void jButtonHapusKategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHapusKategoriActionPerformed
-        // TODO add your handling code here:
         if (jDynamicTable.getSelectedRow() == -1) {
             formApp.showWarningMessage("Silahkan pilih satu kategori");
         } else {
