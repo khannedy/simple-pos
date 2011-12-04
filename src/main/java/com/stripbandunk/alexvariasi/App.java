@@ -32,6 +32,7 @@ public class App implements Runnable {
         SwingUtilities.invokeLater(this);
     }
 
+    @Override
     public void run() {
         form.setVisible(true);
     }

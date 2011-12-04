@@ -13,19 +13,6 @@
  */
 package com.stripbandunk.alexvariasi.view;
 
-import com.stripbandunk.alexvariasi.view.impl.*;
-import com.stripbandunk.jglasspane.JGlassPane;
-import com.stripbandunk.jglasspane.component.ImageTransitionComponent;
-import com.stripbandunk.jglasspane.component.MessageComponent;
-import com.stripbandunk.jglasspane.helper.GraphicHelper;
-import com.stripbandunk.jglasspane.transition.image.FadeRotateImageTransition;
-import com.stripbandunk.jglasspane.transition.image.creator.ComponentImageCreator;
-import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.Point;
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  *
  * @author Eko Kurniawan Khannedy
@@ -34,25 +21,11 @@ public class FormApp extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1L;
 
-    private JGlassPane jGlassPane;
-
-    private ImageTransitionComponent imageTransitionComponent;
-
-    private MessageComponent messageComponent;
-
-    private FadeRotateImageTransition fadeRotateImageTransition;
-
-    private ComponentImageCreator componentImageCreator;
-
-    private Map<String, View> map;
-
     /**
      * Creates new form Form
      */
     public FormApp() {
         initComponents();
-        initGlassPanes();
-        initViews();
     }
 
     /**
@@ -323,33 +296,23 @@ public class FormApp extends javax.swing.JFrame {
         Object source = evt.getSource();
         if (source == jMenuItemBarang) {
         } else if (source == jMenuItemGrup) {
-            showView("daftar-grup");
         } else if (source == jMenuItemJabatan) {
-            showView("daftar-jabatan");
         } else if (source == jMenuItemKaryawan) {
-            showView("daftar-karyawan");
         } else if (source == jMenuItemKategori) {
-            showView("daftar-kategori");
         } else if (source == jMenuItemKeluarAplikasi) {
         } else if (source == jMenuItemKeuntungan) {
         } else if (source == jMenuItemPelanggan) {
-            showView("daftar-pelanggan");
         } else if (source == jMenuItemPemasok) {
-            showView("daftar-pemasok");
         } else if (source == jMenuItemPemasukan) {
         } else if (source == jMenuItemPembelian) {
         } else if (source == jMenuItemPengeluaran) {
         } else if (source == jMenuItemPengguna) {
-            showView("daftar-pengguna");
         } else if (source == jMenuItemPenjual) {
-            showView("daftar-penjual");
         } else if (source == jMenuItemPenjualan) {
         } else if (source == jMenuItemSatuan) {
-            showView("daftar-satuan");
         } else if (source == jMenuItemTutupAplikasi) {
             System.exit(0);
         } else if (source == jMenuItemBeranda) {
-            showView("beranda");
         }
     }//GEN-LAST:event_actionMenuItem
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -381,94 +344,11 @@ public class FormApp extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator2;
     // End of variables declaration//GEN-END:variables
 
-    private void initGlassPanes() {
-        jGlassPane = new JGlassPane();
-
-        imageTransitionComponent = new ImageTransitionComponent();
-        messageComponent = new MessageComponent();
-
-        fadeRotateImageTransition = new FadeRotateImageTransition();
-        imageTransitionComponent.setTransition(fadeRotateImageTransition);
-
-        componentImageCreator = new ComponentImageCreator(getContentPane());
-        imageTransitionComponent.setImageCreator(componentImageCreator);
-
-        jGlassPane.addGlassPaneComponent(imageTransitionComponent);
-        jGlassPane.addGlassPaneComponent(messageComponent);
-
-        setGlassPane(jGlassPane);
-        getGlassPane().setVisible(true);
+    public void showView(DialogView view) {
+        showView(view, null);
     }
 
-    private void initViews() {
-        map = new HashMap<>(10);
-
-        // beranda
-        registerView("beranda", new BerandaView());
-
-        // kategori
-        registerView("daftar-kategori", new DaftarKategoriView());
-        registerView("tambah-kategori", new TambahKategoriView());
-        registerView("ubah-kategori", new UbahKategoriView());
-
-        // jabatan
-        registerView("daftar-jabatan", new DaftarJabatanView());
-
-        // satuan
-        registerView("daftar-satuan", new DaftarSatuanView());
-        registerView("tambah-satuan", new TambahSatuanView());
-
-        // pemasok
-        registerView("daftar-pemasok", new DaftarPemasokView());
-
-        // pelanggan
-        registerView("daftar-pelanggan", new DaftarPelangganView());
-
-        // penjual
-        registerView("daftar-penjual", new DaftarPenjualView());
-
-        // karyawan
-        registerView("daftar-karyawan", new DaftarKaryawanView());
-
-        // grup
-        registerView("daftar-grup", new DaftarGrupView());
-
-        // pengguna
-        registerView("daftar-pengguna", new DaftarPenggunaView());
-    }
-
-    public void showView(String viewId) {
-        showView(viewId, null);
-    }
-
-    @SuppressWarnings("unchecked")
-    public void showView(String viewId, Object parameter) {
-        View view = map.get(viewId);
-        if (view != null) {
-            Point point = GraphicHelper.getLocation(getContentPane(), imageTransitionComponent);
-            fadeRotateImageTransition.setCoordinate(point);
-            imageTransitionComponent.start(1000);
-
-            CardLayout cardLayout = (CardLayout) getContentPane().getLayout();
-            cardLayout.show(getContentPane(), viewId);
-            view.display(this, parameter);
-        }
-    }
-
-    public void registerView(String viewId, View view) {
-        map.put(viewId, view);
-        getContentPane().add(viewId, view.getComponent());
-    }
-
-    public void showErrorMessage(String message) {
-        messageComponent.showError(message);
-    }
-
-    public void showWarningMessage(String message) {
-        messageComponent.showWarning(message);
-    }
-
-    public void showInfoMessage(String message) {
-        messageComponent.show(message, Color.GREEN, Color.WHITE);
+    public void showView(DialogView view, Object parameter) {
+        view.display(this, parameter);
     }
 }
