@@ -13,6 +13,9 @@
  */
 package com.stripbandunk.alexvariasi.view;
 
+import com.stripbandunk.alexvariasi.view.impl.DaftarBarangView;
+import com.stripbandunk.alexvariasi.view.impl.DaftarKategoriView;
+
 /**
  *
  * @author Eko Kurniawan Khannedy
@@ -295,10 +298,12 @@ public class FormApp extends javax.swing.JFrame {
     private void actionMenuItem(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actionMenuItem
         Object source = evt.getSource();
         if (source == jMenuItemBarang) {
+            showView(new DaftarBarangView(this));
         } else if (source == jMenuItemGrup) {
         } else if (source == jMenuItemJabatan) {
         } else if (source == jMenuItemKaryawan) {
         } else if (source == jMenuItemKategori) {
+            showView(new DaftarKategoriView(this));
         } else if (source == jMenuItemKeluarAplikasi) {
         } else if (source == jMenuItemKeuntungan) {
         } else if (source == jMenuItemPelanggan) {
