@@ -309,6 +309,7 @@ public class FormApp extends javax.swing.JFrame {
         } else if (source == jMenuItemKeuntungan) {
         } else if (source == jMenuItemPelanggan) {
         } else if (source == jMenuItemPemasok) {
+            showView(new DaftarPemasokView(this));
         } else if (source == jMenuItemPemasukan) {
         } else if (source == jMenuItemPembelian) {
         } else if (source == jMenuItemPengeluaran) {

@@ -4,9 +4,9 @@
  */
 package com.stripbandunk.alexvariasi.view.impl;
 
-import com.stripbandunk.alexvariasi.entity.master.Karyawan;
+import com.stripbandunk.alexvariasi.entity.master.Pemasok;
 import com.stripbandunk.alexvariasi.manager.SpringManager;
-import com.stripbandunk.alexvariasi.service.KaryawanService;
+import com.stripbandunk.alexvariasi.service.PemasokService;
 import com.stripbandunk.alexvariasi.view.DialogView;
 import com.stripbandunk.alexvariasi.view.FormApp;
 import com.stripbandunk.jwidget.JDynamicTable;
@@ -18,19 +18,19 @@ import org.springframework.dao.DataAccessException;
  *
  * @author Eko Kurniawan Khannedy
  */
-public class DaftarKaryawanView extends DialogView {
+public class DaftarPemasokView extends DialogView {
 
     private JDynamicTable jDynamicTable;
-    private DynamicTableModel<Karyawan> dynamicTableModel;
+    private DynamicTableModel<Pemasok> dynamicTableModel;
 
     /**
-     * Creates new form DaftarKaryawanView
+     * Creates new form DaftarPemasokView
      */
-    public DaftarKaryawanView(FormApp formApp) {
+    public DaftarPemasokView(FormApp formApp) {
         super(formApp);
         initComponents();
 
-        dynamicTableModel = new DynamicTableModel<>(Karyawan.class);
+        dynamicTableModel = new DynamicTableModel<>(Pemasok.class);
         jDynamicTable = new JDynamicTable(dynamicTableModel);
         jScrollPane1.setViewportView(jDynamicTable);
     }
@@ -54,9 +54,9 @@ public class DaftarKaryawanView extends DialogView {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getStyle() | java.awt.Font.BOLD, 24));
-        jLabel1.setText("Daftar Karyawan");
+        jLabel1.setText("Daftar Pemasok");
 
-        jButtonTambah.setText("Tambah Karyawan Baru");
+        jButtonTambah.setText("Tambah Pemasok Baru");
         jButtonTambah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonTambahActionPerformed(evt);
@@ -64,7 +64,7 @@ public class DaftarKaryawanView extends DialogView {
         });
         jPanel1.add(jButtonTambah);
 
-        jButtonUbah.setText("Ubah Karyawan Terseleksi");
+        jButtonUbah.setText("Ubah Pemasok Terseleksi");
         jButtonUbah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonUbahActionPerformed(evt);
@@ -72,7 +72,7 @@ public class DaftarKaryawanView extends DialogView {
         });
         jPanel1.add(jButtonUbah);
 
-        jButtonHapus.setText("Hapus Karyawan Terseleksi");
+        jButtonHapus.setText("Hapus Pemasok Terselesksi");
         jButtonHapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonHapusActionPerformed(evt);
@@ -111,7 +111,7 @@ public class DaftarKaryawanView extends DialogView {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTambahActionPerformed
-        TambahKaryawanView view = new TambahKaryawanView(getFormApp());
+        TambahPemasokView view = new TambahPemasokView(getFormApp());
         view.display(this, null);
         resetTable();
     }//GEN-LAST:event_jButtonTambahActionPerformed
@@ -120,11 +120,11 @@ public class DaftarKaryawanView extends DialogView {
         if (jDynamicTable.getSelectedRow() == -1) {
             showWarning("Silahkan pilih salah satu");
         } else {
-            Karyawan karyasan = dynamicTableModel.get(
+            Pemasok pemasok = dynamicTableModel.get(
                     jDynamicTable.convertRowIndexToModel(
                     jDynamicTable.getSelectedRow()));
-            UbahKaryawanView view = new UbahKaryawanView(getFormApp());
-            view.display(this, karyasan);
+            UbahPemasokView view = new UbahPemasokView(getFormApp());
+            view.display(this, pemasok);
             resetTable();
         }
     }//GEN-LAST:event_jButtonUbahActionPerformed
@@ -133,13 +133,13 @@ public class DaftarKaryawanView extends DialogView {
         if (jDynamicTable.getSelectedRow() == -1) {
             showWarning("Silahkan pilih salah satu");
         } else {
-            Karyawan karyasan = dynamicTableModel.get(
+            Pemasok pemasok = dynamicTableModel.get(
                     jDynamicTable.convertRowIndexToModel(
                     jDynamicTable.getSelectedRow()));
-            KaryawanService service = SpringManager.getInstance().
-                    getBean(KaryawanService.class);
+            PemasokService service = SpringManager.getInstance().
+                    getBean(PemasokService.class);
             try {
-                service.remove(karyasan);
+                service.remove(pemasok);
                 resetTable();
             } catch (DataAccessException ex) {
                 showError(ex.getRootCause().getMessage());
@@ -163,10 +163,10 @@ public class DaftarKaryawanView extends DialogView {
     }
 
     private void resetTable() {
-        KaryawanService karyasanService = SpringManager.getInstance().getBean(KaryawanService.class);
+        PemasokService pemasokService = SpringManager.getInstance().getBean(PemasokService.class);
         dynamicTableModel.clear();
-        for (Karyawan karyasan : karyasanService.findAll()) {
-            dynamicTableModel.add(karyasan);
+        for (Pemasok pemasok : pemasokService.findAll()) {
+            dynamicTableModel.add(pemasok);
         }
     }
 }

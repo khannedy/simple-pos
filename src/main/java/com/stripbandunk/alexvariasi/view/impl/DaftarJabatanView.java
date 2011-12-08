@@ -54,9 +54,9 @@ public class DaftarJabatanView extends DialogView {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getStyle() | java.awt.Font.BOLD, 24));
-        jLabel1.setText("Daftar Satuan");
+        jLabel1.setText("Daftar Jabatan");
 
-        jButtonTambah.setText("Tambah Satuan Baru");
+        jButtonTambah.setText("Tambah Jabatan Baru");
         jButtonTambah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonTambahActionPerformed(evt);
@@ -64,7 +64,7 @@ public class DaftarJabatanView extends DialogView {
         });
         jPanel1.add(jButtonTambah);
 
-        jButtonUbah.setText("Ubah Satuan Terseleksi");
+        jButtonUbah.setText("Ubah Jabatan Terseleksi");
         jButtonUbah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonUbahActionPerformed(evt);
@@ -72,7 +72,7 @@ public class DaftarJabatanView extends DialogView {
         });
         jPanel1.add(jButtonUbah);
 
-        jButtonHapus.setText("Hapus Satuan Terseleksi");
+        jButtonHapus.setText("Hapus Jabatan terseleksi");
         jButtonHapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonHapusActionPerformed(evt);
