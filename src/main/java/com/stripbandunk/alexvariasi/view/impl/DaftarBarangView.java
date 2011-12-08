@@ -11,6 +11,7 @@ import com.stripbandunk.alexvariasi.view.DialogView;
 import com.stripbandunk.alexvariasi.view.FormApp;
 import com.stripbandunk.jwidget.JDynamicTable;
 import com.stripbandunk.jwidget.model.DynamicTableModel;
+import java.awt.Window;
 
 /**
  *
@@ -133,7 +134,7 @@ public class DaftarBarangView extends DialogView {
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void display(FormApp formApp, Object parameter) {
+    public void display(Window formApp, Object parameter) {
         setLocationRelativeTo(formApp);
         resetTable();
         setVisible(true);

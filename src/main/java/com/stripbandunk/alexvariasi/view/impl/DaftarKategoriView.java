@@ -11,6 +11,8 @@ import com.stripbandunk.alexvariasi.view.DialogView;
 import com.stripbandunk.alexvariasi.view.FormApp;
 import com.stripbandunk.jwidget.JDynamicTable;
 import com.stripbandunk.jwidget.model.DynamicTableModel;
+import java.awt.Window;
+import org.springframework.dao.DataAccessException;
 
 /**
  *
@@ -109,21 +111,40 @@ public class DaftarKategoriView extends DialogView {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTambahActionPerformed
-
-
+        TambahKategoriView view = new TambahKategoriView(getFormApp());
+        view.display(this, null);
         resetTable();
     }//GEN-LAST:event_jButtonTambahActionPerformed
 
     private void jButtonUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUbahActionPerformed
-
-
-        resetTable();
+        if (jDynamicTable.getSelectedRow() == -1) {
+            showWarning("Silahkan pilih salah satu");
+        } else {
+            Kategori kategori = dynamicTableModel.get(
+                    jDynamicTable.convertRowIndexToModel(
+                    jDynamicTable.getSelectedRow()));
+            UbahKategoriView view = new UbahKategoriView(getFormApp());
+            view.display(this, kategori);
+            resetTable();
+        }
     }//GEN-LAST:event_jButtonUbahActionPerformed
 
     private void jButtonHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHapusActionPerformed
-
-
-        resetTable();
+        if (jDynamicTable.getSelectedRow() == -1) {
+            showWarning("Silahkan pilih salah satu");
+        } else {
+            Kategori kategori = dynamicTableModel.get(
+                    jDynamicTable.convertRowIndexToModel(
+                    jDynamicTable.getSelectedRow()));
+            KategoriService service = SpringManager.getInstance().
+                    getBean(KategoriService.class);
+            try {
+                service.remove(kategori);
+                resetTable();
+            } catch (DataAccessException ex) {
+                showError(ex.getRootCause().getMessage());
+            }
+        }
     }//GEN-LAST:event_jButtonHapusActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonHapus;
@@ -135,7 +156,7 @@ public class DaftarKategoriView extends DialogView {
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void display(FormApp formApp, Object parameter) {
+    public void display(Window formApp, Object parameter) {
         setLocationRelativeTo(formApp);
         resetTable();
         setVisible(true);

@@ -7,6 +7,8 @@
  */
 package com.stripbandunk.alexvariasi.view;
 
+import java.awt.Window;
+
 /**
  *
  * @author Eko Kurniawan Khannedy
@@ -19,5 +21,5 @@ public interface View {
      * @param formApp
      * @param parameter
      */
-    void display(FormApp formApp, Object parameter);
+    void display(Window formApp, Object parameter);
 }

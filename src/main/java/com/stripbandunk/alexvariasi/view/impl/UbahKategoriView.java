@@ -11,6 +11,7 @@ import com.stripbandunk.alexvariasi.validator.ValidatorException;
 import com.stripbandunk.alexvariasi.validator.impl.KategoriValidator;
 import com.stripbandunk.alexvariasi.view.DialogView;
 import com.stripbandunk.alexvariasi.view.FormApp;
+import java.awt.Window;
 import java.util.Date;
 import org.springframework.dao.DataAccessException;
 
@@ -191,7 +192,7 @@ public class UbahKategoriView extends DialogView {
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void display(FormApp formApp, Object parameter) {
+    public void display(Window formApp, Object parameter) {
         kategori = (Kategori) parameter;
         setLocationRelativeTo(formApp);
         setVisible(true);
