@@ -41,7 +41,6 @@ public class FormApp extends javax.swing.JFrame {
 
         jMenuBarApp = new javax.swing.JMenuBar();
         jMenuAplikasi = new javax.swing.JMenu();
-        jMenuItemBeranda = new javax.swing.JMenuItem();
         jMenuItemKeluarAplikasi = new javax.swing.JMenuItem();
         jMenuItemTutupAplikasi = new javax.swing.JMenuItem();
         jMenuDataMaster = new javax.swing.JMenu();
@@ -75,17 +74,6 @@ public class FormApp extends javax.swing.JFrame {
         jMenuAplikasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/stripbandunk/alexvariasi/image/aplikasi.png"))); // NOI18N
         jMenuAplikasi.setText("Aplikasi");
         jMenuAplikasi.setName("jMenuAplikasi"); // NOI18N
-
-        jMenuItemBeranda.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItemBeranda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/stripbandunk/alexvariasi/image/beranda.png"))); // NOI18N
-        jMenuItemBeranda.setText("Beranda");
-        jMenuItemBeranda.setName("jMenuItemBeranda"); // NOI18N
-        jMenuItemBeranda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                actionMenuItem(evt);
-            }
-        });
-        jMenuAplikasi.add(jMenuItemBeranda);
 
         jMenuItemKeluarAplikasi.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItemKeluarAplikasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/stripbandunk/alexvariasi/image/keluar.png"))); // NOI18N
@@ -323,7 +311,6 @@ public class FormApp extends javax.swing.JFrame {
             showView(new DaftarSatuanView(this));
         } else if (source == jMenuItemTutupAplikasi) {
             System.exit(0);
-        } else if (source == jMenuItemBeranda) {
         }
     }//GEN-LAST:event_actionMenuItem
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -332,7 +319,6 @@ public class FormApp extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuDataMaster;
     private javax.swing.JMenu jMenuHakAkses;
     private javax.swing.JMenuItem jMenuItemBarang;
-    private javax.swing.JMenuItem jMenuItemBeranda;
     private javax.swing.JMenuItem jMenuItemGrup;
     private javax.swing.JMenuItem jMenuItemJabatan;
     private javax.swing.JMenuItem jMenuItemKaryawan;
