@@ -164,7 +164,7 @@ public class DaftarKategoriView extends DialogView {
 
     private void resetTable() {
         KategoriService kategoriService = SpringManager.getInstance().getBean(KategoriService.class);
-
+        dynamicTableModel.clear();
         for (Kategori kategori : kategoriService.findAll()) {
             dynamicTableModel.add(kategori);
         }

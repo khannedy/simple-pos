@@ -194,6 +194,11 @@ public class UbahKategoriView extends DialogView {
     @Override
     public void display(Window formApp, Object parameter) {
         kategori = (Kategori) parameter;
+        
+        jTextAreaInfo.setText(kategori.getInfo());
+        jTextFieldKode.setText(kategori.getId());
+        jTextFieldNama.setText(kategori.getNama());
+        
         setLocationRelativeTo(formApp);
         setVisible(true);
     }

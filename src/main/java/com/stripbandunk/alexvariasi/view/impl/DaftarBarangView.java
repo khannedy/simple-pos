@@ -142,6 +142,7 @@ public class DaftarBarangView extends DialogView {
 
     private void resetTable() {
         BarangService barangService = SpringManager.getInstance().getBean(BarangService.class);
+        dynamicTableModel.clear();
         for (Barang barang : barangService.findAll()) {
             dynamicTableModel.add(barang);
         }
