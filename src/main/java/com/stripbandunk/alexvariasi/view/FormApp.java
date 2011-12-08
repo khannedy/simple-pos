@@ -13,10 +13,7 @@
  */
 package com.stripbandunk.alexvariasi.view;
 
-import com.stripbandunk.alexvariasi.view.impl.DaftarBarangView;
-import com.stripbandunk.alexvariasi.view.impl.DaftarJabatanView;
-import com.stripbandunk.alexvariasi.view.impl.DaftarKategoriView;
-import com.stripbandunk.alexvariasi.view.impl.DaftarSatuanView;
+import com.stripbandunk.alexvariasi.view.impl.*;
 
 /**
  *
@@ -305,6 +302,7 @@ public class FormApp extends javax.swing.JFrame {
         } else if (source == jMenuItemJabatan) {
             showView(new DaftarJabatanView(this));
         } else if (source == jMenuItemKaryawan) {
+            showView(new DaftarKaryawanView(this));
         } else if (source == jMenuItemKategori) {
             showView(new DaftarKategoriView(this));
         } else if (source == jMenuItemKeluarAplikasi) {
