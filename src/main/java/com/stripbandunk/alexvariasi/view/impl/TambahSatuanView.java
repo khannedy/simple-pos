@@ -4,11 +4,11 @@
  */
 package com.stripbandunk.alexvariasi.view.impl;
 
-import com.stripbandunk.alexvariasi.entity.master.Kategori;
+import com.stripbandunk.alexvariasi.entity.master.Satuan;
 import com.stripbandunk.alexvariasi.manager.SpringManager;
-import com.stripbandunk.alexvariasi.service.KategoriService;
+import com.stripbandunk.alexvariasi.service.SatuanService;
 import com.stripbandunk.alexvariasi.validator.ValidatorException;
-import com.stripbandunk.alexvariasi.validator.impl.KategoriValidator;
+import com.stripbandunk.alexvariasi.validator.impl.SatuanValidator;
 import com.stripbandunk.alexvariasi.view.DialogView;
 import com.stripbandunk.alexvariasi.view.FormApp;
 import java.awt.Window;
@@ -19,14 +19,14 @@ import org.springframework.dao.DataAccessException;
  *
  * @author Eko Kurniawan Khannedy
  */
-public class UbahKategoriView extends DialogView {
+public class TambahSatuanView extends DialogView {
 
-    private Kategori kategori;
+    private Satuan satuan;
 
     /**
-     * Creates new form TambahKategoriView
+     * Creates new form TambahSatuanView
      */
-    public UbahKategoriView(FormApp formApp) {
+    public TambahSatuanView(FormApp formApp) {
         super(formApp);
         initComponents();
     }
@@ -56,13 +56,11 @@ public class UbahKategoriView extends DialogView {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getStyle() | java.awt.Font.BOLD, 24));
-        jLabel1.setText("Ubah Kategori Baru");
+        jLabel1.setText("Tambah Satuan Baru");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Data Kategori"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Data Satuan"));
 
         jLabel2.setText("Kode :");
-
-        jTextFieldKode.setEnabled(false);
 
         jLabel3.setText("Nama :");
 
@@ -134,7 +132,7 @@ public class UbahKategoriView extends DialogView {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(0, 225, Short.MAX_VALUE))
+                        .addGap(0, 208, Short.MAX_VALUE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -159,16 +157,19 @@ public class UbahKategoriView extends DialogView {
     }//GEN-LAST:event_jButtonBatalActionPerformed
 
     private void jButtonSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSimpanActionPerformed
-        kategori.setNama(jTextFieldNama.getText());
-        kategori.setInfo(jTextAreaInfo.getText());
-        kategori.setTerakhirDirubah(new Date());
+        satuan = new Satuan();
+        satuan.setId(jTextFieldKode.getText());
+        satuan.setNama(jTextFieldNama.getText());
+        satuan.setInfo(jTextAreaInfo.getText());
+        satuan.setTerakhirDirubah(new Date());
+        satuan.setWaktuDibuat(new Date());
 
-        KategoriValidator validator = SpringManager.getInstance().getBean(KategoriValidator.class);
-        KategoriService service = SpringManager.getInstance().getBean(KategoriService.class);
+        SatuanValidator validator = SpringManager.getInstance().getBean(SatuanValidator.class);
+        SatuanService service = SpringManager.getInstance().getBean(SatuanService.class);
 
         try {
-            validator.validate(kategori);
-            service.update(kategori);
+            validator.validate(satuan);
+            service.save(satuan);
             dispose();
         } catch (ValidatorException ex) {
             showInfo(ex.getMessage());
@@ -193,12 +194,6 @@ public class UbahKategoriView extends DialogView {
 
     @Override
     public void display(Window formApp, Object parameter) {
-        kategori = (Kategori) parameter;
-
-        jTextAreaInfo.setText(kategori.getInfo());
-        jTextFieldKode.setText(kategori.getId());
-        jTextFieldNama.setText(kategori.getNama());
-
         setLocationRelativeTo(formApp);
         setVisible(true);
     }
