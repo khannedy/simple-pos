@@ -61,7 +61,7 @@
             <Font bold="true" component="jLabel1" property="font" relativeSize="false" size="24"/>
           </FontInfo>
         </Property>
-        <Property name="text" type="java.lang.String" value="Daftar Jabatan"/>
+        <Property name="text" type="java.lang.String" value="Daftar Penjual"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -74,7 +74,7 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="jButtonTambah">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Tambah Jabatan Baru"/>
+            <Property name="text" type="java.lang.String" value="Tambah Penjual Baru"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonTambahActionPerformed"/>
@@ -82,7 +82,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButtonUbah">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Ubah Jabatan Terseleksi"/>
+            <Property name="text" type="java.lang.String" value="Ubah Penjual Terseleksi"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonUbahActionPerformed"/>
@@ -90,7 +90,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButtonHapus">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Hapus Jabatan terseleksi"/>
+            <Property name="text" type="java.lang.String" value="Hapus Penjual Terseleksi"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonHapusActionPerformed"/>
