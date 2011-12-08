@@ -15,6 +15,7 @@ package com.stripbandunk.alexvariasi.view;
 
 import com.stripbandunk.alexvariasi.view.impl.DaftarBarangView;
 import com.stripbandunk.alexvariasi.view.impl.DaftarKategoriView;
+import com.stripbandunk.alexvariasi.view.impl.DaftarSatuanView;
 
 /**
  *
@@ -315,6 +316,7 @@ public class FormApp extends javax.swing.JFrame {
         } else if (source == jMenuItemPenjual) {
         } else if (source == jMenuItemPenjualan) {
         } else if (source == jMenuItemSatuan) {
+            showView(new DaftarSatuanView(this));
         } else if (source == jMenuItemTutupAplikasi) {
             System.exit(0);
         } else if (source == jMenuItemBeranda) {
