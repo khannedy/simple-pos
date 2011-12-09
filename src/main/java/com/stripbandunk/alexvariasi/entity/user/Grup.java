@@ -31,18 +31,22 @@ import javax.persistence.Table;
 public class Grup extends AbstractEntity<String> {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @Column(name = "id")
     @TableColumn(number = 1, name = "Kode")
     private String id;
+
     @Column(name = "nama", nullable = false, length = 100)
     @TableColumn(number = 20, name = "Nama")
     private String nama;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "tabel_join_grup_dan_hak_akses", joinColumns =
     @JoinColumn(name = "id_grup", nullable = false), inverseJoinColumns =
     @JoinColumn(name = "id_hak_akses", nullable = false))
     private List<HakAkses> daftarHakAkses = new ArrayList<>(0);
+
     @OneToMany(mappedBy = "grup")
     private List<Pengguna> daftarPengguna;
 
@@ -84,5 +88,10 @@ public class Grup extends AbstractEntity<String> {
 
     public List<HakAkses> getDaftarHakAkses() {
         return Collections.unmodifiableList(daftarHakAkses);
+    }
+
+    @Override
+    public String toString() {
+        return getId() + " - " + getNama();
     }
 }
