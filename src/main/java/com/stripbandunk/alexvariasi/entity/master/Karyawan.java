@@ -9,6 +9,7 @@ package com.stripbandunk.alexvariasi.entity.master;
 
 import com.stripbandunk.alexvariasi.entity.AbstractEntity;
 import com.stripbandunk.alexvariasi.entity.user.Pengguna;
+import com.stripbandunk.jwidget.annotation.TableColumn;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,30 +33,38 @@ public class Karyawan extends AbstractEntity<String> {
 
     @Id
     @Column(name = "id")
+    @TableColumn(number = 1, name = "Kode")
     private String id;
 
     @Column(name = "nama", nullable = false, length = 100)
+    @TableColumn(number = 2, name = "Nama", size = 20)
     private String nama;
 
     @Column(name = "tanggal_lahir")
     @Temporal(TemporalType.DATE)
+    @TableColumn(number = 3, name = "Tanggal Lahir")
     private Date tanggalLahir;
 
     @ManyToOne
     @JoinColumn(name = "id_jabatan", nullable = false)
+    @TableColumn(number = 4, name = "Jabatan")
     private Jabatan jabatan;
 
     @Column(name = "tanggal_masuk")
     @Temporal(TemporalType.DATE)
+    @TableColumn(number = 5, name = "Tanggal Masuk")
     private Date tanggalMasuk;
 
     @Column(name = "telepon", length = 20)
+    @TableColumn(number = 6, name = "Telepon")
     private String telepon;
 
     @Column(name = "kota", length = 100)
+    @TableColumn(number = 7, name = "Kota")
     private String kota;
 
     @Column(name = "alamat", length = 500)
+    @TableColumn(number = 8, name = "Alamat", size = 30)
     private String alamat;
 
     @OneToOne(mappedBy = "karyawan")

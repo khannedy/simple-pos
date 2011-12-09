@@ -66,6 +66,8 @@ public class UbahPemasokView extends DialogView {
 
         jLabel2.setText("Kode :");
 
+        jTextFieldKode.setEnabled(false);
+
         jLabel3.setText("Nama :");
 
         jLabel4.setText("Alamat :");

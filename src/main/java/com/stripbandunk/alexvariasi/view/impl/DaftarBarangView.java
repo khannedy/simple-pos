@@ -54,7 +54,7 @@ public class DaftarBarangView extends DialogView {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getStyle() | java.awt.Font.BOLD, 24));
-        jLabel1.setText("Daftar Jabatan");
+        jLabel1.setText("Daftar Barang");
 
         jButtonTambah.setText("Tambah Jabatan Baru");
         jButtonTambah.addActionListener(new java.awt.event.ActionListener() {
