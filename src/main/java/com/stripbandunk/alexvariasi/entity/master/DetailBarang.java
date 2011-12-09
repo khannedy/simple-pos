@@ -8,6 +8,7 @@
 package com.stripbandunk.alexvariasi.entity.master;
 
 import com.stripbandunk.alexvariasi.entity.AbstractEntity;
+import com.stripbandunk.jwidget.annotation.TableColumn;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -27,15 +28,19 @@ public class DetailBarang extends AbstractEntity<String> {
 
     @Id
     @Column(name = "id")
+    @TableColumn(number = 1, name = "Kode")
     private String id;
 
     @Column(name = "harga_beli", nullable = false)
+    @TableColumn(number = 2, name = "Harga Beli")
     private Long hargaBeli;
 
     @Column(name = "harga_jual", nullable = false)
+    @TableColumn(number = 3, name = "Harga Jual")
     private Long hargaJual;
 
     @Column(name = "stok", nullable = false)
+    @TableColumn(number = 4, name = "Stok")
     private Integer stok;
 
     @ManyToOne

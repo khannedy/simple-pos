@@ -5,6 +5,7 @@
 package com.stripbandunk.alexvariasi.view.impl;
 
 import com.stripbandunk.alexvariasi.entity.master.Barang;
+import com.stripbandunk.alexvariasi.entity.master.DetailBarang;
 import com.stripbandunk.alexvariasi.manager.SpringManager;
 import com.stripbandunk.alexvariasi.service.BarangService;
 import com.stripbandunk.alexvariasi.view.DialogView;
@@ -12,16 +13,23 @@ import com.stripbandunk.alexvariasi.view.FormApp;
 import com.stripbandunk.jwidget.JDynamicTable;
 import com.stripbandunk.jwidget.model.DynamicTableModel;
 import java.awt.Window;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import org.springframework.dao.DataAccessException;
 
 /**
  *
  * @author Eko Kurniawan Khannedy
  */
-public class DaftarBarangView extends DialogView {
+public class DaftarBarangView extends DialogView implements ListSelectionListener {
 
     private JDynamicTable jDynamicTable;
+
     private DynamicTableModel<Barang> dynamicTableModel;
+
+    private JDynamicTable jDynamicTableDetail;
+
+    private DynamicTableModel<DetailBarang> dynamicTableModelDetail;
 
     /**
      * Creates new form DaftarBarangView
@@ -33,6 +41,11 @@ public class DaftarBarangView extends DialogView {
         dynamicTableModel = new DynamicTableModel<>(Barang.class);
         jDynamicTable = new JDynamicTable(dynamicTableModel);
         jScrollPane1.setViewportView(jDynamicTable);
+        jDynamicTable.getSelectionModel().addListSelectionListener(this);
+
+        dynamicTableModelDetail = new DynamicTableModel<>(DetailBarang.class);
+        jDynamicTableDetail = new JDynamicTable(dynamicTableModelDetail);
+        jScrollPane2.setViewportView(jDynamicTableDetail);
     }
 
     /**
@@ -50,13 +63,18 @@ public class DaftarBarangView extends DialogView {
         jButtonTambah = new javax.swing.JButton();
         jButtonUbah = new javax.swing.JButton();
         jButtonHapus = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
+        jButtonTambahDetail = new javax.swing.JButton();
+        jButtonUbahDetail = new javax.swing.JButton();
+        jButtonHapusDetail = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getStyle() | java.awt.Font.BOLD, 24));
         jLabel1.setText("Daftar Barang");
 
-        jButtonTambah.setText("Tambah Jabatan Baru");
+        jButtonTambah.setText("Tambah Barang Baru");
         jButtonTambah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonTambahActionPerformed(evt);
@@ -64,7 +82,7 @@ public class DaftarBarangView extends DialogView {
         });
         jPanel1.add(jButtonTambah);
 
-        jButtonUbah.setText("Ubah Jabatan Terseleksi");
+        jButtonUbah.setText("Ubah Barang Terseleksi");
         jButtonUbah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonUbahActionPerformed(evt);
@@ -72,13 +90,37 @@ public class DaftarBarangView extends DialogView {
         });
         jPanel1.add(jButtonUbah);
 
-        jButtonHapus.setText("Hapus Jabatan terseleksi");
+        jButtonHapus.setText("Hapus Barang terseleksi");
         jButtonHapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonHapusActionPerformed(evt);
             }
         });
         jPanel1.add(jButtonHapus);
+
+        jButtonTambahDetail.setText("Tambah Detail Barang");
+        jButtonTambahDetail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTambahDetailActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButtonTambahDetail);
+
+        jButtonUbahDetail.setText("Ubah Detail Barang");
+        jButtonUbahDetail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUbahDetailActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButtonUbahDetail);
+
+        jButtonHapusDetail.setText("Hapus Detail Barang");
+        jButtonHapusDetail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonHapusDetailActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButtonHapusDetail);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -88,10 +130,12 @@ public class DaftarBarangView extends DialogView {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -100,9 +144,13 @@ public class DaftarBarangView extends DialogView {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -146,13 +194,31 @@ public class DaftarBarangView extends DialogView {
             }
         }
     }//GEN-LAST:event_jButtonHapusActionPerformed
+
+    private void jButtonTambahDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTambahDetailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonTambahDetailActionPerformed
+
+    private void jButtonUbahDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUbahDetailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonUbahDetailActionPerformed
+
+    private void jButtonHapusDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHapusDetailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonHapusDetailActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonHapus;
+    private javax.swing.JButton jButtonHapusDetail;
     private javax.swing.JButton jButtonTambah;
+    private javax.swing.JButton jButtonTambahDetail;
     private javax.swing.JButton jButtonUbah;
+    private javax.swing.JButton jButtonUbahDetail;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -167,6 +233,22 @@ public class DaftarBarangView extends DialogView {
         dynamicTableModel.clear();
         for (Barang barang : barangService.findAll()) {
             dynamicTableModel.add(barang);
+        }
+    }
+
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        if (!e.getValueIsAdjusting()) {
+            if (jDynamicTable.getSelectedRow() != -1) {
+                Barang barang = dynamicTableModel.get(
+                        jDynamicTable.convertRowIndexToModel(
+                        jDynamicTable.getSelectedRow()));
+
+                dynamicTableModelDetail.clear();
+                for (DetailBarang detailBarang : barang.getDaftarDetailBarang()) {
+                    dynamicTableModelDetail.add(detailBarang);
+                }
+            }
         }
     }
 }

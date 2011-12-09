@@ -35,8 +35,6 @@ public class BarangValidator extends AbstractValidator<Barang> {
             throwValidatorException("Kategori barang tidak boleh null");
         } else if (data.getSatuan() == null) {
             throwValidatorException("Satuan barang tidak boleh null");
-        } else if (data.getDaftarDetailBarang().isEmpty()) {
-            throwValidatorException("Barang harus memiliki detail barang");
         }
     }
 }
