@@ -212,6 +212,10 @@ public class UbahGrupView extends DialogView {
         HakAksesService hakAksesService = SpringManager.getInstance().getBean(HakAksesService.class);
         model.addSourceValues(hakAksesService.findAll());
 
+        for (HakAkses hakAkses : grup.getDaftarHakAkses()) {
+            model.add(hakAkses);
+        }
+
         setLocationRelativeTo(formApp);
         setVisible(true);
     }
