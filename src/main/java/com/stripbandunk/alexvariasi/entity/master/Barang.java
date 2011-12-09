@@ -8,6 +8,8 @@
 package com.stripbandunk.alexvariasi.entity.master;
 
 import com.stripbandunk.alexvariasi.entity.AbstractEntity;
+import com.stripbandunk.alexvariasi.view.render.KategoriTableCellRenderer;
+import com.stripbandunk.alexvariasi.view.render.SatuanTableCellRenderer;
 import com.stripbandunk.jwidget.annotation.TableColumn;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -43,12 +45,12 @@ public class Barang extends AbstractEntity<String> {
 
     @ManyToOne
     @JoinColumn(name = "id_kategori", nullable = false)
-    @TableColumn(number = 3, name = "Kategori")
+    @TableColumn(number = 3, name = "Kategori", renderer = KategoriTableCellRenderer.class)
     private Kategori kategori;
 
     @ManyToOne
     @JoinColumn(name = "id_satuan", nullable = false)
-    @TableColumn(number = 4, name = "Satuan")
+    @TableColumn(number = 4, name = "Satuan", renderer = SatuanTableCellRenderer.class)
     private Satuan satuan;
 
     @OneToMany(mappedBy = "barang", fetch = FetchType.EAGER,

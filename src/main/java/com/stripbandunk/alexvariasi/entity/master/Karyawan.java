@@ -9,6 +9,7 @@ package com.stripbandunk.alexvariasi.entity.master;
 
 import com.stripbandunk.alexvariasi.entity.AbstractEntity;
 import com.stripbandunk.alexvariasi.entity.user.Pengguna;
+import com.stripbandunk.alexvariasi.view.render.JabatanTableCellRenderer;
 import com.stripbandunk.jwidget.annotation.TableColumn;
 import java.util.Date;
 import javax.persistence.Column;
@@ -47,7 +48,7 @@ public class Karyawan extends AbstractEntity<String> {
 
     @ManyToOne
     @JoinColumn(name = "id_jabatan", nullable = false)
-    @TableColumn(number = 4, name = "Jabatan")
+    @TableColumn(number = 4, name = "Jabatan", renderer = JabatanTableCellRenderer.class)
     private Jabatan jabatan;
 
     @Column(name = "tanggal_masuk")
