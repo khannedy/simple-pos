@@ -58,4 +58,9 @@ public class Kategori extends AbstractEntity<String> {
     public void setId(String id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return getId() + " - " + getNama();
+    }
 }
