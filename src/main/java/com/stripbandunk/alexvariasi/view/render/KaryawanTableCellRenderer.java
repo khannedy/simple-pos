@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableCellRenderer;
  *
  * @author Eko Kurniawan Khannedy
  */
-public class NamaKaryawanTableCellRenderer extends DefaultTableCellRenderer {
+public class KaryawanTableCellRenderer extends DefaultTableCellRenderer {
 
     private static final long serialVersionUID = 1L;
 

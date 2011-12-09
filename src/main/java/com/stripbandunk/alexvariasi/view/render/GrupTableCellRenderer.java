@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableCellRenderer;
  *
  * @author Eko Kurniawan Khannedy
  */
-public class NamaGrupTableCellRenderer extends DefaultTableCellRenderer {
+public class GrupTableCellRenderer extends DefaultTableCellRenderer {
 
     private static final long serialVersionUID = 1L;
 
