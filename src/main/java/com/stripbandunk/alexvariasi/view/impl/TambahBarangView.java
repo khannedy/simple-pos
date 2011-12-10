@@ -182,7 +182,7 @@ public class TambahBarangView extends DialogView {
             service.save(barang);
             dispose();
         } catch (ValidatorException ex) {
-            showInfo(ex.getMessage());
+            showWarning(ex.getMessage());
         } catch (DataAccessException ex) {
             showError(ex.getRootCause().getMessage());
         }

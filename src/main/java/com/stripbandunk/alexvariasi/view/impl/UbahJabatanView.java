@@ -171,7 +171,7 @@ public class UbahJabatanView extends DialogView {
             service.update(jabatan);
             dispose();
         } catch (ValidatorException ex) {
-            showInfo(ex.getMessage());
+            showWarning(ex.getMessage());
         } catch (DataAccessException ex) {
             showError(ex.getRootCause().getMessage());
         }

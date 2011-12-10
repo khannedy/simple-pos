@@ -6,8 +6,6 @@ package com.stripbandunk.alexvariasi.view;
 
 import com.stripbandunk.jglasspane.JGlassPane;
 import com.stripbandunk.jglasspane.component.MessageComponent;
-import java.awt.Color;
-import java.awt.Window;
 import javax.swing.JDialog;
 
 /**
@@ -17,7 +15,9 @@ import javax.swing.JDialog;
 public abstract class DialogView extends JDialog implements View {
 
     private JGlassPane jGlassPane;
+
     private MessageComponent messageComponent;
+
     private FormApp formApp;
 
     public DialogView(FormApp formApp) {
@@ -39,15 +39,19 @@ public abstract class DialogView extends JDialog implements View {
         getGlassPane().setVisible(true);
     }
 
-    public void showInfo(String message) {
-        messageComponent.show(message, Color.GREEN, Color.WHITE);
-    }
-
     public void showWarning(String message) {
         messageComponent.showWarning(message);
     }
 
     public void showError(String message) {
         messageComponent.showError(message);
+    }
+
+    @Override
+    public void setVisible(boolean b) {
+        if (b) {
+            setSize(640, getHeight());
+        }
+        super.setVisible(b);
     }
 }

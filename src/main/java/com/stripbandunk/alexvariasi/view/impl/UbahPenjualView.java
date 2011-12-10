@@ -194,7 +194,7 @@ public class UbahPenjualView extends DialogView {
             service.update(penjual);
             dispose();
         } catch (ValidatorException ex) {
-            showInfo(ex.getMessage());
+            showWarning(ex.getMessage());
         } catch (DataAccessException ex) {
             showError(ex.getRootCause().getMessage());
         }

@@ -171,7 +171,7 @@ public class UbahKategoriView extends DialogView {
             service.update(kategori);
             dispose();
         } catch (ValidatorException ex) {
-            showInfo(ex.getMessage());
+            showWarning(ex.getMessage());
         } catch (DataAccessException ex) {
             showError(ex.getRootCause().getMessage());
         }

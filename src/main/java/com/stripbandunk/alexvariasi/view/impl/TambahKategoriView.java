@@ -172,7 +172,7 @@ public class TambahKategoriView extends DialogView {
             service.save(kategori);
             dispose();
         } catch (ValidatorException ex) {
-            showInfo(ex.getMessage());
+            showWarning(ex.getMessage());
         } catch (DataAccessException ex) {
             showError(ex.getRootCause().getMessage());
         }

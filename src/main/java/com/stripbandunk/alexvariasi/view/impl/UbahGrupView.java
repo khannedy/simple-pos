@@ -186,7 +186,7 @@ public class UbahGrupView extends DialogView {
             service.update(grup);
             dispose();
         } catch (ValidatorException ex) {
-            showInfo(ex.getMessage());
+            showWarning(ex.getMessage());
         } catch (DataAccessException ex) {
             showError(ex.getRootCause().getMessage());
         }

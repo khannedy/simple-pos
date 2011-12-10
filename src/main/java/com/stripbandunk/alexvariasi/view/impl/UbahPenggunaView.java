@@ -177,7 +177,7 @@ public class UbahPenggunaView extends DialogView {
             service.save(pengguna);
             dispose();
         } catch (ValidatorException ex) {
-            showInfo(ex.getMessage());
+            showWarning(ex.getMessage());
         } catch (DataAccessException ex) {
             showError(ex.getRootCause().getMessage());
         }

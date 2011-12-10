@@ -229,7 +229,7 @@ public class TambahKaryawanView extends DialogView {
             service.save(karyawan);
             dispose();
         } catch (ValidatorException ex) {
-            showInfo(ex.getMessage());
+            showWarning(ex.getMessage());
         } catch (DataAccessException ex) {
             showError(ex.getRootCause().getMessage());
         }

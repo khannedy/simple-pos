@@ -185,7 +185,7 @@ public class TambahGrupView extends DialogView {
             service.save(grup);
             dispose();
         } catch (ValidatorException ex) {
-            showInfo(ex.getMessage());
+            showWarning(ex.getMessage());
         } catch (DataAccessException ex) {
             showError(ex.getRootCause().getMessage());
         }

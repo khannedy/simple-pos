@@ -196,15 +196,24 @@ public class DaftarBarangView extends DialogView implements ListSelectionListene
     }//GEN-LAST:event_jButtonHapusActionPerformed
 
     private void jButtonTambahDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTambahDetailActionPerformed
-        // TODO add your handling code here:
+        if (jDynamicTable.getSelectedRow() == -1) {
+            showWarning("Silahkan pilih barang");
+        } else {
+        }
     }//GEN-LAST:event_jButtonTambahDetailActionPerformed
 
     private void jButtonUbahDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUbahDetailActionPerformed
-        // TODO add your handling code here:
+        if (jDynamicTableDetail.getSelectedRow() == -1) {
+            showWarning("Silahkan pilih detail barang");
+        } else {
+        }
     }//GEN-LAST:event_jButtonUbahDetailActionPerformed
 
     private void jButtonHapusDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHapusDetailActionPerformed
-        // TODO add your handling code here:
+        if (jDynamicTableDetail.getSelectedRow() == -1) {
+            showWarning("Silahkan pilih detail barang");
+        } else {
+        }
     }//GEN-LAST:event_jButtonHapusDetailActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

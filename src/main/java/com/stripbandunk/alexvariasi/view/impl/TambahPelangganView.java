@@ -194,7 +194,7 @@ public class TambahPelangganView extends DialogView {
             service.save(pelanggan);
             dispose();
         } catch (ValidatorException ex) {
-            showInfo(ex.getMessage());
+            showWarning(ex.getMessage());
         } catch (DataAccessException ex) {
             showError(ex.getRootCause().getMessage());
         }
