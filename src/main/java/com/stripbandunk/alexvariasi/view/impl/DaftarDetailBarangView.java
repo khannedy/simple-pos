@@ -5,8 +5,9 @@
 package com.stripbandunk.alexvariasi.view.impl;
 
 import com.stripbandunk.alexvariasi.entity.master.Barang;
+import com.stripbandunk.alexvariasi.entity.master.DetailBarang;
 import com.stripbandunk.alexvariasi.manager.SpringManager;
-import com.stripbandunk.alexvariasi.service.BarangService;
+import com.stripbandunk.alexvariasi.service.DetailBarangService;
 import com.stripbandunk.alexvariasi.view.DialogView;
 import com.stripbandunk.alexvariasi.view.FormApp;
 import com.stripbandunk.jwidget.JDynamicTable;
@@ -18,20 +19,22 @@ import org.springframework.dao.DataAccessException;
  *
  * @author Eko Kurniawan Khannedy
  */
-public class DaftarBarangView extends DialogView {
+public class DaftarDetailBarangView extends DialogView {
 
     private JDynamicTable jDynamicTable;
 
-    private DynamicTableModel<Barang> dynamicTableModel;
+    private DynamicTableModel<DetailBarang> dynamicTableModel;
+
+    private Barang barang;
 
     /**
-     * Creates new form DaftarBarangView
+     * Creates new form DaftarDetailBarangView
      */
-    public DaftarBarangView(FormApp formApp) {
+    public DaftarDetailBarangView(FormApp formApp) {
         super(formApp);
         initComponents();
 
-        dynamicTableModel = new DynamicTableModel<>(Barang.class);
+        dynamicTableModel = new DynamicTableModel<>(DetailBarang.class);
         jDynamicTable = new JDynamicTable(dynamicTableModel);
         jScrollPane1.setViewportView(jDynamicTable);
     }
@@ -48,25 +51,17 @@ public class DaftarBarangView extends DialogView {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        jButtonTambahDetail = new javax.swing.JButton();
         jButtonTambah = new javax.swing.JButton();
         jButtonUbah = new javax.swing.JButton();
         jButtonHapus = new javax.swing.JButton();
+        jLabelBarang = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getStyle() | java.awt.Font.BOLD, 24));
-        jLabel1.setText("Daftar Barang");
+        jLabel1.setText("Daftar Detail Barang");
 
-        jButtonTambahDetail.setText("Daftar Detail Barang");
-        jButtonTambahDetail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonTambahDetailActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButtonTambahDetail);
-
-        jButtonTambah.setText("Tambah Barang Baru");
+        jButtonTambah.setText("Tambah Detail Baru");
         jButtonTambah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonTambahActionPerformed(evt);
@@ -74,7 +69,7 @@ public class DaftarBarangView extends DialogView {
         });
         jPanel1.add(jButtonTambah);
 
-        jButtonUbah.setText("Ubah Barang Terseleksi");
+        jButtonUbah.setText("Ubah Detail Terseleksi");
         jButtonUbah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonUbahActionPerformed(evt);
@@ -82,13 +77,15 @@ public class DaftarBarangView extends DialogView {
         });
         jPanel1.add(jButtonUbah);
 
-        jButtonHapus.setText("Hapus Barang terseleksi");
+        jButtonHapus.setText("Hapus Detail Terseleksi");
         jButtonHapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonHapusActionPerformed(evt);
             }
         });
         jPanel1.add(jButtonHapus);
+
+        jLabelBarang.setFont(jLabelBarang.getFont().deriveFont(jLabelBarang.getFont().getStyle() | java.awt.Font.BOLD, 24));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,17 +95,21 @@ public class DaftarBarangView extends DialogView {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelBarang)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabelBarang))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -117,12 +118,12 @@ public class DaftarBarangView extends DialogView {
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-810)/2, (screenSize.height-510)/2, 810, 510);
+        setBounds((screenSize.width-650)/2, (screenSize.height-510)/2, 650, 510);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTambahActionPerformed
-        TambahBarangView view = new TambahBarangView(getFormApp());
-        view.display(this, null);
+        TambahDetailBarangView view = new TambahDetailBarangView(getFormApp());
+        view.display(this, barang);
         resetTable();
     }//GEN-LAST:event_jButtonTambahActionPerformed
 
@@ -130,11 +131,11 @@ public class DaftarBarangView extends DialogView {
         if (jDynamicTable.getSelectedRow() == -1) {
             showWarning("Silahkan pilih salah satu");
         } else {
-            Barang barang = dynamicTableModel.get(
+            DetailBarang detailBarang = dynamicTableModel.get(
                     jDynamicTable.convertRowIndexToModel(
                     jDynamicTable.getSelectedRow()));
-            UbahBarangView view = new UbahBarangView(getFormApp());
-            view.display(this, barang);
+            UbahDetailBarangView view = new UbahDetailBarangView(getFormApp());
+            view.display(this, detailBarang);
             resetTable();
         }
     }//GEN-LAST:event_jButtonUbahActionPerformed
@@ -143,53 +144,43 @@ public class DaftarBarangView extends DialogView {
         if (jDynamicTable.getSelectedRow() == -1) {
             showWarning("Silahkan pilih salah satu");
         } else {
-            Barang barang = dynamicTableModel.get(
+            DetailBarang detailBarang = dynamicTableModel.get(
                     jDynamicTable.convertRowIndexToModel(
                     jDynamicTable.getSelectedRow()));
-            BarangService service = SpringManager.getInstance().
-                    getBean(BarangService.class);
+            DetailBarangService service = SpringManager.getInstance().
+                    getBean(DetailBarangService.class);
             try {
-                service.remove(barang);
+                service.remove(detailBarang);
                 resetTable();
             } catch (DataAccessException ex) {
                 showError(ex.getRootCause().getMessage());
             }
         }
     }//GEN-LAST:event_jButtonHapusActionPerformed
-
-    private void jButtonTambahDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTambahDetailActionPerformed
-        if (jDynamicTable.getSelectedRow() == -1) {
-            showWarning("Silahkan pilih barang");
-        } else {
-            Barang barang = dynamicTableModel.get(
-                    jDynamicTable.convertRowIndexToModel(
-                    jDynamicTable.getSelectedRow()));
-            DaftarDetailBarangView view = new DaftarDetailBarangView(getFormApp());
-            view.display(this, barang);
-        }
-    }//GEN-LAST:event_jButtonTambahDetailActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonHapus;
     private javax.swing.JButton jButtonTambah;
-    private javax.swing.JButton jButtonTambahDetail;
     private javax.swing.JButton jButtonUbah;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelBarang;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void display(Window formApp, Object parameter) {
+        barang = (Barang) parameter;
+        jLabelBarang.setText(barang.getNama());
+
         resetTable();
         setVisible(true);
     }
 
     private void resetTable() {
-        BarangService barangService = SpringManager.getInstance().getBean(BarangService.class);
+        DetailBarangService detailBarangService = SpringManager.getInstance().getBean(DetailBarangService.class);
         dynamicTableModel.clear();
-        for (Barang barang : barangService.findAll()) {
-            dynamicTableModel.add(barang);
+        for (DetailBarang detailBarang : detailBarangService.findAll(barang)) {
+            dynamicTableModel.add(detailBarang);
         }
     }
 }

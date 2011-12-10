@@ -7,10 +7,14 @@
  */
 package com.stripbandunk.alexvariasi.service.impl;
 
+import com.stripbandunk.alexvariasi.entity.master.Barang;
 import com.stripbandunk.alexvariasi.entity.master.DetailBarang;
 import com.stripbandunk.alexvariasi.service.AbstractService;
 import com.stripbandunk.alexvariasi.service.DetailBarangService;
+import java.util.List;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -21,5 +25,12 @@ public class DetailBarangServiceImpl extends AbstractService<DetailBarang, Strin
 
     public DetailBarangServiceImpl() {
         super(DetailBarang.class);
+    }
+
+    @Override
+    @Transactional
+    public List<DetailBarang> findAll(Barang barang) {
+        return currentSession().createCriteria(DetailBarang.class).
+                add(Restrictions.eq("barang", barang)).list();
     }
 }

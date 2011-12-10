@@ -7,12 +7,15 @@
  */
 package com.stripbandunk.alexvariasi.service;
 
+import com.stripbandunk.alexvariasi.entity.master.Barang;
 import com.stripbandunk.alexvariasi.entity.master.DetailBarang;
+import java.util.List;
 
 /**
  *
  * @author Eko Kurniawan Khannedy
  */
 public interface DetailBarangService extends Service<DetailBarang, String> {
-    
+
+    List<DetailBarang> findAll(Barang barang);
 }

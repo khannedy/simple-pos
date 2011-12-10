@@ -63,7 +63,7 @@ public class UbahBarangView extends DialogView {
         jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getStyle() | java.awt.Font.BOLD, 24));
         jLabel1.setText("Ubah Barang");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Data Kategori"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Data Barang"));
 
         jLabel2.setText("Kode :");
 

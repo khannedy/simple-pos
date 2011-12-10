@@ -4,15 +4,11 @@
  */
 package com.stripbandunk.alexvariasi.view.impl;
 
-import com.stripbandunk.alexvariasi.entity.master.Barang;
-import com.stripbandunk.alexvariasi.entity.master.Kategori;
-import com.stripbandunk.alexvariasi.entity.master.Satuan;
+import com.stripbandunk.alexvariasi.entity.master.DetailBarang;
 import com.stripbandunk.alexvariasi.manager.SpringManager;
-import com.stripbandunk.alexvariasi.service.BarangService;
-import com.stripbandunk.alexvariasi.service.KategoriService;
-import com.stripbandunk.alexvariasi.service.SatuanService;
+import com.stripbandunk.alexvariasi.service.DetailBarangService;
 import com.stripbandunk.alexvariasi.validator.ValidatorException;
-import com.stripbandunk.alexvariasi.validator.impl.BarangValidator;
+import com.stripbandunk.alexvariasi.validator.impl.DetailBarangValidator;
 import com.stripbandunk.alexvariasi.view.DialogView;
 import com.stripbandunk.alexvariasi.view.FormApp;
 import java.awt.Window;
@@ -23,14 +19,14 @@ import org.springframework.dao.DataAccessException;
  *
  * @author Eko Kurniawan Khannedy
  */
-public class TambahBarangView extends DialogView {
+public class UbahDetailBarangView extends DialogView {
 
-    private Barang barang;
+    private DetailBarang detailBarang;
 
     /**
-     * Creates new form TambahBarangView
+     * Creates new form TambahDetailBarangView
      */
-    public TambahBarangView(FormApp formApp) {
+    public UbahDetailBarangView(FormApp formApp) {
         super(formApp);
         initComponents();
     }
@@ -47,13 +43,15 @@ public class TambahBarangView extends DialogView {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextFieldKode = new javax.swing.JTextField();
+        jTextFieldBarang = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextFieldNama = new javax.swing.JTextField();
+        jTextFieldKode = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jComboBoxKategori = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
-        jComboBoxSatuan = new javax.swing.JComboBox();
+        jFormattedTextFieldHargaBeli = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldHargaJual = new javax.swing.JFormattedTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jFormattedTextFieldStok = new javax.swing.JFormattedTextField();
         jPanel2 = new javax.swing.JPanel();
         jButtonSimpan = new javax.swing.JButton();
         jButtonBatal = new javax.swing.JButton();
@@ -61,17 +59,32 @@ public class TambahBarangView extends DialogView {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getStyle() | java.awt.Font.BOLD, 24));
-        jLabel1.setText("Tambah Barang Baru");
+        jLabel1.setText("Ubah Detail Barang");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Data Barang"));
 
-        jLabel2.setText("Kode :");
+        jLabel2.setText("Barang :");
 
-        jLabel3.setText("Nama :");
+        jTextFieldBarang.setEnabled(false);
 
-        jLabel4.setText("Kategori :");
+        jLabel3.setText("Kode :");
 
-        jLabel5.setText("Satuan :");
+        jTextFieldKode.setEnabled(false);
+
+        jLabel4.setText("Harga Beli :");
+
+        jLabel5.setText("Harga Jual");
+
+        jFormattedTextFieldHargaBeli.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        jFormattedTextFieldHargaBeli.setText("0");
+
+        jFormattedTextFieldHargaJual.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        jFormattedTextFieldHargaJual.setText("0");
+
+        jLabel6.setText("Stok :");
+
+        jFormattedTextFieldStok.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        jFormattedTextFieldStok.setText("0");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -80,17 +93,19 @@ public class TambahBarangView extends DialogView {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldBarang)
                     .addComponent(jTextFieldKode)
-                    .addComponent(jTextFieldNama)
-                    .addComponent(jComboBoxKategori, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jFormattedTextFieldHargaBeli)
+                    .addComponent(jFormattedTextFieldHargaJual)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel5))
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jComboBoxSatuan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jFormattedTextFieldStok))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -99,19 +114,23 @@ public class TambahBarangView extends DialogView {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldKode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldKode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBoxKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jFormattedTextFieldHargaBeli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBoxSatuan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jFormattedTextFieldHargaJual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jFormattedTextFieldStok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -141,7 +160,7 @@ public class TambahBarangView extends DialogView {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(0, 206, Short.MAX_VALUE))
+                        .addGap(0, 228, Short.MAX_VALUE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -158,7 +177,7 @@ public class TambahBarangView extends DialogView {
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-510)/2, (screenSize.height-379)/2, 510, 379);
+        setBounds((screenSize.width-510)/2, (screenSize.height-437)/2, 510, 437);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBatalActionPerformed
@@ -166,20 +185,18 @@ public class TambahBarangView extends DialogView {
     }//GEN-LAST:event_jButtonBatalActionPerformed
 
     private void jButtonSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSimpanActionPerformed
-        barang = new Barang();
-        barang.setId(jTextFieldKode.getText());
-        barang.setNama(jTextFieldNama.getText());
-        barang.setKategori((Kategori) jComboBoxKategori.getSelectedItem());
-        barang.setSatuan((Satuan) jComboBoxSatuan.getSelectedItem());
-        barang.setTerakhirDirubah(new Date());
-        barang.setWaktuDibuat(new Date());
 
-        BarangValidator validator = SpringManager.getInstance().getBean(BarangValidator.class);
-        BarangService service = SpringManager.getInstance().getBean(BarangService.class);
+        detailBarang.setTerakhirDirubah(new Date());
+        detailBarang.setHargaBeli(Long.valueOf(jFormattedTextFieldHargaBeli.getValue().toString()));
+        detailBarang.setHargaJual(Long.valueOf(jFormattedTextFieldHargaJual.getValue().toString()));
+        detailBarang.setStok(Integer.valueOf(jFormattedTextFieldStok.getValue().toString()));
+
+        DetailBarangValidator validator = SpringManager.getInstance().getBean(DetailBarangValidator.class);
+        DetailBarangService service = SpringManager.getInstance().getBean(DetailBarangService.class);
 
         try {
-            validator.validate(barang);
-            service.save(barang);
+            validator.validate(detailBarang);
+            service.update(detailBarang);
             dispose();
         } catch (ValidatorException ex) {
             showWarning(ex.getMessage());
@@ -190,31 +207,30 @@ public class TambahBarangView extends DialogView {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBatal;
     private javax.swing.JButton jButtonSimpan;
-    private javax.swing.JComboBox jComboBoxKategori;
-    private javax.swing.JComboBox jComboBoxSatuan;
+    private javax.swing.JFormattedTextField jFormattedTextFieldHargaBeli;
+    private javax.swing.JFormattedTextField jFormattedTextFieldHargaJual;
+    private javax.swing.JFormattedTextField jFormattedTextFieldStok;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField jTextFieldBarang;
     private javax.swing.JTextField jTextFieldKode;
-    private javax.swing.JTextField jTextFieldNama;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void display(Window formApp, Object parameter) {
+        detailBarang = (DetailBarang) parameter;
 
-        KategoriService kategoriService = SpringManager.getInstance().getBean(KategoriService.class);
-        for (Kategori kategori : kategoriService.findAll()) {
-            jComboBoxKategori.addItem(kategori);
-        }
-
-        SatuanService satuanService = SpringManager.getInstance().getBean(SatuanService.class);
-        for (Satuan satuan : satuanService.findAll()) {
-            jComboBoxSatuan.addItem(satuan);
-        }
+        jTextFieldBarang.setText(detailBarang.getBarang().getNama());
+        jTextFieldKode.setText(detailBarang.getId());
+        jFormattedTextFieldHargaBeli.setValue(detailBarang.getHargaBeli());
+        jFormattedTextFieldHargaBeli.setValue(detailBarang.getHargaJual());
+        jFormattedTextFieldStok.setValue(Long.valueOf(detailBarang.getStok().longValue()));
 
         setLocationRelativeTo(formApp);
         setVisible(true);

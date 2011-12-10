@@ -49,9 +49,6 @@ public abstract class DialogView extends JDialog implements View {
 
     @Override
     public void setVisible(boolean b) {
-        if (b) {
-            setSize(640, getHeight());
-        }
         super.setVisible(b);
     }
 }

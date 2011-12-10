@@ -53,8 +53,7 @@ public class Barang extends AbstractEntity<String> {
     @TableColumn(number = 4, name = "Satuan", renderer = SatuanTableCellRenderer.class)
     private Satuan satuan;
 
-    @OneToMany(mappedBy = "barang", fetch = FetchType.EAGER,
-    cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "barang", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DetailBarang> daftarDetailBarang = new ArrayList<>(1);
 
     public void tambahDetailBarang(DetailBarang detailBarang) {
