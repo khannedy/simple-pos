@@ -12,9 +12,9 @@ import java.awt.Window;
  *
  * @author echo
  */
-public class BuatLaporanPenjualanView extends DialogView {
+public class BuatLaporanPembelianView extends DialogView {
 
-    public BuatLaporanPenjualanView(FormApp formApp) {
+    public BuatLaporanPembelianView(FormApp formApp) {
         super(formApp);
         initComponents();
     }
@@ -41,7 +41,7 @@ public class BuatLaporanPenjualanView extends DialogView {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getStyle() | java.awt.Font.BOLD, 24));
-        jLabel1.setText("Laporan Penjualan");
+        jLabel1.setText("Laporan Pembelian");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Parameter"));
 
@@ -109,7 +109,7 @@ public class BuatLaporanPenjualanView extends DialogView {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(0, 135, Short.MAX_VALUE))
+                        .addGap(0, 127, Short.MAX_VALUE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );

@@ -296,14 +296,17 @@ public class FormApp extends javax.swing.JFrame {
             showView(new DaftarKategoriView(this));
         } else if (source == jMenuItemKeluarAplikasi) {
         } else if (source == jMenuItemKeuntungan) {
+            showView(new BuatLaporanKeuntunganView(this));
         } else if (source == jMenuItemPelanggan) {
             showView(new DaftarPelangganView(this));
         } else if (source == jMenuItemPemasok) {
             showView(new DaftarPemasokView(this));
         } else if (source == jMenuItemPemasukan) {
+            showView(new BuatLaporanPenjualanView(this));
         } else if (source == jMenuItemPembelian) {
             showView(new TambahPembelianView(this));
         } else if (source == jMenuItemPengeluaran) {
+            showView(new BuatLaporanPembelianView(this));
         } else if (source == jMenuItemPengguna) {
             showView(new DaftarPenggunaView(this));
         } else if (source == jMenuItemPenjual) {
