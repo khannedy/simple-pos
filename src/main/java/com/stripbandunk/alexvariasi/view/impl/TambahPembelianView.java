@@ -4,13 +4,13 @@
  */
 package com.stripbandunk.alexvariasi.view.impl;
 
-import com.stripbandunk.alexvariasi.entity.master.Pelanggan;
-import com.stripbandunk.alexvariasi.entity.transaction.DetailPenjualan;
-import com.stripbandunk.alexvariasi.entity.transaction.Penjualan;
+import com.stripbandunk.alexvariasi.entity.master.Pemasok;
+import com.stripbandunk.alexvariasi.entity.transaction.DetailPembelian;
+import com.stripbandunk.alexvariasi.entity.transaction.Pembelian;
 import com.stripbandunk.alexvariasi.manager.LoginManager;
 import com.stripbandunk.alexvariasi.manager.SpringManager;
-import com.stripbandunk.alexvariasi.service.PelangganService;
-import com.stripbandunk.alexvariasi.service.PenjualanService;
+import com.stripbandunk.alexvariasi.service.PemasokService;
+import com.stripbandunk.alexvariasi.service.PembelianService;
 import com.stripbandunk.alexvariasi.view.DialogView;
 import com.stripbandunk.alexvariasi.view.FormApp;
 import com.stripbandunk.jglasspane.JGlassPane;
@@ -26,9 +26,9 @@ import org.springframework.format.number.CurrencyFormatter;
  *
  * @author echo
  */
-public class TambahPenjualanView extends DialogView {
+public class TambahPembelianView extends DialogView {
 
-    private DynamicTableModel<DetailPenjualan> dynamicTableModel;
+    private DynamicTableModel<DetailPembelian> dynamicTableModel;
 
     private JDynamicTable jDynamicTable;
 
@@ -38,11 +38,11 @@ public class TambahPenjualanView extends DialogView {
 
     private long total;
 
-    public TambahPenjualanView(FormApp formApp) {
+    public TambahPembelianView(FormApp formApp) {
         super(formApp);
         initComponents();
 
-        dynamicTableModel = new DynamicTableModel<>(DetailPenjualan.class);
+        dynamicTableModel = new DynamicTableModel<>(DetailPembelian.class);
         jDynamicTable = new JDynamicTable(dynamicTableModel);
         jScrollPane1.setViewportView(jDynamicTable);
 
@@ -71,8 +71,8 @@ public class TambahPenjualanView extends DialogView {
         jLabel5 = new javax.swing.JLabel();
         jTextFieldPengguna = new javax.swing.JTextField();
         jTextFieldTanggal = new javax.swing.JTextField();
-        jTextFieldKodePelanggan = new javax.swing.JTextField();
-        jTextFieldNamaPelanggan = new javax.swing.JTextField();
+        jTextFieldKodePemasok = new javax.swing.JTextField();
+        jTextFieldNamaPemasok = new javax.swing.JTextField();
         jButtonCari = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -82,13 +82,11 @@ public class TambahPenjualanView extends DialogView {
         jButtonBayar = new javax.swing.JButton();
         jButtonTambahBarang = new javax.swing.JButton();
         jButtonHapusBarang = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        jFormattedTextFieldUangPembayaran = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getStyle() | java.awt.Font.BOLD, 24));
-        jLabel1.setText("Transaksi Penjualan");
+        jLabel1.setText("Transaksi Pembelian");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Data Transaksi"));
 
@@ -96,15 +94,15 @@ public class TambahPenjualanView extends DialogView {
 
         jLabel3.setText("Tanggal :");
 
-        jLabel4.setText("Kode Pelanggan :");
+        jLabel4.setText("Kode Pemasok :");
 
-        jLabel5.setText("Nama Pelanggan :");
+        jLabel5.setText("Nama Pemasok :");
 
         jTextFieldPengguna.setEnabled(false);
 
         jTextFieldTanggal.setEnabled(false);
 
-        jTextFieldNamaPelanggan.setEnabled(false);
+        jTextFieldNamaPemasok.setEnabled(false);
 
         jButtonCari.setText("Cari");
         jButtonCari.addActionListener(new java.awt.event.ActionListener() {
@@ -128,9 +126,9 @@ public class TambahPenjualanView extends DialogView {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextFieldPengguna)
                     .addComponent(jTextFieldTanggal)
-                    .addComponent(jTextFieldNamaPelanggan)
+                    .addComponent(jTextFieldNamaPemasok)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextFieldKodePelanggan, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                        .addComponent(jTextFieldKodePemasok, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonCari)))
                 .addContainerGap())
@@ -149,12 +147,12 @@ public class TambahPenjualanView extends DialogView {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextFieldKodePelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldKodePemasok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonCari))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextFieldNamaPelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldNamaPemasok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -179,7 +177,7 @@ public class TambahPenjualanView extends DialogView {
             }
         });
 
-        jButtonBayar.setText("Bayar");
+        jButtonBayar.setText("Simpan");
         jButtonBayar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonBayarActionPerformed(evt);
@@ -200,12 +198,6 @@ public class TambahPenjualanView extends DialogView {
             }
         });
 
-        jLabel6.setFont(jLabel6.getFont().deriveFont(jLabel6.getFont().getStyle() | java.awt.Font.BOLD));
-        jLabel6.setText("Uang Pembayaran : ");
-
-        jFormattedTextFieldUangPembayaran.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
-        jFormattedTextFieldUangPembayaran.setValue(new Long(0));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -224,11 +216,7 @@ public class TambahPenjualanView extends DialogView {
                         .addComponent(jButtonTambahBarang)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonHapusBarang)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFormattedTextFieldUangPembayaran)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonBayar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonBatal)))
@@ -250,9 +238,7 @@ public class TambahPenjualanView extends DialogView {
                     .addComponent(jButtonBatal)
                     .addComponent(jButtonBayar)
                     .addComponent(jButtonTambahBarang)
-                    .addComponent(jButtonHapusBarang)
-                    .addComponent(jLabel6)
-                    .addComponent(jFormattedTextFieldUangPembayaran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonHapusBarang))
                 .addContainerGap())
         );
 
@@ -264,19 +250,19 @@ public class TambahPenjualanView extends DialogView {
     }//GEN-LAST:event_jButtonBatalActionPerformed
 
     private void jButtonCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCariActionPerformed
-        CariPelangganView cariPelanggan = new CariPelangganView(getFormApp());
-        Pelanggan pelanggan = cariPelanggan.search(this);
+        CariPemasokView cariPemasok = new CariPemasokView(getFormApp());
+        Pemasok pelanggan = cariPemasok.search(this);
         if (pelanggan != null) {
-            jTextFieldKodePelanggan.setText(pelanggan.getId());
-            jTextFieldNamaPelanggan.setText(pelanggan.getNama());
+            jTextFieldKodePemasok.setText(pelanggan.getId());
+            jTextFieldNamaPemasok.setText(pelanggan.getNama());
         }
     }//GEN-LAST:event_jButtonCariActionPerformed
 
     private void jButtonTambahBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTambahBarangActionPerformed
-        TambahBarangPenjualanView tambahBarangPenjualanView = new TambahBarangPenjualanView(getFormApp());
-        DetailPenjualan detailPenjualan = tambahBarangPenjualanView.search(this);
-        if (detailPenjualan != null) {
-            dynamicTableModel.add(detailPenjualan);
+        TambahBarangPembelianView tambahBarangPembelianView = new TambahBarangPembelianView(getFormApp());
+        DetailPembelian detailPembelian = tambahBarangPembelianView.search(this);
+        if (detailPembelian != null) {
+            dynamicTableModel.add(detailPembelian);
             total();
         }
     }//GEN-LAST:event_jButtonTambahBarangActionPerformed
@@ -291,29 +277,26 @@ public class TambahPenjualanView extends DialogView {
     }//GEN-LAST:event_jButtonHapusBarangActionPerformed
 
     private void jButtonBayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBayarActionPerformed
-        PelangganService pelangganService = SpringManager.getInstance().getBean(PelangganService.class);
-        PenjualanService penjualanService = SpringManager.getInstance().getBean(PenjualanService.class);
+        PemasokService pelangganService = SpringManager.getInstance().getBean(PemasokService.class);
+        PembelianService pembelianService = SpringManager.getInstance().getBean(PembelianService.class);
 
-        Pelanggan pelanggan = pelangganService.find(jTextFieldKodePelanggan.getText());
+        Pemasok pelanggan = pelangganService.find(jTextFieldKodePemasok.getText());
         if (pelanggan == null) {
-            messageComponent.showWarning("Pelanggan Tidak Ditemukan");
+            messageComponent.showWarning("Pemasok Tidak Ditemukan");
         } else if (dynamicTableModel.getRowCount() == 0) {
             messageComponent.showWarning("Belum ada barang yang dibeli");
-        } else if (Long.valueOf(jFormattedTextFieldUangPembayaran.getValue().toString()) < total) {
-            messageComponent.showWarning("Uang pembayaran kurang");
         } else {
-            Penjualan penjualan = new Penjualan();
-            penjualan.setPelanggan(pelanggan);
-            penjualan.setPengguna(LoginManager.getInstance().getPengguna());
-            penjualan.setWaktuTransaksi(new Date());
-            penjualan.setWaktuTransaksiDiubah(new Date());
-            penjualan.setUang(Long.valueOf(jFormattedTextFieldUangPembayaran.getValue().toString()));
+            Pembelian pembelian = new Pembelian();
+            pembelian.setPemasok(pelanggan);
+            pembelian.setPengguna(LoginManager.getInstance().getPengguna());
+            pembelian.setWaktuTransaksi(new Date());
+            pembelian.setWaktuTransaksiDiubah(new Date());
             for (int i = 0; i < dynamicTableModel.getRowCount(); i++) {
-                DetailPenjualan detailPenjualan = dynamicTableModel.get(i);
-                penjualan.tambahDaftarPenjualan(detailPenjualan);
+                DetailPembelian detailPembelian = dynamicTableModel.get(i);
+                pembelian.tambahDetailPembelian(detailPembelian);
             }
 
-            penjualanService.save(penjualan);
+            pembelianService.save(pembelian);
             dispose();
         }
     }//GEN-LAST:event_jButtonBayarActionPerformed
@@ -324,20 +307,18 @@ public class TambahPenjualanView extends DialogView {
     private javax.swing.JButton jButtonCari;
     private javax.swing.JButton jButtonHapusBarang;
     private javax.swing.JButton jButtonTambahBarang;
-    private javax.swing.JFormattedTextField jFormattedTextFieldUangPembayaran;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabelTotal;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextFieldKodePelanggan;
-    private javax.swing.JTextField jTextFieldNamaPelanggan;
+    private javax.swing.JTextField jTextFieldKodePemasok;
+    private javax.swing.JTextField jTextFieldNamaPemasok;
     private javax.swing.JTextField jTextFieldPengguna;
     private javax.swing.JTextField jTextFieldTanggal;
     // End of variables declaration//GEN-END:variables
@@ -356,8 +337,8 @@ public class TambahPenjualanView extends DialogView {
     private void total() {
         total = 0l;
         for (int i = 0; i < dynamicTableModel.getRowCount(); i++) {
-            DetailPenjualan detailPenjualan = dynamicTableModel.get(i);
-            total += detailPenjualan.getSubTotal();
+            DetailPembelian detailPembelian = dynamicTableModel.get(i);
+            total += detailPembelian.getSubTotal();
         }
         formatter.setFractionDigits(0);
         jLabelTotal.setText(formatter.print(total, locale));
