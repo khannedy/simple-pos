@@ -185,6 +185,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldKodePelanggan">
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldKodePelangganFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldNamaPelanggan">
           <Properties>

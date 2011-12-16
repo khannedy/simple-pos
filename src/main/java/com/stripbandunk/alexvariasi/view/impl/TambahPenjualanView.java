@@ -7,6 +7,7 @@ package com.stripbandunk.alexvariasi.view.impl;
 import com.stripbandunk.alexvariasi.entity.master.Pelanggan;
 import com.stripbandunk.alexvariasi.entity.transaction.DetailPenjualan;
 import com.stripbandunk.alexvariasi.entity.transaction.Penjualan;
+import com.stripbandunk.alexvariasi.entity.user.Pengguna;
 import com.stripbandunk.alexvariasi.manager.LoginManager;
 import com.stripbandunk.alexvariasi.manager.SpringManager;
 import com.stripbandunk.alexvariasi.service.PelangganService;
@@ -19,6 +20,7 @@ import com.stripbandunk.jwidget.JDynamicTable;
 import com.stripbandunk.jwidget.model.DynamicTableModel;
 import java.awt.Font;
 import java.awt.Window;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import javax.swing.JLabel;
@@ -106,6 +108,12 @@ public class TambahPenjualanView extends DialogView {
         jTextFieldPengguna.setEnabled(false);
 
         jTextFieldTanggal.setEnabled(false);
+
+        jTextFieldKodePelanggan.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldKodePelangganFocusLost(evt);
+            }
+        });
 
         jTextFieldNamaPelanggan.setEnabled(false);
 
@@ -326,6 +334,15 @@ public class TambahPenjualanView extends DialogView {
         }
     }//GEN-LAST:event_jButtonBayarActionPerformed
 
+    private void jTextFieldKodePelangganFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldKodePelangganFocusLost
+        PelangganService pelangganService = SpringManager.getInstance().getBean(PelangganService.class);
+        Pelanggan pelanggan = pelangganService.find(jTextFieldKodePelanggan.getText());
+        if (pelanggan == null) {
+            messageComponent.showWarning("Pelanggan tidak ditemukan");
+            jTextFieldKodePelanggan.requestFocusInWindow();
+        }
+    }//GEN-LAST:event_jTextFieldKodePelangganFocusLost
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBatal;
     private javax.swing.JButton jButtonBayar;
@@ -353,6 +370,13 @@ public class TambahPenjualanView extends DialogView {
     @Override
     public void display(Window formApp, Object parameter) {
         total();
+
+        jTextFieldTanggal.setText(dateFormat.format(new Date()));
+        Pengguna pengguna = LoginManager.getInstance().getPengguna();
+        if (pengguna != null) {
+            jTextFieldPengguna.setText(pengguna.getKaryawan().getNama());
+        }
+
         setLocationRelativeTo(formApp);
         setVisible(true);
     }
@@ -360,6 +384,8 @@ public class TambahPenjualanView extends DialogView {
     private CurrencyFormatter formatter = new CurrencyFormatter();
 
     private Locale locale = new Locale("in", "ID");
+
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
 
     private void total() {
         total = 0l;

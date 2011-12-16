@@ -7,6 +7,7 @@ package com.stripbandunk.alexvariasi.view.impl;
 import com.stripbandunk.alexvariasi.entity.master.Pemasok;
 import com.stripbandunk.alexvariasi.entity.transaction.DetailPembelian;
 import com.stripbandunk.alexvariasi.entity.transaction.Pembelian;
+import com.stripbandunk.alexvariasi.entity.user.Pengguna;
 import com.stripbandunk.alexvariasi.manager.LoginManager;
 import com.stripbandunk.alexvariasi.manager.SpringManager;
 import com.stripbandunk.alexvariasi.service.PemasokService;
@@ -18,6 +19,7 @@ import com.stripbandunk.jglasspane.component.MessageComponent;
 import com.stripbandunk.jwidget.JDynamicTable;
 import com.stripbandunk.jwidget.model.DynamicTableModel;
 import java.awt.Window;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import org.springframework.format.number.CurrencyFormatter;
@@ -101,6 +103,12 @@ public class TambahPembelianView extends DialogView {
         jTextFieldPengguna.setEnabled(false);
 
         jTextFieldTanggal.setEnabled(false);
+
+        jTextFieldKodePemasok.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldKodePemasokFocusLost(evt);
+            }
+        });
 
         jTextFieldNamaPemasok.setEnabled(false);
 
@@ -301,6 +309,15 @@ public class TambahPembelianView extends DialogView {
         }
     }//GEN-LAST:event_jButtonBayarActionPerformed
 
+    private void jTextFieldKodePemasokFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldKodePemasokFocusLost
+        PemasokService pelangganService = SpringManager.getInstance().getBean(PemasokService.class);
+        Pemasok pelanggan = pelangganService.find(jTextFieldKodePemasok.getText());
+        if (pelanggan == null) {
+            messageComponent.showWarning("Pemasok tidak ditemukan");
+            jTextFieldKodePemasok.requestFocusInWindow();
+        }
+    }//GEN-LAST:event_jTextFieldKodePemasokFocusLost
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBatal;
     private javax.swing.JButton jButtonBayar;
@@ -326,6 +343,13 @@ public class TambahPembelianView extends DialogView {
     @Override
     public void display(Window formApp, Object parameter) {
         total();
+
+        jTextFieldTanggal.setText(dateFormat.format(new Date()));
+        Pengguna pengguna = LoginManager.getInstance().getPengguna();
+        if (pengguna != null) {
+            jTextFieldPengguna.setText(pengguna.getKaryawan().getNama());
+        }
+
         setLocationRelativeTo(formApp);
         setVisible(true);
     }
@@ -333,6 +357,8 @@ public class TambahPembelianView extends DialogView {
     private CurrencyFormatter formatter = new CurrencyFormatter();
 
     private Locale locale = new Locale("in", "ID");
+
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
 
     private void total() {
         total = 0l;
