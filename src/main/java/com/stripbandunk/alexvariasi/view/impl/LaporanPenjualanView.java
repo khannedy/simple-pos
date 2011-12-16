@@ -56,10 +56,10 @@ public class LaporanPenjualanView extends DialogView {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jButtonTutup = new javax.swing.JButton();
+        jButtonExcel = new javax.swing.JButton();
+        jButtonPdf = new javax.swing.JButton();
+        jButtonCetak = new javax.swing.JButton();
         jLabelJudul = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -67,13 +67,18 @@ public class LaporanPenjualanView extends DialogView {
         jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getStyle() | java.awt.Font.BOLD, 24));
         jLabel1.setText("Laporan Penjualan");
 
-        jButton1.setText("Tutup");
+        jButtonTutup.setText("Tutup");
+        jButtonTutup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTutupActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Simpan (Excel)");
+        jButtonExcel.setText("Simpan (Excel)");
 
-        jButton3.setText("Simpan (PDF)");
+        jButtonPdf.setText("Simpan (PDF)");
 
-        jButton4.setText("Cetak");
+        jButtonCetak.setText("Cetak");
 
         jLabelJudul.setText("Dari Tanggal {} Sampai {}");
 
@@ -87,13 +92,13 @@ public class LaporanPenjualanView extends DialogView {
                     .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 250, Short.MAX_VALUE)
-                        .addComponent(jButton4)
+                        .addComponent(jButtonCetak)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
+                        .addComponent(jButtonPdf)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
+                        .addComponent(jButtonExcel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
+                        .addComponent(jButtonTutup))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -112,20 +117,25 @@ public class LaporanPenjualanView extends DialogView {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(jButtonTutup)
+                    .addComponent(jButtonExcel)
+                    .addComponent(jButtonPdf)
+                    .addComponent(jButtonCetak))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonTutupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTutupActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButtonTutupActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButtonCetak;
+    private javax.swing.JButton jButtonExcel;
+    private javax.swing.JButton jButtonPdf;
+    private javax.swing.JButton jButtonTutup;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelJudul;
     private javax.swing.JScrollPane jScrollPane1;

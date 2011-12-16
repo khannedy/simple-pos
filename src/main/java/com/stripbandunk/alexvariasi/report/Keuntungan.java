@@ -19,7 +19,7 @@ import java.util.Date;
  *
  * @author echo
  */
-public class LaporanKeuntungan {
+public class Keuntungan {
 
     @TableColumn(number = 1, name = "No Transaksi")
     private Long id;
@@ -45,14 +45,24 @@ public class LaporanKeuntungan {
     @TableColumn(number = 8, name = "Keuntungan")
     private Long keuntungan;
 
-    public LaporanKeuntungan(Penjualan penjualan, Long keuntungan) {
+    public Keuntungan(Penjualan penjualan) {
         this.id = penjualan.getId();
         this.jenis = "Penjualan";
-        this.keuntungan = keuntungan;
+        this.pelanggan = penjualan.getPelanggan();
+        this.pemasok = null;
+        this.pengguna = penjualan.getPengguna();
+        this.tanggal = penjualan.getWaktuTransaksi();
+        this.total = penjualan.getTotal();
     }
 
-    public LaporanKeuntungan(Pembelian pembelian, Long keuntungan) {
-        this.keuntungan = keuntungan;
+    public Keuntungan(Pembelian pembelian) {
+        this.id = pembelian.getId();
+        this.jenis = "Pembelian";
+        this.pelanggan = null;
+        this.pemasok = pembelian.getPemasok();
+        this.pengguna = pembelian.getPengguna();
+        this.tanggal = pembelian.getWaktuTransaksi();
+        this.total = pembelian.getTotal();
     }
 
     public Long getId() {

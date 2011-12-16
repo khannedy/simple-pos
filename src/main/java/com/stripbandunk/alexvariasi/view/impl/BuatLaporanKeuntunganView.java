@@ -133,6 +133,9 @@ public class BuatLaporanKeuntunganView extends DialogView {
     }//GEN-LAST:event_jButtonTutupActionPerformed
 
     private void jButtonBuatLaporanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuatLaporanActionPerformed
+        LaporanKeuntunganView view = new LaporanKeuntunganView(getFormApp(),
+                jXDatePickerDariTanggal.getDate(), jXDatePickerSampaiTanggal.getDate());
+        view.display(this, null);
     }//GEN-LAST:event_jButtonBuatLaporanActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -44,9 +44,10 @@ public class PembelianServiceImpl implements PembelianService {
     }
 
     @Override
+    @Transactional
     public List<Pembelian> findAll(Date from, Date to) {
         Session session = currentSession();
-        return session.createQuery("select a from Penjualan a where date(a.waktuTransaksi) between date(:from) and date(:to)").
+        return session.createQuery("select a from Pembelian a where date(a.waktuTransaksi) between date(:from) and date(:to)").
                 setDate("from", from).setDate("to", to).list();
     }
 }

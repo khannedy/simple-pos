@@ -77,7 +77,7 @@
             <Font bold="true" component="jLabel1" property="font" relativeSize="false" size="24"/>
           </FontInfo>
         </Property>
-        <Property name="text" type="java.lang.String" value="Laporan Pembelian"/>
+        <Property name="text" type="java.lang.String" value="Laporan Keuntungan"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">

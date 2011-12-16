@@ -5,14 +5,20 @@
 package com.stripbandunk.alexvariasi.view.impl;
 
 import com.stripbandunk.alexvariasi.entity.transaction.Pembelian;
+import com.stripbandunk.alexvariasi.entity.transaction.Penjualan;
 import com.stripbandunk.alexvariasi.manager.SpringManager;
+import com.stripbandunk.alexvariasi.report.Keuntungan;
 import com.stripbandunk.alexvariasi.service.PembelianService;
+import com.stripbandunk.alexvariasi.service.PenjualanService;
 import com.stripbandunk.alexvariasi.view.DialogView;
 import com.stripbandunk.alexvariasi.view.FormApp;
 import com.stripbandunk.jwidget.JDynamicTable;
 import com.stripbandunk.jwidget.model.DynamicTableModel;
 import java.awt.Window;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -20,27 +26,65 @@ import java.util.List;
  *
  * @author echo
  */
-public class LaporanPembelianView extends DialogView {
+public class LaporanKeuntunganView extends DialogView {
 
     private JDynamicTable jDynamicTable;
 
-    private DynamicTableModel<Pembelian> dynamicTableModel;
+    private DynamicTableModel<Keuntungan> dynamicTableModel;
 
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
-    public LaporanPembelianView(FormApp formApp, Date from, Date to) {
+    public LaporanKeuntunganView(FormApp formApp, Date from, Date to) {
         super(formApp);
         initComponents();
 
-        dynamicTableModel = new DynamicTableModel<>(Pembelian.class);
+        PenjualanService penjualanService = SpringManager.getInstance().getBean(PenjualanService.class);
+        PembelianService pembelianService = SpringManager.getInstance().getBean(PembelianService.class);
+
+        List<Penjualan> penjualans = penjualanService.findAll(from, to);
+        List<Pembelian> pembelians = pembelianService.findAll(from, to);
+
+        List<Keuntungan> list = new ArrayList<>(penjualans.size() + pembelians.size());
+
+        for (Penjualan penjualan : penjualans) {
+            Keuntungan keuntungan = new Keuntungan(penjualan);
+            list.add(keuntungan);
+        }
+
+        for (Pembelian pembelian : pembelians) {
+            Keuntungan keuntungan = new Keuntungan(pembelian);
+            list.add(keuntungan);
+        }
+
+        Collections.sort(list, new Comparator<Keuntungan>() {
+
+            @Override
+            public int compare(Keuntungan o1, Keuntungan o2) {
+                return o1.getTanggal().compareTo(o2.getTanggal());
+            }
+        });
+
+        for (int i = 0; i < list.size(); i++) {
+            Keuntungan keuntungan = list.get(i);
+            if (i != 0) {
+                Keuntungan sebelumnya = list.get(i - 1);
+                if (keuntungan.getJenis().equals("Penjualan")) {
+                    keuntungan.setKeuntungan(sebelumnya.getKeuntungan() + keuntungan.getTotal());
+                } else {
+                    keuntungan.setKeuntungan(sebelumnya.getKeuntungan() - keuntungan.getTotal());
+                }
+            } else {
+                if (keuntungan.getJenis().equals("Penjualan")) {
+                    keuntungan.setKeuntungan(0 + keuntungan.getTotal());
+                } else {
+                    keuntungan.setKeuntungan(0 - keuntungan.getTotal());
+                }
+            }
+        }
+
+        dynamicTableModel = new DynamicTableModel<>(list, Keuntungan.class);
         jDynamicTable = new JDynamicTable(dynamicTableModel);
         jScrollPane1.setViewportView(jDynamicTable);
-
-        PembelianService penjualanService = SpringManager.getInstance().getBean(PembelianService.class);
-        List<Pembelian> list = penjualanService.findAll(from, to);
-        for (Pembelian penjualan : list) {
-            dynamicTableModel.add(penjualan);
-        }
 
         jLabelJudul.setText("dari tanggal " + dateFormat.format(from) + " sampai " + dateFormat.format(to));
     }
@@ -65,7 +109,7 @@ public class LaporanPembelianView extends DialogView {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getStyle() | java.awt.Font.BOLD, 24));
-        jLabel1.setText("Laporan Pembelian");
+        jLabel1.setText("Laporan Keuntungan");
 
         jButtonTutup.setText("Tutup");
         jButtonTutup.addActionListener(new java.awt.event.ActionListener() {
