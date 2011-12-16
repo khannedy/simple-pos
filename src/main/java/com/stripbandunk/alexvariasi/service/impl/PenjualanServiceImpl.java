@@ -8,8 +8,11 @@ import com.stripbandunk.alexvariasi.entity.master.DetailBarang;
 import com.stripbandunk.alexvariasi.entity.transaction.DetailPenjualan;
 import com.stripbandunk.alexvariasi.entity.transaction.Penjualan;
 import com.stripbandunk.alexvariasi.service.PenjualanService;
+import java.util.Date;
+import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,5 +41,13 @@ public class PenjualanServiceImpl implements PenjualanService {
             detailBarang.setStok(detailBarang.getStok() - detailPenjualan.getJumlah());
             session.update(detailBarang);
         }
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Penjualan> findAll(Date from, Date to) {
+        Session session = currentSession();
+        return session.createQuery("select a from Penjualan a where date(a.waktuTransaksi) between date(:from) and date(:to)").
+                setDate("from", from).setDate("to", to).list();
     }
 }

@@ -8,10 +8,6 @@
 package com.stripbandunk.alexvariasi.entity;
 
 import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 /**
@@ -19,22 +15,11 @@ import javax.persistence.MappedSuperclass;
  * @author Eko Kurniawan Khannedy
  */
 @MappedSuperclass
-public class AbstractAutoIdEntity implements Serializable {
+public abstract class AbstractAutoIdEntity implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    public abstract Long getId();
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long id;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public abstract void setId(Long id);
 
     @Override
     public boolean equals(Object obj) {
@@ -55,7 +40,7 @@ public class AbstractAutoIdEntity implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 59 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 59 * hash + (this.getId() != null ? this.getId().hashCode() : 0);
         return hash;
     }
 }

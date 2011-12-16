@@ -11,12 +11,7 @@ import com.stripbandunk.alexvariasi.entity.AbstractAutoIdEntity;
 import com.stripbandunk.alexvariasi.entity.master.DetailBarang;
 import com.stripbandunk.alexvariasi.view.render.DetailBarangTableCellRenderer;
 import com.stripbandunk.jwidget.annotation.TableColumn;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 /**
  *
@@ -27,6 +22,11 @@ import javax.persistence.Transient;
 public class DetailPembelian extends AbstractAutoIdEntity {
 
     private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "id_detail_barang", nullable = false)
@@ -48,6 +48,14 @@ public class DetailPembelian extends AbstractAutoIdEntity {
     @ManyToOne
     @JoinColumn(name = "id_pembelian")
     private Pembelian pembelian;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Long getHarga() {
         return harga;

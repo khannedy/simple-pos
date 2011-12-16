@@ -5,6 +5,8 @@
 package com.stripbandunk.alexvariasi.service;
 
 import com.stripbandunk.alexvariasi.entity.transaction.Penjualan;
+import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -13,4 +15,6 @@ import com.stripbandunk.alexvariasi.entity.transaction.Penjualan;
 public interface PenjualanService {
 
     void save(Penjualan penjualan);
+    
+    public List<Penjualan> findAll(Date from, Date to);
 }

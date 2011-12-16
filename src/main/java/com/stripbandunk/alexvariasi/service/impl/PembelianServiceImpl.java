@@ -8,8 +8,11 @@ import com.stripbandunk.alexvariasi.entity.master.DetailBarang;
 import com.stripbandunk.alexvariasi.entity.transaction.DetailPembelian;
 import com.stripbandunk.alexvariasi.entity.transaction.Pembelian;
 import com.stripbandunk.alexvariasi.service.PembelianService;
+import java.util.Date;
+import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,5 +41,12 @@ public class PembelianServiceImpl implements PembelianService {
             detailBarang.setStok(detailBarang.getStok() + detailPembelian.getJumlah());
             session.update(detailBarang);
         }
+    }
+
+    @Override
+    public List<Pembelian> findAll(Date from, Date to) {
+        Session session = currentSession();
+        return session.createQuery("select a from Penjualan a where date(a.waktuTransaksi) between date(:from) and date(:to)").
+                setDate("from", from).setDate("to", to).list();
     }
 }

@@ -262,16 +262,31 @@ public class FormApp extends javax.swing.JFrame {
         jMenuItemPemasukan.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItemPemasukan.setText("Pemasukan");
         jMenuItemPemasukan.setName("jMenuItemPemasukan"); // NOI18N
+        jMenuItemPemasukan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actionMenuItem(evt);
+            }
+        });
         jMenuLaporan.add(jMenuItemPemasukan);
 
         jMenuItemPengeluaran.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItemPengeluaran.setText("Pengeluaran");
         jMenuItemPengeluaran.setName("jMenuItemPengeluaran"); // NOI18N
+        jMenuItemPengeluaran.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actionMenuItem(evt);
+            }
+        });
         jMenuLaporan.add(jMenuItemPengeluaran);
 
         jMenuItemKeuntungan.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItemKeuntungan.setText("Keuntungan");
         jMenuItemKeuntungan.setName("jMenuItemKeuntungan"); // NOI18N
+        jMenuItemKeuntungan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actionMenuItem(evt);
+            }
+        });
         jMenuLaporan.add(jMenuItemKeuntungan);
 
         jMenuBarApp.add(jMenuLaporan);

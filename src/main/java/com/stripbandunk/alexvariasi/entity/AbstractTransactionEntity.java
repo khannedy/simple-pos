@@ -18,27 +18,13 @@ import javax.persistence.TemporalType;
  * @author Eko Kurniawan Khannedy
  */
 @MappedSuperclass
-public class AbstractTransactionEntity extends AbstractAutoIdEntity {
+public abstract class AbstractTransactionEntity extends AbstractAutoIdEntity {
 
     private static final long serialVersionUID = 1L;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "waktu_transaksi")
-    private Date waktuTransaksi;
-
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "waktu_transaksi_diubah")
     private Date waktuTransaksiDiubah;
-
-    @SuppressWarnings("ReturnOfDateField")
-    public Date getWaktuTransaksi() {
-        return waktuTransaksi;
-    }
-
-    @SuppressWarnings("AssignmentToDateFieldFromParameter")
-    public void setWaktuTransaksi(Date waktuTransaksi) {
-        this.waktuTransaksi = waktuTransaksi;
-    }
 
     @SuppressWarnings("ReturnOfDateField")
     public Date getWaktuTransaksiDiubah() {

@@ -23,6 +23,11 @@ public class DetailPenjualan extends AbstractAutoIdEntity {
 
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
+
     @ManyToOne
     @JoinColumn(name = "id_detail_barang", nullable = false)
     @TableColumn(number = 1, name = "Barang", size = 20, renderer = DetailBarangTableCellRenderer.class)
@@ -43,6 +48,14 @@ public class DetailPenjualan extends AbstractAutoIdEntity {
     @ManyToOne
     @JoinColumn(name = "id_penjualan")
     private Penjualan penjualan;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Long getHarga() {
         return harga;
