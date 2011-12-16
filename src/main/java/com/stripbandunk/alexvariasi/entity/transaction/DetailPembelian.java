@@ -21,8 +21,12 @@ import javax.persistence.Transient;
  * @author Eko Kurniawan Khannedy
  */
 @Entity
-@Table(name = "id")
+@Table(name = "detail_pembelian")
 public class DetailPembelian extends AbstractAutoIdEntity {
+
+    @ManyToOne
+    @JoinColumn(name = "id_pembelian")
+    private Pembelian pembelian;
 
     private static final long serialVersionUID = 1L;
 
@@ -35,6 +39,14 @@ public class DetailPembelian extends AbstractAutoIdEntity {
 
     @Transient
     private Long subTotal;
+
+    public Pembelian getPembelian() {
+        return pembelian;
+    }
+
+    public void setPembelian(Pembelian pembelian) {
+        this.pembelian = pembelian;
+    }
 
     public DetailBarang getDetailBarang() {
         return detailBarang;

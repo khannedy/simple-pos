@@ -8,6 +8,7 @@
 package com.stripbandunk.alexvariasi.entity.master;
 
 import com.stripbandunk.alexvariasi.entity.AbstractEntity;
+import com.stripbandunk.alexvariasi.view.render.BarangTableCellRenderer;
 import com.stripbandunk.jwidget.annotation.TableColumn;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,19 +33,20 @@ public class DetailBarang extends AbstractEntity<String> {
     private String id;
 
     @Column(name = "harga_beli", nullable = false)
-    @TableColumn(number = 2, name = "Harga Beli")
+    @TableColumn(number = 3, name = "Harga Beli")
     private Long hargaBeli;
 
     @Column(name = "harga_jual", nullable = false)
-    @TableColumn(number = 3, name = "Harga Jual")
+    @TableColumn(number = 4, name = "Harga Jual")
     private Long hargaJual;
 
     @Column(name = "stok", nullable = false)
-    @TableColumn(number = 4, name = "Stok")
+    @TableColumn(number = 5, name = "Stok")
     private Integer stok;
 
     @ManyToOne
     @JoinColumn(name = "id_barang", nullable = false)
+    @TableColumn(number = 2, name = "Nama", size = 20, renderer = BarangTableCellRenderer.class)
     private Barang barang;
 
     public void setBarang(Barang barang) {

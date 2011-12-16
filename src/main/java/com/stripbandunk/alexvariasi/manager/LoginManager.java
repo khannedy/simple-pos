@@ -45,7 +45,11 @@ public class LoginManager {
     }
 
     public Pengguna getPengguna() {
-        return getPenggunaService().find(id);
+        if (id == null) {
+            return null;
+        } else {
+            return getPenggunaService().find(id);
+        }
     }
 
     private PenggunaService getPenggunaService() {

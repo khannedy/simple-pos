@@ -12,12 +12,7 @@ import com.stripbandunk.alexvariasi.entity.master.Pelanggan;
 import com.stripbandunk.alexvariasi.entity.user.Pengguna;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  *
@@ -40,9 +35,31 @@ public class Penjualan extends AbstractTransactionEntity {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "penjualan")
     private List<DetailPenjualan> daftarPenjualan = new ArrayList<>();
 
+    @Column(name = "uang")
+    private Long uang;
+
+    @Column(name = "total")
+    private Long total;
+
+    public Long getTotal() {
+        return total;
+    }
+
+    public Long getUang() {
+        return uang;
+    }
+
+    public void setUang(Long uang) {
+        this.uang = uang;
+    }
+
     public void tambahDaftarPenjualan(DetailPenjualan detailPenjualan) {
         detailPenjualan.setPenjualan(this);
         daftarPenjualan.add(detailPenjualan);
+        total = 0l;
+        for (DetailPenjualan detail : daftarPenjualan) {
+            total += detail.getSubTotal();
+        }
     }
 
     public void hapusDaftarPenjualan(DetailPenjualan detailPenjualan) {

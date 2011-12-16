@@ -9,7 +9,8 @@
           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
-">
+
+       http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd" xmlns:task="http://www.springframework.org/schema/task">
     
     <context:property-placeholder location="classpath:jdbc.properties"/>
     <context:annotation-config/>
@@ -49,6 +50,10 @@
                 <value>com.stripbandunk.alexvariasi.entity.user.Grup</value>
                 <value>com.stripbandunk.alexvariasi.entity.user.HakAkses</value>
                 <value>com.stripbandunk.alexvariasi.entity.user.Pengguna</value>
+                <value>com.stripbandunk.alexvariasi.entity.transaction.Penjualan</value>
+                <value>com.stripbandunk.alexvariasi.entity.transaction.Pembelian</value>
+                <value>com.stripbandunk.alexvariasi.entity.transaction.DetailPenjualan</value>
+                <value>com.stripbandunk.alexvariasi.entity.transaction.DetailPembelian</value>
             </util:list>
         </property>
     </bean>
