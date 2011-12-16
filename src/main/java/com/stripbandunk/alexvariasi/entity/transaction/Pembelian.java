@@ -22,9 +22,10 @@ import javax.persistence.Table;
 public class Pembelian extends AbstractTransactionEntity {
 
     private static final long serialVersionUID = 1L;
-    
+
+    private Long id;
+
     private Pengguna pengguna;
-    
+
     private Pemasok pemasok;
-    
 }

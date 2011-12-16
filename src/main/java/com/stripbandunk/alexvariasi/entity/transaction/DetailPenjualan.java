@@ -12,6 +12,7 @@ import com.stripbandunk.alexvariasi.entity.master.DetailBarang;
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 /**
  *
@@ -28,6 +29,21 @@ public class DetailPenjualan extends AbstractAutoIdEntity {
     @Column(name = "jumlah", nullable = false)
     private Integer jumlah;
 
+    @Transient
+    private Long subTotal;
+
+    @ManyToOne
+    @JoinColumn(name = "id_penjualan")
+    private Penjualan penjualan;
+
+    public Penjualan getPenjualan() {
+        return penjualan;
+    }
+
+    public void setPenjualan(Penjualan penjualan) {
+        this.penjualan = penjualan;
+    }
+
     public DetailBarang getDetailBarang() {
         return detailBarang;
     }
@@ -42,5 +58,10 @@ public class DetailPenjualan extends AbstractAutoIdEntity {
 
     public void setJumlah(Integer jumlah) {
         this.jumlah = jumlah;
+        this.subTotal = this.jumlah * this.detailBarang.getHargaJual();
+    }
+
+    public Long getSubTotal() {
+        return subTotal;
     }
 }
