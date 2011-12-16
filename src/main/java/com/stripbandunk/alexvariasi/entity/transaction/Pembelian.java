@@ -22,7 +22,7 @@ import javax.persistence.*;
 @Table(name = "tabel_pembelian")
 public class Pembelian extends AbstractTransactionEntity {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVpelangganersionUID = 1L;
 
     @ManyToOne
     @JoinColumn(name = "id_pengguna")

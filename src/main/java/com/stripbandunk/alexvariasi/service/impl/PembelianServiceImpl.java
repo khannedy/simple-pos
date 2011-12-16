@@ -35,7 +35,7 @@ public class PembelianServiceImpl implements PembelianService {
         session.save(pembelian);
         for (DetailPembelian detailPembelian : pembelian.getDaftarPembelian()) {
             DetailBarang detailBarang = detailPembelian.getDetailBarang();
-            detailBarang.setStok(detailBarang.getStok() - detailPembelian.getJumlah());
+            detailBarang.setStok(detailBarang.getStok() + detailPembelian.getJumlah());
             session.update(detailBarang);
         }
     }

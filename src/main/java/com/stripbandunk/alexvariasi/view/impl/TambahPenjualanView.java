@@ -17,9 +17,12 @@ import com.stripbandunk.jglasspane.JGlassPane;
 import com.stripbandunk.jglasspane.component.MessageComponent;
 import com.stripbandunk.jwidget.JDynamicTable;
 import com.stripbandunk.jwidget.model.DynamicTableModel;
+import java.awt.Font;
 import java.awt.Window;
 import java.util.Date;
 import java.util.Locale;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import org.springframework.format.number.CurrencyFormatter;
 
 /**
@@ -312,6 +315,11 @@ public class TambahPenjualanView extends DialogView {
                 DetailPenjualan detailPenjualan = dynamicTableModel.get(i);
                 penjualan.tambahDaftarPenjualan(detailPenjualan);
             }
+
+            long kembalian = penjualan.getUang() - penjualan.getTotal();
+            JLabel label = new JLabel(formatter.print(kembalian, locale));
+            label.setFont(label.getFont().deriveFont(Font.BOLD, 24));
+            JOptionPane.showMessageDialog(this, label);
 
             penjualanService.save(penjualan);
             dispose();

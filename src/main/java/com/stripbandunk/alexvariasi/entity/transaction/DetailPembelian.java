@@ -49,6 +49,14 @@ public class DetailPembelian extends AbstractAutoIdEntity {
     @JoinColumn(name = "id_pembelian")
     private Pembelian pembelian;
 
+    public Long getHarga() {
+        return harga;
+    }
+
+    public void setHarga(Long harga) {
+        this.harga = harga;
+    }
+
     public Pembelian getPembelian() {
         return pembelian;
     }
@@ -63,6 +71,7 @@ public class DetailPembelian extends AbstractAutoIdEntity {
 
     public void setDetailBarang(DetailBarang detailBarang) {
         this.detailBarang = detailBarang;
+        this.harga = detailBarang.getHargaJual();
     }
 
     public Integer getJumlah() {
@@ -71,7 +80,7 @@ public class DetailPembelian extends AbstractAutoIdEntity {
 
     public void setJumlah(Integer jumlah) {
         this.jumlah = jumlah;
-        this.subTotal = this.jumlah * this.detailBarang.getHargaJual();
+        this.subTotal = this.jumlah * this.harga;
     }
 
     public Long getSubTotal() {

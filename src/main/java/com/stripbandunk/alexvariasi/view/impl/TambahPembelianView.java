@@ -280,14 +280,14 @@ public class TambahPembelianView extends DialogView {
         PemasokService pelangganService = SpringManager.getInstance().getBean(PemasokService.class);
         PembelianService pembelianService = SpringManager.getInstance().getBean(PembelianService.class);
 
-        Pemasok pelanggan = pelangganService.find(jTextFieldKodePemasok.getText());
-        if (pelanggan == null) {
+        Pemasok pemasok = pelangganService.find(jTextFieldKodePemasok.getText());
+        if (pemasok == null) {
             messageComponent.showWarning("Pemasok Tidak Ditemukan");
         } else if (dynamicTableModel.getRowCount() == 0) {
             messageComponent.showWarning("Belum ada barang yang dibeli");
         } else {
             Pembelian pembelian = new Pembelian();
-            pembelian.setPemasok(pelanggan);
+            pembelian.setPemasok(pemasok);
             pembelian.setPengguna(LoginManager.getInstance().getPengguna());
             pembelian.setWaktuTransaksi(new Date());
             pembelian.setWaktuTransaksiDiubah(new Date());

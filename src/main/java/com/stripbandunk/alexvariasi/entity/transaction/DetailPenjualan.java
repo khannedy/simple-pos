@@ -33,12 +33,24 @@ public class DetailPenjualan extends AbstractAutoIdEntity {
     private Integer jumlah;
 
     @Transient
-    @TableColumn(number = 3, name = "Sub Total")
+    @TableColumn(number = 4, name = "Sub Total")
     private Long subTotal;
+
+    @Column(name = "harga", nullable = false)
+    @TableColumn(number = 3, name = "Harga")
+    private Long harga;
 
     @ManyToOne
     @JoinColumn(name = "id_penjualan")
     private Penjualan penjualan;
+
+    public Long getHarga() {
+        return harga;
+    }
+
+    public void setHarga(Long harga) {
+        this.harga = harga;
+    }
 
     public Penjualan getPenjualan() {
         return penjualan;
@@ -54,6 +66,7 @@ public class DetailPenjualan extends AbstractAutoIdEntity {
 
     public void setDetailBarang(DetailBarang detailBarang) {
         this.detailBarang = detailBarang;
+        this.harga = detailBarang.getHargaJual();
     }
 
     public Integer getJumlah() {
@@ -62,7 +75,7 @@ public class DetailPenjualan extends AbstractAutoIdEntity {
 
     public void setJumlah(Integer jumlah) {
         this.jumlah = jumlah;
-        this.subTotal = this.jumlah * this.detailBarang.getHargaJual();
+        this.subTotal = this.jumlah * harga;
     }
 
     public Long getSubTotal() {
