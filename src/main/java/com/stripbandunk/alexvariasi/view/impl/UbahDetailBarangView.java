@@ -229,7 +229,7 @@ public class UbahDetailBarangView extends DialogView {
         jTextFieldBarang.setText(detailBarang.getBarang().getNama());
         jTextFieldKode.setText(detailBarang.getId());
         jFormattedTextFieldHargaBeli.setValue(detailBarang.getHargaBeli());
-        jFormattedTextFieldHargaBeli.setValue(detailBarang.getHargaJual());
+        jFormattedTextFieldHargaJual.setValue(detailBarang.getHargaJual());
         jFormattedTextFieldStok.setValue(Long.valueOf(detailBarang.getStok().longValue()));
 
         setLocationRelativeTo(formApp);

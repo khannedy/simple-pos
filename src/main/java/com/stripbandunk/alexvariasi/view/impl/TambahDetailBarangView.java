@@ -186,7 +186,7 @@ public class TambahDetailBarangView extends DialogView {
     }//GEN-LAST:event_jButtonBatalActionPerformed
 
     private void jButtonSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSimpanActionPerformed
-        detailBarang.setId(jTextFieldBarang.getText());
+        detailBarang.setId(jTextFieldKode.getText());
         detailBarang.setTerakhirDirubah(new Date());
         detailBarang.setWaktuDibuat(new Date());
         detailBarang.setHargaBeli(Long.valueOf(jFormattedTextFieldHargaBeli.getValue().toString()));
