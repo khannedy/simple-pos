@@ -104,12 +104,6 @@ public class TambahPembelianView extends DialogView {
 
         jTextFieldTanggal.setEnabled(false);
 
-        jTextFieldKodePemasok.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextFieldKodePemasokFocusLost(evt);
-            }
-        });
-
         jTextFieldNamaPemasok.setEnabled(false);
 
         jButtonCari.setText("Cari");
@@ -270,6 +264,14 @@ public class TambahPembelianView extends DialogView {
         TambahBarangPembelianView tambahBarangPembelianView = new TambahBarangPembelianView(getFormApp());
         DetailPembelian detailPembelian = tambahBarangPembelianView.search(this);
         if (detailPembelian != null) {
+            for (int i = 0; i < dynamicTableModel.getRowCount(); i++) {
+                DetailPembelian item = dynamicTableModel.get(i);
+                if (item.getDetailBarang().getId().equals(detailPembelian.getDetailBarang().getId())) {
+                    detailPembelian.setJumlah(item.getJumlah() + detailPembelian.getJumlah());
+                    dynamicTableModel.remove(i);
+                    break;
+                }
+            }
             dynamicTableModel.add(detailPembelian);
             total();
         }
@@ -308,15 +310,6 @@ public class TambahPembelianView extends DialogView {
             dispose();
         }
     }//GEN-LAST:event_jButtonBayarActionPerformed
-
-    private void jTextFieldKodePemasokFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldKodePemasokFocusLost
-        PemasokService pelangganService = SpringManager.getInstance().getBean(PemasokService.class);
-        Pemasok pelanggan = pelangganService.find(jTextFieldKodePemasok.getText());
-        if (pelanggan == null) {
-            messageComponent.showWarning("Pemasok tidak ditemukan");
-            jTextFieldKodePemasok.requestFocusInWindow();
-        }
-    }//GEN-LAST:event_jTextFieldKodePemasokFocusLost
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBatal;

@@ -5,6 +5,8 @@
 package com.stripbandunk.alexvariasi.view.impl;
 
 import com.stripbandunk.alexvariasi.entity.master.Pelanggan;
+import com.stripbandunk.alexvariasi.entity.master.Pelanggan;
+import com.stripbandunk.alexvariasi.entity.transaction.DetailPembelian;
 import com.stripbandunk.alexvariasi.entity.transaction.DetailPenjualan;
 import com.stripbandunk.alexvariasi.entity.transaction.Penjualan;
 import com.stripbandunk.alexvariasi.entity.user.Pengguna;
@@ -108,12 +110,6 @@ public class TambahPenjualanView extends DialogView {
         jTextFieldPengguna.setEnabled(false);
 
         jTextFieldTanggal.setEnabled(false);
-
-        jTextFieldKodePelanggan.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextFieldKodePelangganFocusLost(evt);
-            }
-        });
 
         jTextFieldNamaPelanggan.setEnabled(false);
 
@@ -287,6 +283,14 @@ public class TambahPenjualanView extends DialogView {
         TambahBarangPenjualanView tambahBarangPenjualanView = new TambahBarangPenjualanView(getFormApp());
         DetailPenjualan detailPenjualan = tambahBarangPenjualanView.search(this);
         if (detailPenjualan != null) {
+            for (int i = 0; i < dynamicTableModel.getRowCount(); i++) {
+                DetailPenjualan item = dynamicTableModel.get(i);
+                if (item.getDetailBarang().getId().equals(detailPenjualan.getDetailBarang().getId())) {
+                    detailPenjualan.setJumlah(item.getJumlah() + detailPenjualan.getJumlah());
+                    dynamicTableModel.remove(i);
+                    break;
+                }
+            }
             dynamicTableModel.add(detailPenjualan);
             total();
         }
@@ -325,7 +329,7 @@ public class TambahPenjualanView extends DialogView {
             }
 
             long kembalian = penjualan.getUang() - penjualan.getTotal();
-            JLabel label = new JLabel(formatter.print(kembalian, locale));
+            JLabel label = new JLabel("Uang Kembalian " + formatter.print(kembalian, locale));
             label.setFont(label.getFont().deriveFont(Font.BOLD, 24));
             JOptionPane.showMessageDialog(this, label);
 
@@ -333,15 +337,6 @@ public class TambahPenjualanView extends DialogView {
             dispose();
         }
     }//GEN-LAST:event_jButtonBayarActionPerformed
-
-    private void jTextFieldKodePelangganFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldKodePelangganFocusLost
-        PelangganService pelangganService = SpringManager.getInstance().getBean(PelangganService.class);
-        Pelanggan pelanggan = pelangganService.find(jTextFieldKodePelanggan.getText());
-        if (pelanggan == null) {
-            messageComponent.showWarning("Pelanggan tidak ditemukan");
-            jTextFieldKodePelanggan.requestFocusInWindow();
-        }
-    }//GEN-LAST:event_jTextFieldKodePelangganFocusLost
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBatal;
