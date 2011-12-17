@@ -24,7 +24,6 @@ import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.engine.export.JExcelApiExporter;
 
 /**
  *
@@ -108,7 +107,6 @@ public class LaporanKeuntunganView extends DialogView {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jButtonTutup = new javax.swing.JButton();
-        jButtonExcel = new javax.swing.JButton();
         jButtonPdf = new javax.swing.JButton();
         jButtonCetak = new javax.swing.JButton();
         jLabelJudul = new javax.swing.JLabel();
@@ -122,13 +120,6 @@ public class LaporanKeuntunganView extends DialogView {
         jButtonTutup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonTutupActionPerformed(evt);
-            }
-        });
-
-        jButtonExcel.setText("Simpan (Excel)");
-        jButtonExcel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonExcelActionPerformed(evt);
             }
         });
 
@@ -157,19 +148,17 @@ public class LaporanKeuntunganView extends DialogView {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 250, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButtonCetak)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonPdf)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonExcel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonTutup))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabelJudul))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 347, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -184,7 +173,6 @@ public class LaporanKeuntunganView extends DialogView {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonTutup)
-                    .addComponent(jButtonExcel)
                     .addComponent(jButtonPdf)
                     .addComponent(jButtonCetak))
                 .addContainerGap())
@@ -236,35 +224,8 @@ public class LaporanKeuntunganView extends DialogView {
         }
     }//GEN-LAST:event_jButtonPdfActionPerformed
 
-    private void jButtonExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcelActionPerformed
-        try {
-            if (jFileChooser1.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
-                File file = jFileChooser1.getSelectedFile();
-                if (!file.getName().endsWith(".xls")) {
-                    file = new File(file.getPath() + ".xls");
-                }
-                InputStream inputStream = LaporanPenjualanView.class.getResourceAsStream("/com/stripbandunk/alexvariasi/report/LaporanKeuntungan.jasper");
-
-                Map<String, Object> map = new HashMap<>();
-                JRDataSource dataSource = new JRBeanCollectionDataSource(list);
-                map.put(JRParameter.REPORT_DATA_SOURCE, dataSource);
-                map.put(JRParameter.REPORT_LOCALE, new Locale("in", "ID"));
-
-                JasperPrint print = JasperFillManager.fillReport(inputStream, map);
-
-                JRExporter exporter = new JExcelApiExporter();
-                exporter.setParameter(JRExporterParameter.OUTPUT_FILE, file);
-                exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
-                exporter.exportReport();
-            }
-        } catch (JRException ex) {
-            Logger.getLogger(LaporanPenjualanView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButtonExcelActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCetak;
-    private javax.swing.JButton jButtonExcel;
     private javax.swing.JButton jButtonPdf;
     private javax.swing.JButton jButtonTutup;
     private javax.swing.JFileChooser jFileChooser1;

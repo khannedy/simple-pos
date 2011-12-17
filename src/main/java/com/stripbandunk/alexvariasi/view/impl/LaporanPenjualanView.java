@@ -22,7 +22,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import net.sf.jasperreports.engine.*;
-import net.sf.jasperreports.engine.export.JExcelApiExporter;
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
 import org.hibernate.jdbc.Work;
@@ -76,7 +75,6 @@ public class LaporanPenjualanView extends DialogView {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jButtonTutup = new javax.swing.JButton();
-        jButtonExcel = new javax.swing.JButton();
         jButtonPdf = new javax.swing.JButton();
         jButtonCetak = new javax.swing.JButton();
         jLabelJudul = new javax.swing.JLabel();
@@ -90,13 +88,6 @@ public class LaporanPenjualanView extends DialogView {
         jButtonTutup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonTutupActionPerformed(evt);
-            }
-        });
-
-        jButtonExcel.setText("Simpan (Excel)");
-        jButtonExcel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonExcelActionPerformed(evt);
             }
         });
 
@@ -125,19 +116,17 @@ public class LaporanPenjualanView extends DialogView {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 250, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButtonCetak)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonPdf)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonExcel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonTutup))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabelJudul))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 378, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -152,7 +141,6 @@ public class LaporanPenjualanView extends DialogView {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonTutup)
-                    .addComponent(jButtonExcel)
                     .addComponent(jButtonPdf)
                     .addComponent(jButtonCetak))
                 .addContainerGap())
@@ -225,44 +213,8 @@ public class LaporanPenjualanView extends DialogView {
         session.close();
     }//GEN-LAST:event_jButtonPdfActionPerformed
 
-    private void jButtonExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcelActionPerformed
-        SessionFactory sessionFactory = SpringManager.getInstance().getBean(SessionFactory.class);
-        Session session = sessionFactory.openSession();
-        session.doWork(new Work() {
-
-            @Override
-            public void execute(Connection connection) throws SQLException {
-                try {
-                    InputStream inputStream = LaporanPenjualanView.class.getResourceAsStream("/com/stripbandunk/alexvariasi/report/LaporanPenjualan.jasper");
-
-                    Map<String, Object> map = new HashMap<>();
-                    map.put("FROM", from);
-                    map.put("TO", to);
-                    map.put(JRParameter.REPORT_CONNECTION, connection);
-                    map.put(JRParameter.REPORT_LOCALE, new Locale("in", "ID"));
-
-                    JasperPrint print = JasperFillManager.fillReport(inputStream, map);
-                    if (jFileChooser1.showSaveDialog(LaporanPenjualanView.this) == JFileChooser.APPROVE_OPTION) {
-                        File file = jFileChooser1.getSelectedFile();
-                        if (!file.getName().endsWith(".xls")) {
-                            file = new File(file.getPath() + ".xls");
-                        }
-                        JRExporter exporter = new JExcelApiExporter();
-                        exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
-                        exporter.setParameter(JRExporterParameter.OUTPUT_FILE, file);
-                        exporter.exportReport();
-                    }
-                } catch (JRException ex) {
-                    Logger.getLogger(LaporanPenjualanView.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-        session.close();
-    }//GEN-LAST:event_jButtonExcelActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCetak;
-    private javax.swing.JButton jButtonExcel;
     private javax.swing.JButton jButtonPdf;
     private javax.swing.JButton jButtonTutup;
     private javax.swing.JFileChooser jFileChooser1;
