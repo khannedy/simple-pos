@@ -12,9 +12,24 @@ import com.stripbandunk.alexvariasi.view.FormApp;
 import com.stripbandunk.jwidget.JDynamicTable;
 import com.stripbandunk.jwidget.model.DynamicTableModel;
 import java.awt.Window;
+import java.io.File;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.export.JExcelApiExporter;
+import org.hibernate.SessionFactory;
+import org.hibernate.classic.Session;
+import org.hibernate.jdbc.Work;
 
 /**
  *
@@ -28,9 +43,16 @@ public class LaporanPembelianView extends DialogView {
 
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
+    private Date from;
+
+    private Date to;
+
     public LaporanPembelianView(FormApp formApp, Date from, Date to) {
         super(formApp);
         initComponents();
+
+        this.from = from;
+        this.to = to;
 
         dynamicTableModel = new DynamicTableModel<>(Pembelian.class);
         jDynamicTable = new JDynamicTable(dynamicTableModel);
@@ -54,6 +76,7 @@ public class LaporanPembelianView extends DialogView {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFileChooser1 = new javax.swing.JFileChooser();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jButtonTutup = new javax.swing.JButton();
@@ -75,10 +98,25 @@ public class LaporanPembelianView extends DialogView {
         });
 
         jButtonExcel.setText("Simpan (Excel)");
+        jButtonExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcelActionPerformed(evt);
+            }
+        });
 
         jButtonPdf.setText("Simpan (PDF)");
+        jButtonPdf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPdfActionPerformed(evt);
+            }
+        });
 
         jButtonCetak.setText("Cetak");
+        jButtonCetak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCetakActionPerformed(evt);
+            }
+        });
 
         jLabelJudul.setText("Dari Tanggal {} Sampai {}");
 
@@ -131,11 +169,106 @@ public class LaporanPembelianView extends DialogView {
         dispose();
     }//GEN-LAST:event_jButtonTutupActionPerformed
 
+    private void jButtonCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCetakActionPerformed
+        SessionFactory sessionFactory = SpringManager.getInstance().getBean(SessionFactory.class);
+        Session session = sessionFactory.openSession();
+        session.doWork(new Work() {
+
+            @Override
+            public void execute(Connection connection) throws SQLException {
+                try {
+                    InputStream inputStream = LaporanPenjualanView.class.getResourceAsStream("/com/stripbandunk/alexvariasi/report/LaporanPembelian.jasper");
+
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("FROM", from);
+                    map.put("TO", to);
+                    map.put(JRParameter.REPORT_CONNECTION, connection);
+                    map.put(JRParameter.REPORT_LOCALE, new Locale("in", "ID"));
+
+                    JasperPrint print = JasperFillManager.fillReport(inputStream, map);
+                    CetakLaporanView view = new CetakLaporanView(getFormApp(), print);
+                    view.display(LaporanPembelianView.this, null);
+                } catch (JRException ex) {
+                    Logger.getLogger(LaporanPenjualanView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        session.close();
+    }//GEN-LAST:event_jButtonCetakActionPerformed
+
+    private void jButtonPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPdfActionPerformed
+        SessionFactory sessionFactory = SpringManager.getInstance().getBean(SessionFactory.class);
+        Session session = sessionFactory.openSession();
+        session.doWork(new Work() {
+
+            @Override
+            public void execute(Connection connection) throws SQLException {
+                try {
+                    InputStream inputStream = LaporanPenjualanView.class.getResourceAsStream("/com/stripbandunk/alexvariasi/report/LaporanPembelian.jasper");
+
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("FROM", from);
+                    map.put("TO", to);
+                    map.put(JRParameter.REPORT_CONNECTION, connection);
+                    map.put(JRParameter.REPORT_LOCALE, new Locale("in", "ID"));
+
+                    JasperPrint print = JasperFillManager.fillReport(inputStream, map);
+                    if (jFileChooser1.showSaveDialog(LaporanPembelianView.this) == JFileChooser.APPROVE_OPTION) {
+                        File file = jFileChooser1.getSelectedFile();
+                        if (!file.getName().endsWith(".pdf")) {
+                            file = new File(file.getPath() + ".pdf");
+                        }
+                        JasperExportManager.exportReportToPdfFile(print, file.getPath());
+                    }
+                } catch (JRException ex) {
+                    Logger.getLogger(LaporanPenjualanView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        session.close();
+    }//GEN-LAST:event_jButtonPdfActionPerformed
+
+    private void jButtonExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcelActionPerformed
+        SessionFactory sessionFactory = SpringManager.getInstance().getBean(SessionFactory.class);
+        Session session = sessionFactory.openSession();
+        session.doWork(new Work() {
+
+            @Override
+            public void execute(Connection connection) throws SQLException {
+                try {
+                    InputStream inputStream = LaporanPenjualanView.class.getResourceAsStream("/com/stripbandunk/alexvariasi/report/LaporanPembelian.jasper");
+
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("FROM", from);
+                    map.put("TO", to);
+                    map.put(JRParameter.REPORT_CONNECTION, connection);
+                    map.put(JRParameter.REPORT_LOCALE, new Locale("in", "ID"));
+
+                    JasperPrint print = JasperFillManager.fillReport(inputStream, map);
+                    if (jFileChooser1.showSaveDialog(LaporanPembelianView.this) == JFileChooser.APPROVE_OPTION) {
+                        File file = jFileChooser1.getSelectedFile();
+                        if (!file.getName().endsWith(".xls")) {
+                            file = new File(file.getPath() + ".xls");
+                        }
+                        JRExporter exporter = new JExcelApiExporter();
+                        exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
+                        exporter.setParameter(JRExporterParameter.OUTPUT_FILE, file);
+                        exporter.exportReport();
+                    }
+                } catch (JRException ex) {
+                    Logger.getLogger(LaporanPenjualanView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        session.close();
+    }//GEN-LAST:event_jButtonExcelActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCetak;
     private javax.swing.JButton jButtonExcel;
     private javax.swing.JButton jButtonPdf;
     private javax.swing.JButton jButtonTutup;
+    private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelJudul;
     private javax.swing.JScrollPane jScrollPane1;
