@@ -22,11 +22,22 @@ import com.stripbandunk.jwidget.JDynamicTable;
 import com.stripbandunk.jwidget.model.DynamicTableModel;
 import java.awt.Font;
 import java.awt.Window;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.*;
+import org.hibernate.SessionFactory;
+import org.hibernate.classic.Session;
+import org.hibernate.jdbc.Work;
 import org.springframework.format.number.CurrencyFormatter;
 
 /**
@@ -317,7 +328,7 @@ public class TambahPenjualanView extends DialogView {
         } else if (Long.valueOf(jFormattedTextFieldUangPembayaran.getValue().toString()) < total) {
             messageComponent.showWarning("Uang pembayaran kurang");
         } else {
-            Penjualan penjualan = new Penjualan();
+            final Penjualan penjualan = new Penjualan();
             penjualan.setPelanggan(pelanggan);
             penjualan.setPengguna(LoginManager.getInstance().getPengguna());
             penjualan.setWaktuTransaksi(new Date());
@@ -327,13 +338,44 @@ public class TambahPenjualanView extends DialogView {
                 DetailPenjualan detailPenjualan = dynamicTableModel.get(i);
                 penjualan.tambahDaftarPenjualan(detailPenjualan);
             }
+            penjualanService.save(penjualan);
 
             long kembalian = penjualan.getUang() - penjualan.getTotal();
             JLabel label = new JLabel("Uang Kembalian " + formatter.print(kembalian, locale));
             label.setFont(label.getFont().deriveFont(Font.BOLD, 24));
             JOptionPane.showMessageDialog(this, label);
 
-            penjualanService.save(penjualan);
+            SessionFactory sessionFactory = SpringManager.getInstance().getBean(SessionFactory.class);
+            Session session = sessionFactory.openSession();
+            session.doWork(new Work() {
+
+                @Override
+                public void execute(Connection connection) throws SQLException {
+                    try {
+                        InputStream inputStream = getClass().getResourceAsStream("/com/stripbandunk/alexvariasi/report/StrukPenjualan.jasper");
+
+                        Map<String, Object> map = new HashMap<>();
+                        map.put("NO", penjualan.getId());
+                        if (penjualan.getPengguna() != null) {
+                            map.put("KASIR", penjualan.getPengguna().getKaryawan().getNama());
+                        } else {
+                            map.put("KASIR", "");
+                        }
+                        map.put("PELANGGAN", penjualan.getPelanggan().getNama());
+                        map.put("TANGGAL", penjualan.getWaktuTransaksi());
+                        map.put(JRParameter.REPORT_CONNECTION, connection);
+                        map.put(JRParameter.REPORT_LOCALE, new Locale("in", "ID"));
+
+                        JasperPrint report = JasperFillManager.fillReport(inputStream, map);
+                        CetakLaporanView view = new CetakLaporanView(getFormApp(), report);
+                        view.display(getFormApp(), null);
+                    } catch (JRException ex) {
+                        Logger.getLogger(TambahPenjualanView.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
+            session.close();
+
             dispose();
         }
     }//GEN-LAST:event_jButtonBayarActionPerformed
