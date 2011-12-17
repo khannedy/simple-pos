@@ -15,12 +15,16 @@ import com.stripbandunk.alexvariasi.view.FormApp;
 import com.stripbandunk.jwidget.JDynamicTable;
 import com.stripbandunk.jwidget.model.DynamicTableModel;
 import java.awt.Window;
+import java.io.File;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.export.JExcelApiExporter;
 
 /**
  *
@@ -34,6 +38,8 @@ public class LaporanKeuntunganView extends DialogView {
 
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
+    private List<Keuntungan> list;
+
     public LaporanKeuntunganView(FormApp formApp, Date from, Date to) {
         super(formApp);
         initComponents();
@@ -44,7 +50,7 @@ public class LaporanKeuntunganView extends DialogView {
         List<Penjualan> penjualans = penjualanService.findAll(from, to);
         List<Pembelian> pembelians = pembelianService.findAll(from, to);
 
-        List<Keuntungan> list = new ArrayList<>(penjualans.size() + pembelians.size());
+        list = new ArrayList<>(penjualans.size() + pembelians.size());
 
         for (Penjualan penjualan : penjualans) {
             Keuntungan keuntungan = new Keuntungan(penjualan);
@@ -98,6 +104,7 @@ public class LaporanKeuntunganView extends DialogView {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFileChooser1 = new javax.swing.JFileChooser();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jButtonTutup = new javax.swing.JButton();
@@ -119,10 +126,25 @@ public class LaporanKeuntunganView extends DialogView {
         });
 
         jButtonExcel.setText("Simpan (Excel)");
+        jButtonExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcelActionPerformed(evt);
+            }
+        });
 
         jButtonPdf.setText("Simpan (PDF)");
+        jButtonPdf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPdfActionPerformed(evt);
+            }
+        });
 
         jButtonCetak.setText("Cetak");
+        jButtonCetak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCetakActionPerformed(evt);
+            }
+        });
 
         jLabelJudul.setText("Dari Tanggal {} Sampai {}");
 
@@ -175,11 +197,77 @@ public class LaporanKeuntunganView extends DialogView {
         dispose();
     }//GEN-LAST:event_jButtonTutupActionPerformed
 
+    private void jButtonCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCetakActionPerformed
+        try {
+            InputStream inputStream = LaporanPenjualanView.class.getResourceAsStream("/com/stripbandunk/alexvariasi/report/LaporanKeuntungan.jasper");
+
+            Map<String, Object> map = new HashMap<>();
+            JRDataSource dataSource = new JRBeanCollectionDataSource(list);
+            map.put(JRParameter.REPORT_DATA_SOURCE, dataSource);
+            map.put(JRParameter.REPORT_LOCALE, new Locale("in", "ID"));
+
+            JasperPrint print = JasperFillManager.fillReport(inputStream, map);
+            CetakLaporanView view = new CetakLaporanView(getFormApp(), print);
+            view.display(LaporanKeuntunganView.this, null);
+        } catch (JRException ex) {
+            Logger.getLogger(LaporanPenjualanView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonCetakActionPerformed
+
+    private void jButtonPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPdfActionPerformed
+        try {
+            if (jFileChooser1.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+                File file = jFileChooser1.getSelectedFile();
+                if (!file.getName().endsWith(".pdf")) {
+                    file = new File(file.getPath() + ".pdf");
+                }
+                InputStream inputStream = LaporanPenjualanView.class.getResourceAsStream("/com/stripbandunk/alexvariasi/report/LaporanKeuntungan.jasper");
+
+                Map<String, Object> map = new HashMap<>();
+                JRDataSource dataSource = new JRBeanCollectionDataSource(list);
+                map.put(JRParameter.REPORT_DATA_SOURCE, dataSource);
+                map.put(JRParameter.REPORT_LOCALE, new Locale("in", "ID"));
+
+                JasperPrint print = JasperFillManager.fillReport(inputStream, map);
+                JasperExportManager.exportReportToPdfFile(print, file.getPath());
+            }
+        } catch (JRException ex) {
+            Logger.getLogger(LaporanPenjualanView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonPdfActionPerformed
+
+    private void jButtonExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcelActionPerformed
+        try {
+            if (jFileChooser1.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+                File file = jFileChooser1.getSelectedFile();
+                if (!file.getName().endsWith(".xls")) {
+                    file = new File(file.getPath() + ".xls");
+                }
+                InputStream inputStream = LaporanPenjualanView.class.getResourceAsStream("/com/stripbandunk/alexvariasi/report/LaporanKeuntungan.jasper");
+
+                Map<String, Object> map = new HashMap<>();
+                JRDataSource dataSource = new JRBeanCollectionDataSource(list);
+                map.put(JRParameter.REPORT_DATA_SOURCE, dataSource);
+                map.put(JRParameter.REPORT_LOCALE, new Locale("in", "ID"));
+
+                JasperPrint print = JasperFillManager.fillReport(inputStream, map);
+
+                JRExporter exporter = new JExcelApiExporter();
+                exporter.setParameter(JRExporterParameter.OUTPUT_FILE, file);
+                exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
+                exporter.exportReport();
+            }
+        } catch (JRException ex) {
+            Logger.getLogger(LaporanPenjualanView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonExcelActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCetak;
     private javax.swing.JButton jButtonExcel;
     private javax.swing.JButton jButtonPdf;
     private javax.swing.JButton jButtonTutup;
+    private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelJudul;
     private javax.swing.JScrollPane jScrollPane1;

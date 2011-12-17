@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.JFileChooser" name="jFileChooser1">
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
   </Properties>
@@ -96,16 +100,25 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Simpan (Excel)"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonExcelActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonPdf">
       <Properties>
         <Property name="text" type="java.lang.String" value="Simpan (PDF)"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPdfActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonCetak">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cetak"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCetakActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelJudul">
       <Properties>
