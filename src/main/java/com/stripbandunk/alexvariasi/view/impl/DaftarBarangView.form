@@ -72,12 +72,12 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jButtonTambahDetail">
+        <Component class="javax.swing.JButton" name="jButtonDetailBarang">
           <Properties>
             <Property name="text" type="java.lang.String" value="Daftar Detail Barang"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonTambahDetailActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonDetailBarangActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonTambah">

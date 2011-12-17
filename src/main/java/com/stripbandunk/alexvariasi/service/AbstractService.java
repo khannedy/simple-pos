@@ -44,7 +44,7 @@ public abstract class AbstractService<T extends AbstractEntity<?>, ID extends Se
 
     @Transactional
     public void save(T entity) {
-        currentSession().save(entity);
+        currentSession().saveOrUpdate(entity);
     }
 
     @Transactional

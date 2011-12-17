@@ -5,6 +5,10 @@
 package com.stripbandunk.alexvariasi.view.impl;
 
 import com.stripbandunk.alexvariasi.entity.master.Karyawan;
+import com.stripbandunk.alexvariasi.entity.user.Grup;
+import com.stripbandunk.alexvariasi.entity.user.HakAksesConstant;
+import com.stripbandunk.alexvariasi.entity.user.Pengguna;
+import com.stripbandunk.alexvariasi.manager.LoginManager;
 import com.stripbandunk.alexvariasi.manager.SpringManager;
 import com.stripbandunk.alexvariasi.service.KaryawanService;
 import com.stripbandunk.alexvariasi.view.DialogView;
@@ -159,6 +163,14 @@ public class DaftarKaryawanView extends DialogView {
     public void display(Window formApp, Object parameter) {
         setLocationRelativeTo(formApp);
         resetTable();
+        
+        Pengguna pengguna = LoginManager.getInstance().getPengguna();
+        Grup grup = pengguna.getGrup();
+
+        jButtonHapus.setEnabled(grup.mengandungHakAkses(HakAksesConstant.HAPUS_KARYAWAN));
+        jButtonTambah.setEnabled(grup.mengandungHakAkses(HakAksesConstant.TAMBAH_KARYAWAN));
+        jButtonUbah.setEnabled(grup.mengandungHakAkses(HakAksesConstant.UBAH_KARYAWAN));
+        
         setVisible(true);
     }
 

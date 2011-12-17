@@ -27,6 +27,7 @@ import org.springframework.dao.DataAccessException;
 public class UbahGrupView extends DialogView {
 
     private DefaultDoubleListModel<HakAkses> model;
+
     private Grup grup;
 
     /**
@@ -208,13 +209,21 @@ public class UbahGrupView extends DialogView {
     @Override
     public void display(Window formApp, Object parameter) {
         grup = (Grup) parameter;
+        jTextFieldKode.setText(grup.getId());
+        jTextFieldNama.setText(grup.getNama());
 
         HakAksesService hakAksesService = SpringManager.getInstance().getBean(HakAksesService.class);
-        model.addSourceValues(hakAksesService.findAll());
 
-        for (HakAkses hakAkses : grup.getDaftarHakAkses()) {
-            model.add(hakAkses);
+        List<HakAkses> akseses = hakAksesService.findAll();
+
+        for (HakAkses akses : akseses) {
+            model.add(akses);
         }
+
+        model.removeSourceValues(grup.getDaftarHakAkses());
+        model.addTargetValues(grup.getDaftarHakAkses());
+
+        jDoubleListHakAkses.setModel(model);
 
         setLocationRelativeTo(formApp);
         setVisible(true);

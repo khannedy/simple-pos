@@ -5,6 +5,10 @@
 package com.stripbandunk.alexvariasi.view.impl;
 
 import com.stripbandunk.alexvariasi.entity.master.Pelanggan;
+import com.stripbandunk.alexvariasi.entity.user.Grup;
+import com.stripbandunk.alexvariasi.entity.user.HakAksesConstant;
+import com.stripbandunk.alexvariasi.entity.user.Pengguna;
+import com.stripbandunk.alexvariasi.manager.LoginManager;
 import com.stripbandunk.alexvariasi.manager.SpringManager;
 import com.stripbandunk.alexvariasi.service.PelangganService;
 import com.stripbandunk.alexvariasi.view.DialogView;
@@ -21,6 +25,7 @@ import org.springframework.dao.DataAccessException;
 public class DaftarPelangganView extends DialogView {
 
     private JDynamicTable jDynamicTable;
+
     private DynamicTableModel<Pelanggan> dynamicTableModel;
 
     /**
@@ -159,6 +164,14 @@ public class DaftarPelangganView extends DialogView {
     public void display(Window formApp, Object parameter) {
         setLocationRelativeTo(formApp);
         resetTable();
+
+        Pengguna pengguna = LoginManager.getInstance().getPengguna();
+        Grup grup = pengguna.getGrup();
+
+        jButtonHapus.setEnabled(grup.mengandungHakAkses(HakAksesConstant.HAPUS_PELANGGAN));
+        jButtonTambah.setEnabled(grup.mengandungHakAkses(HakAksesConstant.TAMBAH_PELANGGAN));
+        jButtonUbah.setEnabled(grup.mengandungHakAkses(HakAksesConstant.UBAH_PELANGGAN));
+
         setVisible(true);
     }
 

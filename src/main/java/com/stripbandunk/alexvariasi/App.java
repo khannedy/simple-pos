@@ -9,6 +9,7 @@ package com.stripbandunk.alexvariasi;
 
 import com.stripbandunk.alexvariasi.manager.SpringManager;
 import com.stripbandunk.alexvariasi.view.FormApp;
+import com.stripbandunk.alexvariasi.view.impl.LoginView;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
@@ -35,6 +36,8 @@ public class App implements Runnable {
     @Override
     public void run() {
         form.setVisible(true);
+        LoginView view = new LoginView(form);
+        view.display(form, null);
     }
 
     /**

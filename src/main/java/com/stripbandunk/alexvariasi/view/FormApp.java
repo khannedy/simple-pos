@@ -13,6 +13,10 @@
  */
 package com.stripbandunk.alexvariasi.view;
 
+import com.stripbandunk.alexvariasi.entity.user.Grup;
+import com.stripbandunk.alexvariasi.entity.user.HakAksesConstant;
+import com.stripbandunk.alexvariasi.entity.user.Pengguna;
+import com.stripbandunk.alexvariasi.manager.LoginManager;
 import com.stripbandunk.alexvariasi.view.impl.*;
 
 /**
@@ -310,6 +314,7 @@ public class FormApp extends javax.swing.JFrame {
         } else if (source == jMenuItemKategori) {
             showView(new DaftarKategoriView(this));
         } else if (source == jMenuItemKeluarAplikasi) {
+            showView(new LoginView(this));
         } else if (source == jMenuItemKeuntungan) {
             showView(new BuatLaporanKeuntunganView(this));
         } else if (source == jMenuItemPelanggan) {
@@ -368,5 +373,27 @@ public class FormApp extends javax.swing.JFrame {
 
     public void showView(DialogView view, Object parameter) {
         view.display(this, parameter);
+    }
+
+    public void renderHakAkses() {
+        Pengguna pengguna = LoginManager.getInstance().getPengguna();
+        Grup grup = pengguna.getGrup();
+
+        jMenuItemBarang.setEnabled(grup.mengandungHakAkses(HakAksesConstant.LIHAT_BARANG));
+        jMenuItemGrup.setEnabled(grup.mengandungHakAkses(HakAksesConstant.LIHAT_GRUP));
+        jMenuItemJabatan.setEnabled(grup.mengandungHakAkses(HakAksesConstant.LIHAT_JABATAN));
+        jMenuItemKaryawan.setEnabled(grup.mengandungHakAkses(HakAksesConstant.LIHAT_KARYAWAN));
+        jMenuItemKategori.setEnabled(grup.mengandungHakAkses(HakAksesConstant.LIHAT_KATEGORI));
+        jMenuItemKeuntungan.setEnabled(grup.mengandungHakAkses(HakAksesConstant.LIHAT_LAPORAN_KEUNTUNGAN));
+        jMenuItemPelanggan.setEnabled(grup.mengandungHakAkses(HakAksesConstant.LIHAT_PELANGGAN));
+        jMenuItemPemasok.setEnabled(grup.mengandungHakAkses(HakAksesConstant.LIHAT_PEMASOK));
+        jMenuItemPemasukan.setEnabled(grup.mengandungHakAkses(HakAksesConstant.LIHAT_LAPORAN_PENJUALAN));
+        jMenuItemPembelian.setEnabled(grup.mengandungHakAkses(HakAksesConstant.TRANSAKSI_PEMBELIAN));
+        jMenuItemPengeluaran.setEnabled(grup.mengandungHakAkses(HakAksesConstant.LIHAT_LAPORAN_PEMBELIAN));
+        jMenuItemPengguna.setEnabled(grup.mengandungHakAkses(HakAksesConstant.LIHAT_PENGGUNA));
+        jMenuItemPenjual.setEnabled(grup.mengandungHakAkses(HakAksesConstant.LIHAT_PENJUAL));
+        jMenuItemPenjualan.setEnabled(grup.mengandungHakAkses(HakAksesConstant.TRANSAKSI_PENJUALAN));
+        jMenuItemSatuan.setEnabled(grup.mengandungHakAkses(HakAksesConstant.LIHAT_SATUAN));
+
     }
 }

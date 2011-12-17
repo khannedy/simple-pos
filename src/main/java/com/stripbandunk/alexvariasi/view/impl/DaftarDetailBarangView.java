@@ -6,6 +6,10 @@ package com.stripbandunk.alexvariasi.view.impl;
 
 import com.stripbandunk.alexvariasi.entity.master.Barang;
 import com.stripbandunk.alexvariasi.entity.master.DetailBarang;
+import com.stripbandunk.alexvariasi.entity.user.Grup;
+import com.stripbandunk.alexvariasi.entity.user.HakAksesConstant;
+import com.stripbandunk.alexvariasi.entity.user.Pengguna;
+import com.stripbandunk.alexvariasi.manager.LoginManager;
 import com.stripbandunk.alexvariasi.manager.SpringManager;
 import com.stripbandunk.alexvariasi.service.DetailBarangService;
 import com.stripbandunk.alexvariasi.view.DialogView;
@@ -171,6 +175,13 @@ public class DaftarDetailBarangView extends DialogView {
     public void display(Window formApp, Object parameter) {
         barang = (Barang) parameter;
         jLabelBarang.setText(barang.getNama());
+        
+        Pengguna pengguna = LoginManager.getInstance().getPengguna();
+        Grup grup = pengguna.getGrup();
+
+        jButtonHapus.setEnabled(grup.mengandungHakAkses(HakAksesConstant.HAPUS_DETAIL_BARANG));
+        jButtonTambah.setEnabled(grup.mengandungHakAkses(HakAksesConstant.TAMBAH_DETAIL_BARANG));
+        jButtonUbah.setEnabled(grup.mengandungHakAkses(HakAksesConstant.UBAH_DETAIL_BARANG));
 
         resetTable();
         setVisible(true);

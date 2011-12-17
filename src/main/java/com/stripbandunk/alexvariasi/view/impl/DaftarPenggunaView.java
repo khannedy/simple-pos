@@ -4,7 +4,10 @@
  */
 package com.stripbandunk.alexvariasi.view.impl;
 
+import com.stripbandunk.alexvariasi.entity.user.Grup;
+import com.stripbandunk.alexvariasi.entity.user.HakAksesConstant;
 import com.stripbandunk.alexvariasi.entity.user.Pengguna;
+import com.stripbandunk.alexvariasi.manager.LoginManager;
 import com.stripbandunk.alexvariasi.manager.SpringManager;
 import com.stripbandunk.alexvariasi.service.PenggunaService;
 import com.stripbandunk.alexvariasi.view.DialogView;
@@ -21,6 +24,7 @@ import org.springframework.dao.DataAccessException;
 public class DaftarPenggunaView extends DialogView {
 
     private JDynamicTable jDynamicTable;
+
     private DynamicTableModel<Pengguna> dynamicTableModel;
 
     /**
@@ -54,9 +58,9 @@ public class DaftarPenggunaView extends DialogView {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getStyle() | java.awt.Font.BOLD, 24));
-        jLabel1.setText("Daftar Kategori");
+        jLabel1.setText("Daftar Pengguna");
 
-        jButtonTambah.setText("Tambah Kategori Baru");
+        jButtonTambah.setText("Tambah Pengguna Baru");
         jButtonTambah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonTambahActionPerformed(evt);
@@ -64,7 +68,7 @@ public class DaftarPenggunaView extends DialogView {
         });
         jPanel1.add(jButtonTambah);
 
-        jButtonUbah.setText("Ubah Kategori Terseleksi");
+        jButtonUbah.setText("Ubah Pengguna Terseleksi");
         jButtonUbah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonUbahActionPerformed(evt);
@@ -72,7 +76,7 @@ public class DaftarPenggunaView extends DialogView {
         });
         jPanel1.add(jButtonUbah);
 
-        jButtonHapus.setText("Hapus Kategori Terseleksi");
+        jButtonHapus.setText("Hapus Pengguna Terseleksi");
         jButtonHapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonHapusActionPerformed(evt);
@@ -159,6 +163,14 @@ public class DaftarPenggunaView extends DialogView {
     public void display(Window formApp, Object parameter) {
         setLocationRelativeTo(formApp);
         resetTable();
+
+        Pengguna pengguna = LoginManager.getInstance().getPengguna();
+        Grup grup = pengguna.getGrup();
+
+        jButtonHapus.setEnabled(grup.mengandungHakAkses(HakAksesConstant.HAPUS_PENGGUNA));
+        jButtonTambah.setEnabled(grup.mengandungHakAkses(HakAksesConstant.TAMBAH_PENGGUNA));
+        jButtonUbah.setEnabled(grup.mengandungHakAkses(HakAksesConstant.UBAH_PENGGUNA));
+
         setVisible(true);
     }
 

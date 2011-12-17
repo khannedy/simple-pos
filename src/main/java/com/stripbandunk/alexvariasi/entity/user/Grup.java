@@ -21,6 +21,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 /**
  *
@@ -41,6 +43,7 @@ public class Grup extends AbstractEntity<String> {
     @TableColumn(number = 20, name = "Nama")
     private String nama;
 
+    @Fetch(FetchMode.SELECT)
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "tabel_join_grup_dan_hak_akses", joinColumns =
     @JoinColumn(name = "id_grup", nullable = false), inverseJoinColumns =
@@ -80,6 +83,15 @@ public class Grup extends AbstractEntity<String> {
         if (daftarHakAkses.contains(hakAkses)) {
             daftarHakAkses.remove(hakAkses);
         }
+    }
+
+    public boolean mengandungHakAkses(HakAksesConstant constant) {
+        for (HakAkses akses : daftarHakAkses) {
+            if (akses.getId().equals(constant.toString())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void hapusSemuaHakAkses() {

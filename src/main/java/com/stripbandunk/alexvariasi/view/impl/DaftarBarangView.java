@@ -5,6 +5,10 @@
 package com.stripbandunk.alexvariasi.view.impl;
 
 import com.stripbandunk.alexvariasi.entity.master.Barang;
+import com.stripbandunk.alexvariasi.entity.user.Grup;
+import com.stripbandunk.alexvariasi.entity.user.HakAksesConstant;
+import com.stripbandunk.alexvariasi.entity.user.Pengguna;
+import com.stripbandunk.alexvariasi.manager.LoginManager;
 import com.stripbandunk.alexvariasi.manager.SpringManager;
 import com.stripbandunk.alexvariasi.service.BarangService;
 import com.stripbandunk.alexvariasi.view.DialogView;
@@ -48,7 +52,7 @@ public class DaftarBarangView extends DialogView {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        jButtonTambahDetail = new javax.swing.JButton();
+        jButtonDetailBarang = new javax.swing.JButton();
         jButtonTambah = new javax.swing.JButton();
         jButtonUbah = new javax.swing.JButton();
         jButtonHapus = new javax.swing.JButton();
@@ -58,13 +62,13 @@ public class DaftarBarangView extends DialogView {
         jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getStyle() | java.awt.Font.BOLD, 24));
         jLabel1.setText("Daftar Barang");
 
-        jButtonTambahDetail.setText("Daftar Detail Barang");
-        jButtonTambahDetail.addActionListener(new java.awt.event.ActionListener() {
+        jButtonDetailBarang.setText("Daftar Detail Barang");
+        jButtonDetailBarang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonTambahDetailActionPerformed(evt);
+                jButtonDetailBarangActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonTambahDetail);
+        jPanel1.add(jButtonDetailBarang);
 
         jButtonTambah.setText("Tambah Barang Baru");
         jButtonTambah.addActionListener(new java.awt.event.ActionListener() {
@@ -157,7 +161,7 @@ public class DaftarBarangView extends DialogView {
         }
     }//GEN-LAST:event_jButtonHapusActionPerformed
 
-    private void jButtonTambahDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTambahDetailActionPerformed
+    private void jButtonDetailBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDetailBarangActionPerformed
         if (jDynamicTable.getSelectedRow() == -1) {
             showWarning("Silahkan pilih barang");
         } else {
@@ -167,12 +171,12 @@ public class DaftarBarangView extends DialogView {
             DaftarDetailBarangView view = new DaftarDetailBarangView(getFormApp());
             view.display(this, barang);
         }
-    }//GEN-LAST:event_jButtonTambahDetailActionPerformed
+    }//GEN-LAST:event_jButtonDetailBarangActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonDetailBarang;
     private javax.swing.JButton jButtonHapus;
     private javax.swing.JButton jButtonTambah;
-    private javax.swing.JButton jButtonTambahDetail;
     private javax.swing.JButton jButtonUbah;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
@@ -182,6 +186,15 @@ public class DaftarBarangView extends DialogView {
     @Override
     public void display(Window formApp, Object parameter) {
         resetTable();
+
+        Pengguna pengguna = LoginManager.getInstance().getPengguna();
+        Grup grup = pengguna.getGrup();
+
+        jButtonHapus.setEnabled(grup.mengandungHakAkses(HakAksesConstant.HAPUS_BARANG));
+        jButtonTambah.setEnabled(grup.mengandungHakAkses(HakAksesConstant.TAMBAH_BARANG));
+        jButtonDetailBarang.setEnabled(grup.mengandungHakAkses(HakAksesConstant.LIHAT_DETAIL_BARANG));
+        jButtonUbah.setEnabled(grup.mengandungHakAkses(HakAksesConstant.UBAH_BARANG));
+
         setVisible(true);
     }
 
