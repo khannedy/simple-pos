@@ -285,7 +285,7 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+Alt+P"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Pemasukan"/>
+                <Property name="text" type="java.lang.String" value="Penjualan"/>
                 <Property name="name" type="java.lang.String" value="jMenuItemPemasukan" noResource="true"/>
               </Properties>
               <Events>
@@ -297,7 +297,7 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+Alt+E"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Pengeluaran"/>
+                <Property name="text" type="java.lang.String" value="Pembelian"/>
                 <Property name="name" type="java.lang.String" value="jMenuItemPengeluaran" noResource="true"/>
               </Properties>
               <Events>
@@ -309,7 +309,7 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+Alt+U"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Keuntungan"/>
+                <Property name="text" type="java.lang.String" value="Jurnal"/>
                 <Property name="name" type="java.lang.String" value="jMenuItemKeuntungan" noResource="true"/>
               </Properties>
               <Events>

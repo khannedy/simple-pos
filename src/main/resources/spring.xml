@@ -52,6 +52,10 @@
                 <value>com.stripbandunk.alexvariasi.entity.transaction.Pembelian</value>
                 <value>com.stripbandunk.alexvariasi.entity.transaction.DetailPenjualan</value>
                 <value>com.stripbandunk.alexvariasi.entity.transaction.DetailPembelian</value>
+                <value>com.stripbandunk.alexvariasi.entity.transaction.Pemasukkan</value>
+                <value>com.stripbandunk.alexvariasi.entity.transaction.Pengeluaran</value>
+                <value>com.stripbandunk.alexvariasi.entity.Pengaturan</value>
+                <value>com.stripbandunk.alexvariasi.entity.report.Jurnal</value>
             </util:list>
         </property>
     </bean>

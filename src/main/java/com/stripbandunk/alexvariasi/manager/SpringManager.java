@@ -7,6 +7,7 @@
  */
 package com.stripbandunk.alexvariasi.manager;
 
+import com.stripbandunk.alexvariasi.entity.Pengaturan;
 import com.stripbandunk.alexvariasi.entity.master.Jabatan;
 import com.stripbandunk.alexvariasi.entity.master.Karyawan;
 import com.stripbandunk.alexvariasi.entity.user.Grup;
@@ -122,6 +123,14 @@ public class SpringManager {
                 penggunaService.save(pengguna);
             }
 
+            PengaturanService pengaturanService = SpringManager.getInstance().getBean(PengaturanService.class);
+            Pengaturan pengaturan = pengaturanService.find("saldo-terakhir");
+            if (pengaturan == null) {
+                pengaturan = new Pengaturan();
+                pengaturan.setKode("saldo-terakhir");
+                pengaturan.setNilaiLong(0L);
+                pengaturanService.save(pengaturan);
+            }
         }
         return SpringManager.INSTANCE;
     }

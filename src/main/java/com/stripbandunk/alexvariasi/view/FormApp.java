@@ -264,7 +264,7 @@ public class FormApp extends javax.swing.JFrame {
         jMenuLaporan.setName("jMenuLaporan"); // NOI18N
 
         jMenuItemPemasukan.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItemPemasukan.setText("Pemasukan");
+        jMenuItemPemasukan.setText("Penjualan");
         jMenuItemPemasukan.setName("jMenuItemPemasukan"); // NOI18N
         jMenuItemPemasukan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -274,7 +274,7 @@ public class FormApp extends javax.swing.JFrame {
         jMenuLaporan.add(jMenuItemPemasukan);
 
         jMenuItemPengeluaran.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItemPengeluaran.setText("Pengeluaran");
+        jMenuItemPengeluaran.setText("Pembelian");
         jMenuItemPengeluaran.setName("jMenuItemPengeluaran"); // NOI18N
         jMenuItemPengeluaran.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -284,7 +284,7 @@ public class FormApp extends javax.swing.JFrame {
         jMenuLaporan.add(jMenuItemPengeluaran);
 
         jMenuItemKeuntungan.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItemKeuntungan.setText("Keuntungan");
+        jMenuItemKeuntungan.setText("Jurnal");
         jMenuItemKeuntungan.setName("jMenuItemKeuntungan"); // NOI18N
         jMenuItemKeuntungan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

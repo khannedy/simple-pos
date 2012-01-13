@@ -11,7 +11,6 @@ import com.stripbandunk.alexvariasi.entity.AbstractTransactionEntity;
 import com.stripbandunk.alexvariasi.entity.master.Pelanggan;
 import com.stripbandunk.alexvariasi.entity.user.Pengguna;
 import com.stripbandunk.alexvariasi.view.render.PelangganTableCellRenderer;
-import com.stripbandunk.alexvariasi.view.render.PemasokTableCellRenderer;
 import com.stripbandunk.alexvariasi.view.render.PenggunaTableCellRenderer;
 import com.stripbandunk.alexvariasi.view.render.TanggalTableCellRenderer;
 import com.stripbandunk.jwidget.annotation.TableColumn;
@@ -56,8 +55,15 @@ public class Penjualan extends AbstractTransactionEntity {
     @TableColumn(number = 5, name = "Total Pembelian")
     private Long total;
 
+    @Column(name = "keuntungan")
+    private Long keuntungan;
+
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "penjualan")
     private List<DetailPenjualan> daftarPenjualan = new ArrayList<>();
+
+    public Long getKeuntungan() {
+        return keuntungan;
+    }
 
     public Date getWaktuTransaksi() {
         return waktuTransaksi;
@@ -93,9 +99,12 @@ public class Penjualan extends AbstractTransactionEntity {
         detailPenjualan.setPenjualan(this);
         daftarPenjualan.add(detailPenjualan);
         total = 0l;
+        long totalBeli = 0l;
         for (DetailPenjualan detail : daftarPenjualan) {
             total += detail.getSubTotal();
+            totalBeli += detail.getJumlah() * detail.getDetailBarang().getHargaBeli();
         }
+        keuntungan = total - totalBeli;
     }
 
     public void hapusDaftarPenjualan(DetailPenjualan detailPenjualan) {
