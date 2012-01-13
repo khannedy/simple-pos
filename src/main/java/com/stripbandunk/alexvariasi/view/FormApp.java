@@ -61,13 +61,16 @@ public class FormApp extends javax.swing.JFrame {
         jMenuTransaksi = new javax.swing.JMenu();
         jMenuItemPenjualan = new javax.swing.JMenuItem();
         jMenuItemPembelian = new javax.swing.JMenuItem();
+        jMenuOperasional = new javax.swing.JMenu();
+        jMenuItemPemasukkan = new javax.swing.JMenuItem();
+        jMenuItemPengeluaran = new javax.swing.JMenuItem();
         jMenuHakAkses = new javax.swing.JMenu();
         jMenuItemGrup = new javax.swing.JMenuItem();
         jMenuItemPengguna = new javax.swing.JMenuItem();
         jMenuLaporan = new javax.swing.JMenu();
-        jMenuItemPemasukan = new javax.swing.JMenuItem();
-        jMenuItemPengeluaran = new javax.swing.JMenuItem();
-        jMenuItemKeuntungan = new javax.swing.JMenuItem();
+        jMenuItemLapPenjualan = new javax.swing.JMenuItem();
+        jMenuItemLapPembelian = new javax.swing.JMenuItem();
+        jMenuItemLapJurnal = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Alex-Variasi");
@@ -229,6 +232,29 @@ public class FormApp extends javax.swing.JFrame {
         });
         jMenuTransaksi.add(jMenuItemPembelian);
 
+        jMenuOperasional.setText("Operasional");
+        jMenuOperasional.setName("jMenuOperasional");
+
+        jMenuItemPemasukkan.setText("Pemasukkan");
+        jMenuItemPemasukkan.setName("jMenuItemPemasukkan");
+        jMenuItemPemasukkan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actionMenuItem(evt);
+            }
+        });
+        jMenuOperasional.add(jMenuItemPemasukkan);
+
+        jMenuItemPengeluaran.setText("Pengeluaran");
+        jMenuItemPengeluaran.setName("jMenuItemPengeluaran");
+        jMenuItemPengeluaran.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actionMenuItem(evt);
+            }
+        });
+        jMenuOperasional.add(jMenuItemPengeluaran);
+
+        jMenuTransaksi.add(jMenuOperasional);
+
         jMenuBarApp.add(jMenuTransaksi);
 
         jMenuHakAkses.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/stripbandunk/alexvariasi/image/hak-akses.png"))); // NOI18N
@@ -263,35 +289,35 @@ public class FormApp extends javax.swing.JFrame {
         jMenuLaporan.setText("Laporan");
         jMenuLaporan.setName("jMenuLaporan"); // NOI18N
 
-        jMenuItemPemasukan.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItemPemasukan.setText("Penjualan");
-        jMenuItemPemasukan.setName("jMenuItemPemasukan"); // NOI18N
-        jMenuItemPemasukan.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemLapPenjualan.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemLapPenjualan.setText("Penjualan");
+        jMenuItemLapPenjualan.setName("jMenuItemLapPenjualan"); // NOI18N
+        jMenuItemLapPenjualan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 actionMenuItem(evt);
             }
         });
-        jMenuLaporan.add(jMenuItemPemasukan);
+        jMenuLaporan.add(jMenuItemLapPenjualan);
 
-        jMenuItemPengeluaran.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItemPengeluaran.setText("Pembelian");
-        jMenuItemPengeluaran.setName("jMenuItemPengeluaran"); // NOI18N
-        jMenuItemPengeluaran.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemLapPembelian.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemLapPembelian.setText("Pembelian");
+        jMenuItemLapPembelian.setName("jMenuItemLapPembelian"); // NOI18N
+        jMenuItemLapPembelian.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 actionMenuItem(evt);
             }
         });
-        jMenuLaporan.add(jMenuItemPengeluaran);
+        jMenuLaporan.add(jMenuItemLapPembelian);
 
-        jMenuItemKeuntungan.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItemKeuntungan.setText("Jurnal");
-        jMenuItemKeuntungan.setName("jMenuItemKeuntungan"); // NOI18N
-        jMenuItemKeuntungan.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemLapJurnal.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemLapJurnal.setText("Jurnal");
+        jMenuItemLapJurnal.setName("jMenuItemLapJurnal"); // NOI18N
+        jMenuItemLapJurnal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 actionMenuItem(evt);
             }
         });
-        jMenuLaporan.add(jMenuItemKeuntungan);
+        jMenuLaporan.add(jMenuItemLapJurnal);
 
         jMenuBarApp.add(jMenuLaporan);
 
@@ -315,17 +341,17 @@ public class FormApp extends javax.swing.JFrame {
             showView(new DaftarKategoriView(this));
         } else if (source == jMenuItemKeluarAplikasi) {
             showView(new LoginView(this));
-        } else if (source == jMenuItemKeuntungan) {
+        } else if (source == jMenuItemLapJurnal) {
             showView(new BuatLaporanKeuntunganView(this));
         } else if (source == jMenuItemPelanggan) {
             showView(new DaftarPelangganView(this));
         } else if (source == jMenuItemPemasok) {
             showView(new DaftarPemasokView(this));
-        } else if (source == jMenuItemPemasukan) {
+        } else if (source == jMenuItemLapPenjualan) {
             showView(new BuatLaporanPenjualanView(this));
         } else if (source == jMenuItemPembelian) {
             showView(new TambahPembelianView(this));
-        } else if (source == jMenuItemPengeluaran) {
+        } else if (source == jMenuItemLapPembelian) {
             showView(new BuatLaporanPembelianView(this));
         } else if (source == jMenuItemPengguna) {
             showView(new DaftarPenggunaView(this));
@@ -337,6 +363,10 @@ public class FormApp extends javax.swing.JFrame {
             showView(new DaftarSatuanView(this));
         } else if (source == jMenuItemTutupAplikasi) {
             System.exit(0);
+        } else if (source == jMenuItemPemasukkan) {
+            showView(new DaftarPemasukkanView(this));
+        } else if (source == jMenuItemPengeluaran) {
+            showView(new DaftarPengeluaranView(this));
         }
     }//GEN-LAST:event_actionMenuItem
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -350,10 +380,12 @@ public class FormApp extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemKaryawan;
     private javax.swing.JMenuItem jMenuItemKategori;
     private javax.swing.JMenuItem jMenuItemKeluarAplikasi;
-    private javax.swing.JMenuItem jMenuItemKeuntungan;
+    private javax.swing.JMenuItem jMenuItemLapJurnal;
+    private javax.swing.JMenuItem jMenuItemLapPembelian;
+    private javax.swing.JMenuItem jMenuItemLapPenjualan;
     private javax.swing.JMenuItem jMenuItemPelanggan;
     private javax.swing.JMenuItem jMenuItemPemasok;
-    private javax.swing.JMenuItem jMenuItemPemasukan;
+    private javax.swing.JMenuItem jMenuItemPemasukkan;
     private javax.swing.JMenuItem jMenuItemPembelian;
     private javax.swing.JMenuItem jMenuItemPengeluaran;
     private javax.swing.JMenuItem jMenuItemPengguna;
@@ -362,6 +394,7 @@ public class FormApp extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemSatuan;
     private javax.swing.JMenuItem jMenuItemTutupAplikasi;
     private javax.swing.JMenu jMenuLaporan;
+    private javax.swing.JMenu jMenuOperasional;
     private javax.swing.JMenu jMenuTransaksi;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
@@ -384,12 +417,12 @@ public class FormApp extends javax.swing.JFrame {
         jMenuItemJabatan.setEnabled(grup.mengandungHakAkses(HakAksesConstant.LIHAT_JABATAN));
         jMenuItemKaryawan.setEnabled(grup.mengandungHakAkses(HakAksesConstant.LIHAT_KARYAWAN));
         jMenuItemKategori.setEnabled(grup.mengandungHakAkses(HakAksesConstant.LIHAT_KATEGORI));
-        jMenuItemKeuntungan.setEnabled(grup.mengandungHakAkses(HakAksesConstant.LIHAT_LAPORAN_KEUNTUNGAN));
+        jMenuItemLapJurnal.setEnabled(grup.mengandungHakAkses(HakAksesConstant.LIHAT_LAPORAN_KEUNTUNGAN));
         jMenuItemPelanggan.setEnabled(grup.mengandungHakAkses(HakAksesConstant.LIHAT_PELANGGAN));
         jMenuItemPemasok.setEnabled(grup.mengandungHakAkses(HakAksesConstant.LIHAT_PEMASOK));
-        jMenuItemPemasukan.setEnabled(grup.mengandungHakAkses(HakAksesConstant.LIHAT_LAPORAN_PENJUALAN));
+        jMenuItemLapPenjualan.setEnabled(grup.mengandungHakAkses(HakAksesConstant.LIHAT_LAPORAN_PENJUALAN));
         jMenuItemPembelian.setEnabled(grup.mengandungHakAkses(HakAksesConstant.TRANSAKSI_PEMBELIAN));
-        jMenuItemPengeluaran.setEnabled(grup.mengandungHakAkses(HakAksesConstant.LIHAT_LAPORAN_PEMBELIAN));
+        jMenuItemLapPembelian.setEnabled(grup.mengandungHakAkses(HakAksesConstant.LIHAT_LAPORAN_PEMBELIAN));
         jMenuItemPengguna.setEnabled(grup.mengandungHakAkses(HakAksesConstant.LIHAT_PENGGUNA));
         jMenuItemPenjual.setEnabled(grup.mengandungHakAkses(HakAksesConstant.LIHAT_PENJUAL));
         jMenuItemPenjualan.setEnabled(grup.mengandungHakAkses(HakAksesConstant.TRANSAKSI_PENJUALAN));

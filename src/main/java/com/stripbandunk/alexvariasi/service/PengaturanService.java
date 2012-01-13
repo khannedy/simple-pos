@@ -14,5 +14,7 @@ public interface PengaturanService {
 
     void save(Pengaturan pengaturan);
 
+    void update(Pengaturan pengaturan);
+
     Pengaturan find(String kode);
 }

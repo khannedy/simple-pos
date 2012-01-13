@@ -29,6 +29,18 @@ public class Pemasukkan extends AbstractEntity<Long> {
     @TableColumn(number = 2, name = "Nama")
     private String nama;
 
+    @Column(name = "jumlah")
+    @TableColumn(number = 3, name = "Jumlah Pemasukkan")
+    private Long jumlah;
+
+    public Long getJumlah() {
+        return jumlah;
+    }
+
+    public void setJumlah(Long jumlah) {
+        this.jumlah = jumlah;
+    }
+
     public String getNama() {
         return nama;
     }

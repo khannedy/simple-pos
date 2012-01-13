@@ -32,4 +32,10 @@ public class PengaturanServiceImpl implements PengaturanService {
     public Pengaturan find(String kode) {
         return (Pengaturan) sessionFactory.getCurrentSession().get(Pengaturan.class, kode);
     }
+
+    @Override
+    @Transactional
+    public void update(Pengaturan pengaturan) {
+        sessionFactory.getCurrentSession().update(pengaturan);
+    }
 }

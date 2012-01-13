@@ -29,6 +29,26 @@ public class Pengeluaran extends AbstractEntity<Long> {
     @TableColumn(number = 2, name = "Nama")
     private String nama;
 
+    @Column(name = "jumlah")
+    @TableColumn(number = 2, name = "Jumlah Pengeluaran")
+    private Long jumlah;
+
+    public Long getJumlah() {
+        return jumlah;
+    }
+
+    public void setJumlah(Long jumlah) {
+        this.jumlah = jumlah;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
     @Override
     public Long getId() {
         return id;

@@ -4,9 +4,13 @@
  */
 package com.stripbandunk.alexvariasi.service.impl;
 
+import com.stripbandunk.alexvariasi.entity.Pengaturan;
 import com.stripbandunk.alexvariasi.entity.master.DetailBarang;
+import com.stripbandunk.alexvariasi.entity.report.Jurnal;
 import com.stripbandunk.alexvariasi.entity.transaction.DetailPenjualan;
 import com.stripbandunk.alexvariasi.entity.transaction.Penjualan;
+import com.stripbandunk.alexvariasi.service.JurnalService;
+import com.stripbandunk.alexvariasi.service.PengaturanService;
 import com.stripbandunk.alexvariasi.service.PenjualanService;
 import java.util.Date;
 import java.util.List;
@@ -27,6 +31,12 @@ public class PenjualanServiceImpl implements PenjualanService {
     @Autowired
     private SessionFactory sessionFactory;
 
+    @Autowired
+    private PengaturanService pengaturanService;
+
+    @Autowired
+    private JurnalService jurnalService;
+
     protected Session currentSession() {
         return sessionFactory.getCurrentSession();
     }
@@ -41,6 +51,22 @@ public class PenjualanServiceImpl implements PenjualanService {
             detailBarang.setStok(detailBarang.getStok() - detailPenjualan.getJumlah());
             session.update(detailBarang);
         }
+
+        Pengaturan pengaturan = pengaturanService.find("saldo-terakhir");
+        long saldo = pengaturan.getNilaiLong() + penjualan.getTotal();
+
+        Jurnal jurnal = new Jurnal();
+        jurnal.setDebit(penjualan.getTotal());
+        jurnal.setKredit(0L);
+        jurnal.setNama("Penjualan : No " + penjualan.getId() + " Kepada " + penjualan.getPelanggan().getNama());
+        jurnal.setSaldo(saldo);
+        jurnal.setSaldoSebelumnya(pengaturan.getNilaiLong());
+        jurnal.setWaktu(penjualan.getWaktuTransaksi());
+
+        pengaturan.setNilaiLong(saldo);
+        pengaturanService.update(pengaturan);
+
+        jurnalService.save(jurnal);
     }
 
     @Override
