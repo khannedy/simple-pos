@@ -14,8 +14,8 @@
     <context:annotation-config/>
     <tx:annotation-driven transaction-manager="transactionManager"/>
     
-    <context:component-scan base-package="com.stripbandunk.alexvariasi.service.impl"></context:component-scan>
-    <context:component-scan base-package="com.stripbandunk.alexvariasi.validator.impl"></context:component-scan>
+    <context:component-scan base-package="com.github.khannedy.simplepos.service.impl"></context:component-scan>
+    <context:component-scan base-package="com.github.khannedy.simplepos.validator.impl"></context:component-scan>
     
     <bean class="org.apache.commons.dbcp.BasicDataSource" id="dataSource" destroy-method="close">
         <property name="driverClassName" value="${jdbc.driver}"></property>
@@ -36,26 +36,26 @@
         </property>
         <property name="annotatedClasses">
             <util:list>
-                <value>com.stripbandunk.alexvariasi.entity.master.Jabatan</value>
-                <value>com.stripbandunk.alexvariasi.entity.master.Karyawan</value>
-                <value>com.stripbandunk.alexvariasi.entity.master.Kategori</value>
-                <value>com.stripbandunk.alexvariasi.entity.master.Pelanggan</value>
-                <value>com.stripbandunk.alexvariasi.entity.master.Pemasok</value>
-                <value>com.stripbandunk.alexvariasi.entity.master.Penjual</value>
-                <value>com.stripbandunk.alexvariasi.entity.master.Satuan</value>
-                <value>com.stripbandunk.alexvariasi.entity.master.Barang</value>
-                <value>com.stripbandunk.alexvariasi.entity.master.DetailBarang</value>
-                <value>com.stripbandunk.alexvariasi.entity.user.Grup</value>
-                <value>com.stripbandunk.alexvariasi.entity.user.HakAkses</value>
-                <value>com.stripbandunk.alexvariasi.entity.user.Pengguna</value>
-                <value>com.stripbandunk.alexvariasi.entity.transaction.Penjualan</value>
-                <value>com.stripbandunk.alexvariasi.entity.transaction.Pembelian</value>
-                <value>com.stripbandunk.alexvariasi.entity.transaction.DetailPenjualan</value>
-                <value>com.stripbandunk.alexvariasi.entity.transaction.DetailPembelian</value>
-                <value>com.stripbandunk.alexvariasi.entity.transaction.Pemasukkan</value>
-                <value>com.stripbandunk.alexvariasi.entity.transaction.Pengeluaran</value>
-                <value>com.stripbandunk.alexvariasi.entity.Pengaturan</value>
-                <value>com.stripbandunk.alexvariasi.entity.report.Jurnal</value>
+                <value>com.github.khannedy.simplepos.entity.master.Jabatan</value>
+                <value>com.github.khannedy.simplepos.entity.master.Karyawan</value>
+                <value>com.github.khannedy.simplepos.entity.master.Kategori</value>
+                <value>com.github.khannedy.simplepos.entity.master.Pelanggan</value>
+                <value>com.github.khannedy.simplepos.entity.master.Pemasok</value>
+                <value>com.github.khannedy.simplepos.entity.master.Penjual</value>
+                <value>com.github.khannedy.simplepos.entity.master.Satuan</value>
+                <value>com.github.khannedy.simplepos.entity.master.Barang</value>
+                <value>com.github.khannedy.simplepos.entity.master.DetailBarang</value>
+                <value>com.github.khannedy.simplepos.entity.user.Grup</value>
+                <value>com.github.khannedy.simplepos.entity.user.HakAkses</value>
+                <value>com.github.khannedy.simplepos.entity.user.Pengguna</value>
+                <value>com.github.khannedy.simplepos.entity.transaction.Penjualan</value>
+                <value>com.github.khannedy.simplepos.entity.transaction.Pembelian</value>
+                <value>com.github.khannedy.simplepos.entity.transaction.DetailPenjualan</value>
+                <value>com.github.khannedy.simplepos.entity.transaction.DetailPembelian</value>
+                <value>com.github.khannedy.simplepos.entity.transaction.Pemasukkan</value>
+                <value>com.github.khannedy.simplepos.entity.transaction.Pengeluaran</value>
+                <value>com.github.khannedy.simplepos.entity.Pengaturan</value>
+                <value>com.github.khannedy.simplepos.entity.report.Jurnal</value>
             </util:list>
         </property>
     </bean>
