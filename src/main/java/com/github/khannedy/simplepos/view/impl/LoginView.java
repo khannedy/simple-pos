@@ -47,7 +47,7 @@ public class LoginView extends DialogView {
 
         jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getStyle() | java.awt.Font.BOLD, 24));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Alex Variasi");
+        jLabel1.setText("Khannedy - Simple POS");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Login"));
 
