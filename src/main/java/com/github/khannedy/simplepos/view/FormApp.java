@@ -73,7 +73,7 @@ public class FormApp extends javax.swing.JFrame {
         jMenuItemLapJurnal = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Khannesy - Simple POST");
+        setTitle("Khannesy - Simple POS");
         getContentPane().setLayout(new java.awt.CardLayout());
 
         jMenuBarApp.setName("jMenuBarApp"); // NOI18N
